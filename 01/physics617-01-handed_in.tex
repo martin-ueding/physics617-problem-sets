@@ -1,0 +1,175 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{1}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{5} \\
+        \nameref{homework:2} & & \punkte{20} \\
+        \midrule
+        Total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\vspace{3ex}
+
+I would like to scan and upload the problem sets with your corrections to my
+website \href{http://martin-ueding.de}{martin-ueding.de}. There, the original
+problem set as well as the reviewed one will be licensed under the
+“\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+Attribution-ShareAlike 4.0 International License}”. Is that okay with you?
+
+Yes $\Box$ \hspace{2cm} No $\Box$
+
+\section{Sodium in hcp und bcc}
+\label{homework:1}
+
+We have a transition from bcc to hcp with a fixed density. This density is the
+number of atoms per volume. The volume is best taken to be the unit cell. The
+bcc-lattice is shown in Figure~\ref{fig:bcc}. There are eight atoms on the
+corners of the cell. Only one octant contributes, so in total that is one atom.
+The atom in the middle also contributes, therefore there are two atoms in the
+bcc unit cell.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{bcc}
+    \caption{%
+        bcc-unit cell. Atom “suspended” by dashed lines is in the center of the
+        cube. Not all atoms shown actually belong to the unit cell.
+    }
+    \label{fig:bcc}
+\end{figure}
+
+The density therefore is:
+\[
+    \rho = \frac{2}{V}
+    \quad\text{with}\quad
+    V = a^3 \,.
+\]
+
+The unit cell of the hcp-lattice is shown in Figure~\ref{fig:hcp-unit}. There
+are two atoms per unit cell as well. The Bravais vectors of this system are the
+following:
+\[
+    \tilde{\vec a}_1 =
+    \tilde a
+    \begin{pmatrix}
+        1 \\ 0 \\ 0
+    \end{pmatrix}
+    \quad
+    \tilde{\vec a}_2 =
+    \tilde a
+    \begin{pmatrix}
+        1/2 \\ \sqrt{3}/2 \\ 0
+    \end{pmatrix}
+    \quad
+    \tilde{\vec a}_3 =
+    \tilde a
+    \begin{pmatrix}
+        0 \\ 0 \\ \sqrt{8/3}
+    \end{pmatrix}
+\]
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{hcp-unit}
+    \caption{%
+        Unit cell of hcp-lattice. The three Bravais vectors are shown as well
+        as the atoms belonging to the unit cell. The atom “suspended” by the
+        dashed lines actually sits above the middle of the triangle
+        ($\bigtriangleup$) suggested by the dotted line. It seems hard to find
+        a decent projection for those lattices.
+    }
+    \label{fig:hcp-unit}
+\end{figure}
+
+The volume of this cell is
+\[
+    \tilde V = \tilde{\vec a}_1 \cdot [\tilde{\vec a}_2 \times \tilde{\vec
+    a}_3] = \sqrt 2 \, \tilde a^3 \,.
+\]
+Therefore the density here is
+\[
+    \tilde \rho
+    = \frac{2}{\sqrt 2 \, \tilde a^3}
+    = \frac{\sqrt 2}{\tilde a^3} \,.
+\]
+
+The problem asks for constant density. The new lattice spacing $\tilde a$ is
+desired. So we have
+\[
+    \rho = \tilde \rho
+    \iff
+    \frac{2}{a^3} = \frac{\sqrt 2}{\tilde a^3}
+    \iff
+    \frac{a^3}{2} = \frac{\tilde a^3}{\sqrt 2}
+    \iff
+    \tilde a
+    =
+    \sqrt[6] 2 \, a
+    \,.
+\]
+
+After the transition, the new lattice spacing is a factor $\sqrt[6] 2$ larger
+than before.
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79

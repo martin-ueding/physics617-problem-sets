@@ -1,0 +1,38 @@
+\begin{tikzpicture}[scale=3, atom/.style={circle, draw}, x={(9mm, -1mm)}, z={(-6mm, -4mm)}]
+
+    \node[atom] (n000) at (0, 0, 0) {};
+    \node[atom] (n001) at (0, 0, 1) {};
+    \node[atom] (n010) at (0, 1, 0) {};
+    \node[atom] (n011) at (0, 1, 1) {};
+    \node[atom] (n100) at (1, 0, 0) {};
+    \node[atom] (n101) at (1, 0, 1) {};
+    \node[atom] (n110) at (1, 1, 0) {};
+    \node[atom] (n111) at (1, 1, 1) {};
+
+    \node[atom] (c) at (.5, .5, .5) {};
+
+    \draw (n000) -- (n100);
+    \draw (n001) -- (n101);
+    \draw (n010) -- (n110);
+    \draw (n011) -- (n111);
+
+    \draw (n000) -- (n010);
+    \draw (n001) -- (n011);
+    \draw (n100) -- (n110);
+    \draw (n101) -- (n111);
+
+    \draw (n000) -- (n001);
+    \draw (n010) -- (n011);
+    \draw (n100) -- (n101);
+    \draw (n110) -- (n111);
+
+    \draw[dashed] (n000) -- (c);
+    \draw[dashed] (n001) -- (c);
+    \draw[dashed] (n010) -- (c);
+    \draw[dashed] (n011) -- (c);
+    \draw[dashed] (n100) -- (c);
+    \draw[dashed] (n101) -- (c);
+    \draw[dashed] (n110) -- (c);
+    \draw[dashed] (n111) -- (c);
+
+\end{tikzpicture}
