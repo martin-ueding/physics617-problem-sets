@@ -6,6 +6,7 @@
 \usepackage{multicol}
 \usepackage{simplewick}
 \usepackage{slashed}
+\usepackage{subcaption}
 
 \newcommand\timeorder{\mathscr T}
 \newcommand\normorder{\mathscr N}
@@ -174,7 +175,88 @@ than before.
 
 \subsection{Reciprocal lattice}
 
+First we need to know the Bravais lattice. The two basis vectors are
+\[
+    \vec a_1 =
+    a
+    \begin{pmatrix}
+        2 \\ 0
+    \end{pmatrix}
+    \eqnsep
+    \vec a_2 =
+    a
+    \begin{pmatrix}
+        2 \cos(\piup/3) \\
+        2 \sin(\piup/3)
+    \end{pmatrix}
+    =
+    a
+    \begin{pmatrix}
+        1 \\ \sqrt{3}
+    \end{pmatrix} \,.
+\]
+Both vectors have a length of $2a$ which seems consistent.
+
+The reciprocal basis can be found in a convenient way when those vectors are
+generalized to $\R^3$ and a third basis vector $a\ev_3$ is added. Then we have
+\[
+    \vec b_i = 2\piup \frac{\epsilon_{ijk} \vec a_j \times \vec a_k}{V} \,.
+\]
+The volume~$V$ is
+\[
+    V = \vec a_1 \cdot [\vec a_2 \times a\ev_3]
+    = 2 \sqrt 3 \, a^3 \,.
+\]
+Now we can compute the reciprocal lattice vectors. They are
+\[
+    \vec b_1 = \frac{2 \piup}{2 \sqrt 3 \, a^3}
+    \begin{pmatrix}
+        a^2 \sqrt 3 \\ 0 \\ 0
+    \end{pmatrix}
+    =
+    \frac{\piup}{a}
+    \begin{pmatrix}
+        1 \\ - 1 / \sqrt 3 \\ 0
+    \end{pmatrix}
+    \eqnsep
+    \vec b_2 = \frac{2 \piup}{2 \sqrt 3 \, a^3}
+    \begin{pmatrix}
+        0 \\ 2a^2 \\ 0
+    \end{pmatrix}
+    =
+    \frac{\piup}{a}
+    \begin{pmatrix}
+        0 \\ 2 / \sqrt 3 \\ 0
+    \end{pmatrix} \,.
+\]
+
 \subsection{First Brillouin zone}
+
+The first Brillouin zone is spanned by those reciprocal vectors. The zone is
+centered symmetrically.
+
+\begin{figure}[htbp]
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics{reciprocal}
+        \caption{%
+            Reciprocal lattice vectors $\vec b_i$
+        }
+        \label{fig:}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics{brillouin}
+        \caption{%
+            First Brillouin zone with marked corners
+        }
+        \label{fig:}
+    \end{subfigure}
+    \caption{%
+        Construction of the first Brillouin zone
+    }
+    \label{fig:}
+\end{figure}
 
 \subsection{Possible wave-vectors}
 
