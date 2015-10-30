@@ -180,60 +180,74 @@ First we need to know the Bravais lattice. The two basis vectors are
     \vec a_1 =
     a
     \begin{pmatrix}
-        2 \\ 0
+        1 \\ 0
     \end{pmatrix}
     \eqnsep
     \vec a_2 =
     a
     \begin{pmatrix}
-        2 \cos(\piup/3) \\
-        2 \sin(\piup/3)
+        1 \cos(\piup/3) \\
+        1 \sin(\piup/3)
     \end{pmatrix}
     =
     a
     \begin{pmatrix}
-        1 \\ \sqrt{3}
+        1/2 \\ \sqrt{3}/2
     \end{pmatrix} \,.
 \]
-Both vectors have a length of $2a$ which seems consistent.
+Both vectors have a length of $a$ which seems consistent. The unit cell is
+shown in Figure~\ref{fig:kagome-unit}, it contains three atoms.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{kagome-unit}
+    \caption{%
+        Unit cell of the kagomé lattice. Only black points are really included,
+        gray points are only for illustration of the tiling.
+    }
+    \label{fig:kagome-unit}
+\end{figure}
 
 The reciprocal basis can be found in a convenient way when those vectors are
-generalized to $\R^3$ and a third basis vector $a\ev_3$ is added. Then we have
+generalized to $\R^3$ and a third basis vector $\vec a_3 := a\ev_3$ is added.
+Then we have
 \[
     \vec b_i = 2\piup \frac{\epsilon_{ijk} \vec a_j \times \vec a_k}{V} \,.
 \]
 The volume~$V$ is
 \[
-    V = \vec a_1 \cdot [\vec a_2 \times a\ev_3]
-    = 2 \sqrt 3 \, a^3 \,.
+    V = \vec a_1 \cdot [\vec a_2 \times \vec a_3]
+    = \frac{\sqrt 3}{2} \, a^3 \,.
 \]
 Now we can compute the reciprocal lattice vectors. They are
 \[
-    \vec b_1 = \frac{2 \piup}{2 \sqrt 3 \, a^3}
+    \vec b_1 = \frac{4 \piup}{\sqrt 3 \, a^3}
     \begin{pmatrix}
-        a^2 \sqrt 3 \\ 0 \\ 0
+        a^2 \sqrt 3/2 \\ -1/2 \\ 0
     \end{pmatrix}
     =
-    \frac{\piup}{a}
+    \frac{2\piup}{a}
     \begin{pmatrix}
         1 \\ - 1 / \sqrt 3 \\ 0
     \end{pmatrix}
     \eqnsep
-    \vec b_2 = \frac{2 \piup}{2 \sqrt 3 \, a^3}
+    \vec b_2 = \frac{4 \piup}{\sqrt 3 \, a^3}
     \begin{pmatrix}
-        0 \\ 2a^2 \\ 0
+        0 \\ a^2 \\ 0
     \end{pmatrix}
     =
-    \frac{\piup}{a}
+    \frac{2\piup}{a}
     \begin{pmatrix}
         0 \\ 2 / \sqrt 3 \\ 0
     \end{pmatrix} \,.
 \]
+Those reciprocal vectors are illustrated in Figure~\ref{fig:reciprocal}.
 
 \subsection{First Brillouin zone}
 
 The first Brillouin zone is spanned by those reciprocal vectors. The zone is
-centered symmetrically.
+centered symmetrically around the origin. It is shown in
+Figure~\ref{fig:brillouin}.
 
 \begin{figure}[htbp]
     \begin{subfigure}[b]{0.5\linewidth}
@@ -242,7 +256,7 @@ centered symmetrically.
         \caption{%
             Reciprocal lattice vectors $\vec b_i$
         }
-        \label{fig:}
+        \label{fig:reciprocal}
     \end{subfigure}
     \begin{subfigure}[b]{0.5\linewidth}
         \centering
@@ -250,15 +264,33 @@ centered symmetrically.
         \caption{%
             First Brillouin zone with marked corners
         }
-        \label{fig:}
+        \label{fig:brillouin}
     \end{subfigure}
     \caption{%
         Construction of the first Brillouin zone
     }
-    \label{fig:}
+    \label{fig:brillouin-zone}
 \end{figure}
 
 \subsection{Possible wave-vectors}
+
+\newcommand{\setK}{\text{\bfseries\sffamily K}}
+
+The possible wave vectors~$\vec k$ are the ones lying in the Brillouin zone as
+shown in Figure~\ref{fig:brillouin}. This set is spanned by the reciprocal
+lattice vectors and can be parametrized like this:
+\[
+    \setK = \Set{c^i \vec b_i \colon c_i \in \left(- \frac12 , \frac12 \right]}
+    \,.
+\]
+$c = - 1/2$ and $c = 1/2$ both give an equivalent wave vector~$\vec k$ due to
+the periodic boundary conditions of the Brillouin zone. Therefore one of them
+has to be excluded to make the set consist of unique elements only.
+
+This assumes that the solid extends periodically to infinity and therefore
+arbitrary small wave vectors are sensible. When the solid only consists of
+$N_i$~sites in each direction, the set of allowed wave vectors becomes
+discrete.
 
 \subsection{16-site lattice}
 
