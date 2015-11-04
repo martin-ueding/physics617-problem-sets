@@ -6,7 +6,8 @@ document_pdf := $(document_tex:%.tex=%.pdf)
 figures_tex := $(wildcard Figures/*.tex)
 figures_pdf := $(figures_tex:Figures/%.tex=build/%.pdf)
 
-all: $(document_pdf)
+all: $(figures_pdf)
+#all: $(document_pdf)
 
 test:
 	@echo "document: 	$(document_pdf)"
@@ -28,7 +29,7 @@ build/%.pdf: build/page/%.pdf
 	pdfcrop $< $@
 
 %.pdf: %.tex
-	cd $$(dirname $@) && latexmk -lualatex $$(basename $<)
+	cd $$(dirname $@) && lualatex --halt-on-error $$(basename $<)
 
 clean:
 	$(RM) *-blx.bib
@@ -39,3 +40,5 @@ clean:
 	$(RM) *.svg
 	$(RM) *.pdf
 	$(RM) -r build
+
+.PRECIOUS: %.pdf %.tex
