@@ -1,0 +1,118 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{2}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{25} \\
+        %\midrule
+        %Total & & \arabic{totalpoints} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Atoms as Dirac delta potentials}
+\label{homework:1}
+
+\subsection{Jump in derivative}
+
+The potential here is $V(x) = V_0 \deltaup(x)$. The corresponding
+time-independent Schrödinger equation then is:
+\[
+    \sbr{- \frac{1}{2m} \laplace + V_0 \deltaup(x) - E} \psi(x) = 0 \,.
+\]
+In order to find the jump at the position of the atoms, we integrate around a
+$2 \epsilon$ ($\epsilon \in \R^+$) sized region centered around $x = 0$.
+\begin{align*}
+    \int_{-\epsilon}^\epsilon \dif x \, \sbr{- \frac{1}{2m} \laplace + V_0 \deltaup(x) - E} \psi(x) &= 0
+    \intertext{%
+        We split up the integral in multiple parts.
+    }
+    - \frac{1}{2m} \int_{-\epsilon}^\epsilon \dif x \, \psi''(x) + V_0 \int_{-\epsilon}^\epsilon \dif x \, \deltaup(x) \psi(x) - \int_{-\epsilon}^\epsilon \dif x \, E \psi(x) &= 0
+    \intertext{%
+        The first integral can be simplified with Stokes's theorem. The second
+        is just the evaluation of the function at $x = 0$. The last integral
+        will give a contribution in the order of $\epsilon$.
+    }
+    - \frac{1}{2m} \sbr{\psi'(\epsilon) - \psi'(-\epsilon)}
+    + V_0 \psi(0)
+    + \mathrm O(\epsilon)
+    &= 0
+\end{align*}
+We isolate the jump in the derivative.
+\[
+    \sbr{\psi'(\epsilon) - \psi'(-\epsilon)}
+    = 2m V_0 \psi(0) + \mathrm O(\epsilon)
+\]
+Then we can take the limit and obtain the actual jump.
+\[
+    \lim_{\epsilon \to 0}
+    \sbr{\psi'(\epsilon) - \psi'(-\epsilon)}
+    = 2m V_0 \psi(0)
+    = 2m V_0 [A + B]
+\]
+There is a jump in the case that $A + B \neq 0$. The case $A = B = 0$ is not
+interesting as it is a state that could not even be normalized. The state $A =
+-B$ would make $\psi(x) \propto \sin(Kx)$ which will avoid the potential peak
+at $x = 0$ and is not affected by it.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
