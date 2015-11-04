@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+        scale=1.5,
+        atom/.style={fill=black, circle},
+    ]
+
+    \coordinate (n1) at (0:2) {};
+    \coordinate (n2) at (60:2) {};
+    \coordinate (n3) at (120:2) {};
+    \coordinate (n4) at (180:2) {};
+    \coordinate (n5) at (240:2) {};
+    \coordinate (n6) at (300:2) {};
+
+    \draw[fill] (0, 0) circle (.3mm);
+
+    \coordinate (in) at ($(n2)!.5!(n3)$);
+    \coordinate (out) at ($(n5)!.5!(n6)$);
+    \draw (in.center) -- (n2) -- (n1) -- (n6) -- (out.center);
+    \draw[dotted] (out.center) -- (n5) -- (n4) -- (n3) -- (in.center);
+
+    \foreach \a in {0,60,...,359}
+    {
+        %\draw[->] (0, 0) -- (\a:2);
+        \draw[->] (0, 0) -- (\a:1.5);
+    }
+
+    \foreach \a in {-30,30,90}
+    {
+        \draw[->] (0, 0) -- (\a:-0.866025);
+        \draw[->] (0, 0) -- (\a:0.866025);
+        \draw[->] (0, 0) -- (\a:1.732051);
+    }
+    
+\end{tikzpicture}

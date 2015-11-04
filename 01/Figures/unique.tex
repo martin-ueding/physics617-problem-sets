@@ -1,0 +1,26 @@
+\begin{tikzpicture}[
+        scale=1.5,
+        atom/.style={fill=black, circle},
+    ]
+
+
+    \coordinate (n1) at (0:2) {};
+    \coordinate (n2) at (60:2) {};
+    \coordinate (n3) at (120:2) {};
+    \coordinate (n4) at (180:2) {};
+    \coordinate (n5) at (240:2) {};
+    \coordinate (n6) at (300:2) {};
+
+    \draw[fill=black!20] (n1) -- (n2) -- (n3) -- (n4) -- (n5) -- (n6) -- (n1);
+
+    \draw[fill] (0, 0) circle (.3mm);
+
+    \coordinate (in) at ($(n2)!.5!(n3)$);
+    \coordinate (out) at ($(n5)!.5!(n6)$);
+    \draw[very thick, dashed] (in.center) -- (n2) -- (n1) -- (n6) -- (out.center);
+    \node[draw, fill=black, circle, inner sep=.7mm] at (in) {};
+    \node[draw, fill=white, circle, inner sep=.7mm] at (out) {};
+
+    \draw[->] (0, 0) -- (23:.8) node[midway, above, sloped] {$\vec k$};
+    
+\end{tikzpicture}

@@ -1,11 +1,27 @@
-\begin{tikzpicture}[scale=2]
-    \coordinate (b1) at (1, -0.57735);
-    \coordinate (b2) at (0, 1.154701);
+\begin{tikzpicture}[
+        scale=1.5,
+        atom/.style={fill=black, circle},
+    ]
 
-    \draw (0, 0) node[below left] {$-\frac{\vec b_1 + \vec b_2}{2}$}
-    -- (b1) node[below right] {$\frac{\vec b_1 - \vec b_2}{2}$}
-    -- ++(b2) node[above right] {$\frac{\vec b_1 + \vec b_2}{2}$}
-    -- ++($-1*(b1)$) node[above left] {$\frac{-\vec b_1 + \vec b_2}{2}$}
-    -- (0, 0);
-    \draw[fill] ($0.5*(b1) + 0.5*(b2)$) circle (.2mm) node[below] {$\vec 0$};
+    \node[atom] (n0) at (0, 0) {};
+
+    \node[atom] (n1) at (30:2) {};
+    \node[atom] (n2) at (90:2) {};
+    \node[atom] (n3) at (150:2) {};
+    \node[atom] (n4) at (210:2) {};
+    \node[atom] (n5) at (270:2) {};
+    \node[atom] (n6) at (330:2) {};
+
+    \draw ($(n1)!.8!(n3)$) -- ($(n1)!.2!(n3)$);
+    \draw ($(n2)!.8!(n4)$) -- ($(n2)!.2!(n4)$);
+    \draw ($(n3)!.8!(n5)$) -- ($(n3)!.2!(n5)$);
+    \draw ($(n4)!.8!(n6)$) -- ($(n4)!.2!(n6)$);
+    \draw ($(n5)!.8!(n1)$) -- ($(n5)!.2!(n1)$);
+    \draw ($(n6)!.8!(n2)$) -- ($(n6)!.2!(n2)$);
+
+    \foreach \n in {1,...,6}
+    {
+        \draw[dotted] (n0) -- (n\n);
+    }
+    
 \end{tikzpicture}

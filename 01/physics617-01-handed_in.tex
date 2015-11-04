@@ -241,16 +241,16 @@ Now we can compute the reciprocal lattice vectors. They are
         0 \\ 2 / \sqrt 3 \\ 0
     \end{pmatrix} \,.
 \]
-Those reciprocal vectors are illustrated in Figure~\ref{fig:reciprocal}.
+Those reciprocal vectors are illustrated in Figure~\ref{fig:reciprocal}. They
+span a triangular Bravais lattice, just as with the kagomé lattice. The length
+of both reciprocal vectors is $2/\sqrt 3$ which also seems consistent.
 
 \subsection{First Brillouin zone}
 
-The first Brillouin zone is spanned by those reciprocal vectors. The zone is
-centered symmetrically around the origin. It is shown in
-Figure~\ref{fig:brillouin}.
+The first Brillouin is constructed from the reciprocal lattice.
 
 \begin{figure}[htbp]
-    \begin{subfigure}[b]{0.5\linewidth}
+    \begin{subfigure}[c]{0.5\linewidth}
         \centering
         \includegraphics{reciprocal}
         \caption{%
@@ -258,31 +258,108 @@ Figure~\ref{fig:brillouin}.
         }
         \label{fig:reciprocal}
     \end{subfigure}
-    \begin{subfigure}[b]{0.5\linewidth}
+    \begin{subfigure}[c]{0.5\linewidth}
         \centering
-        \includegraphics{brillouin}
+        \includegraphics{triagonal}
         \caption{%
-            First Brillouin zone with marked corners
+            Triangular lattice spanned by reciprocal lattice vectors
         }
-        \label{fig:brillouin}
+        \label{fig:triagonal}
     \end{subfigure}
     \caption{%
-        Construction of the first Brillouin zone
+        Construction of the reciprocal lattice
     }
     \label{fig:brillouin-zone}
 \end{figure}
 
+To construct the first Brillouin zone, one selects one point in the reciprocal
+lattice, this is the center of Figure~\ref{fig:brillouin}. Then one connects
+the nearest neighbors (six in this case) with the center point. Those are shown
+as dotted lines. Through each dotted line one constructs the perpendicular
+bisector. In this case it actually goes right through the neighboring lattice
+points due to the symmetry of the lattice. The area which is enclosed by the
+bisectors (the hexagon) then is the first Brillouin zone.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{brillouin}
+    \caption{%
+        Construction of the first Brillouin zone. The emerging hexagon is that
+        zone.
+    }
+    \label{fig:brillouin}
+\end{figure}
+
+The height of the hexagon is the reciprocal lattice spacing~$b$. This distance
+is
+\[
+    b = \frac{4 \piup}{\sqrt 3\, a} \,.
+\]
+Together with the angles one can construct the hexagon edge length~$z$ to be
+\[
+    \frac{b}{2z} = \cos\del{\frac\piup6}
+    \iff
+    z = \frac{b}{\sqrt 3}
+    = \frac{4 \piup}{3a} \,.
+\]
+The edge length~$z$ also is the distance of the center to one of the corners of
+the hexagon.
+
 \subsection{Possible wave-vectors}
 
-\newcommand{\setK}{\text{\bfseries\sffamily K}}
+\begin{figure}[htbp]
+    \begin{subfigure}[c]{.3\linewidth}
+        \centering
+        \includegraphics{first-zone}
+        \caption{%
+            First Brillouin zone. The edge length of the hexagon is $z$.
+        }
+        \label{fig:first-zone}
+    \end{subfigure}
+    \begin{subfigure}[c]{.7\linewidth}
+        \centering
+        \includegraphics{replicated-zone}
+        \caption{%
+            Replicated zone to show periodic boundary conditions.
+        }
+        \label{fig:replicated-zone}
+    \end{subfigure}
+    \caption{%
+        First Brillouin zone.
+    }
+\end{figure}
 
 The possible wave vectors~$\vec k$ are the ones lying in the Brillouin zone as
-shown in Figure~\ref{fig:brillouin}. This set is spanned by the reciprocal
-lattice vectors and can be parametrized like this:
-\[
-    \setK = \Set{c^i \vec b_i \colon c_i \in \left(- \frac12 , \frac12 \right]}
-    \,.
-\]
+shown in Figure~\ref{fig:first-zone}. All wave vectors lying strictly within
+the zone are unique. Vectors lying on exactly on the boundary might be
+redundant. Half of the edges are part of the first Brillouin
+
+\begin{figure}[htbp]
+    \begin{subfigure}[t]{.5\linewidth}
+        \centering
+        \includegraphics{unique}
+        \caption{%
+            Set of vectors in the first Brillouin zone. The shaded section belongs
+            to the set as well as the vectors ending on the dashed line. The filled
+            circle is included. The open circle is excluded since it is equivalent
+            to the filled circle. The vector $\vec k$ is drawn as one sample vector
+            to show that they all start in the origin.
+        }
+        \label{fig:unique}
+    \end{subfigure}
+    \begin{subfigure}[t]{.5\linewidth}
+        \centering
+        \includegraphics{discrete}
+        \caption{%
+            Allowed vectors in a $4 \times 4$ lattice.
+        }
+        \label{fig:discrete}
+    \end{subfigure}
+    \caption{%
+        Vectors in the first Brillouin zone
+    }
+\end{figure}
+
 $c = - 1/2$ and $c = 1/2$ both give an equivalent wave vector~$\vec k$ due to
 the periodic boundary conditions of the Brillouin zone. Therefore one of them
 has to be excluded to make the set consist of unique elements only.
@@ -293,6 +370,12 @@ $N_i$~sites in each direction, the set of allowed wave vectors becomes
 discrete.
 
 \subsection{16-site lattice}
+
+A 16-site lattice probably consists of $4 \times 4$ lattice points. This means
+that the wave vectors are quantized in the direction of the reciprocal lattice.
+Only four discrete wave vectors (including zero) are allowed. Still all linear
+combinations in the zone are allowed. The resulting vectors are shown in
+Figure~\ref{fig:discrete}.
 
 
 \end{document}
