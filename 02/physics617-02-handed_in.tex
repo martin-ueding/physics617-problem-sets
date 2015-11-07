@@ -297,7 +297,7 @@ This one has to have an eigenvalue of unity. We subtract $\mat 1_2$ from this
 and set the determinant equal to zero. This gives us the following equation:
 \begin{align*}
     0
-    &= \sbr{[c+1] \exp(\iup [K - k] a) - 1} \sbr{[1-c] \exp(\iup [- K - k] a) - 1}
+    &= \cbr{[c+1] \exp(\iup [K - k] a) - 1} \cbr{[1-c] \exp(\iup [- K - k] a) - 1}
     \\&\quad
     + c^2 \exp(\iup [- K - k] a) \exp(\iup [K - k] a) \,.
     \intertext{%
@@ -335,7 +335,7 @@ and set the determinant equal to zero. This gives us the following equation:
     &= \exp(- \iup k a) \exp(- \iup k a) 
     + \exp(- \iup k a) \exp(\iup k a) 
     \\&\quad
-    - \exp(- \iup k a) \sbr{[c+1] \exp(\iup K a) - [1-c] \exp(- \iup K a)}
+    - \exp(- \iup k a) \cbr{[c+1] \exp(\iup K a) + [1-c] \exp(- \iup K a)}
     \intertext{%
         Now all the terms have an exponential up front, we factor that out.
         Then we drop it as it cannot be zero and the remainder needs to be
@@ -364,6 +364,10 @@ and set the determinant equal to zero. This gives us the following equation:
     }
     0 &= \cos(ka) - \cos(Ka) + \frac{m V_0}{K} \sin(Ka) \,.
 \end{align*}
+By comparing the coefficients we gather that $\alpha = - m V_0$. If the
+potential was defined as being negative, this sign might be the other way
+around. On my problem set, the potential is defined as being $V(x) = V_0
+\delta(x)$.
 
 \end{document}
 
