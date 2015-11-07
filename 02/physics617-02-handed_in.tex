@@ -115,6 +115,85 @@ at $x = 0$ and is not affected by it.
 
 \subsection{Extension to the full lattice}
 
+We know that the wave function in the free part between the atoms is given by
+Equation~(4) from the problem set:
+\[
+    \psi(x) = A \exp(\iup Kx) + B \exp(- \iup Kx) \,.
+\]
+On the left and on the right side of the atom located at $x = 0$ we can write
+the wave function as $\psi$ as glue them together with Heaviside step
+functions.
+\[
+    \psi(x) = \Theta(-x) \sbr{A \exp(\iup Kx) + B \exp(- \iup Kx)}
+    + \Theta(x) \sbr{C \exp(\iup Kx) + D \exp(- \iup Kx)} \,.
+\]
+The relation of those coefficients is going to be of interest. From the
+continuity of the wave function over the atoms we know that
+\[
+    \lim_{\epsilon \to 0} \sbr{\psi(\epsilon) - \psi(-\epsilon)} = 0 \,.
+\]
+Inserting the combined wave function this will lead to the equation
+\[
+    A + B - C - D = 0
+\]
+which tells us $A+B$ is the same as $C+D$. That will come in handy along the
+way.
+
+The Schrödinger equation contains the second derivative of the wave function.
+Therefore we must differentiate it twice. We start with the first derivative.
+\begin{align*}
+    \psi'(x)
+    &= - \delta(-x) \sbr{A \exp(\iup Kx) + B \exp(- \iup Kx)}
+    + \Theta(-x) \iup k \sbr{A \exp(\iup Kx) - B \exp(- \iup Kx)}
+    \\&\quad
+    + \delta(x) \sbr{C \exp(\iup Kx) + D \exp(- \iup Kx)}
+    + \Theta(x) \iup k \sbr{C \exp(\iup Kx) - D \exp(- \iup Kx)}
+    \intertext{%
+        Here we have used that the Dirac $\delta$-distribution is the
+        derivative of the Heaviside step function~$\Theta$. The additional
+        minus sign come from the chain rule. Next we evaluate the square
+        bracket after the $\delta$ at $x = 0$ since that is a continuous
+        function and would happen anyway when we integrate over the whole
+        expression.
+    }
+    &= - \delta(-x) [A + B]
+    + \delta(x) [C + D]
+    \\&\quad
+    + \Theta(-x) \iup k \sbr{A \exp(\iup Kx) - B \exp(- \iup Kx)}
+    + \Theta(x) \iup k \sbr{C \exp(\iup Kx) - D \exp(- \iup Kx)}
+    \intertext{%
+        We can replace $C + D$ with $A + B$ and see that the first two summands
+        cancel.
+    }
+    &= \Theta(-x) \iup k \sbr{A \exp(\iup Kx) - B \exp(- \iup Kx)}
+    + \Theta(x) \iup k \sbr{C \exp(\iup Kx) - D \exp(- \iup Kx)}
+\end{align*}
+So that was the first derivative. We will differentiate again.
+\begin{align*}
+    \psi''(x)
+    &= 
+    - \delta(-x) \iup k \sbr{A \exp(\iup Kx) - B \exp(- \iup Kx)}
+    - \Theta(-x) k^2 \sbr{A \exp(\iup Kx) + B \exp(- \iup Kx)}
+    \\&\quad
+    - \delta(x) \iup k \sbr{C \exp(\iup Kx) - D \exp(- \iup Kx)}
+    - \Theta(x) k^2 \sbr{C \exp(\iup Kx) + D \exp(- \iup Kx)}
+    \intertext{%
+        Again we can do the same thing with the $\delta$-distribution. The two
+        summands with the Heaviside function are just the wave function $\psi$
+        again.
+    }
+    &= - \delta(-x) \iup k [A - B]
+    - \delta(x) \iup k [C - B]
+    - k^2 \psi(x)
+    \intertext{%
+        The first two terms can be combined. We obtain the final result for the
+        second derivative:
+    }
+    &= \delta(x) \iup k [- A + B + C - D] - k^2 \psi(x) \,.
+\end{align*}
+
+At this point we have all the parts to assemble the Schrödinger equation.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
