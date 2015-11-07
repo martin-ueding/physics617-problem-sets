@@ -400,6 +400,40 @@ satisfy that condition.
     \label{fig:zoom}
 \end{figure}
 
+\subsection{Nearly free electron limit}
+
+All in all in we are looking for a root of the following expression:
+\[
+    \frac{\alpha}{\frac \piup a + \nu} \sin(\piup + a\nu) + \cos(\piup + a\nu)
+    - 1 \,.
+\]
+Then we can expand this into a power series around $\nu = 0$. Mathematica gives
+us:
+\[
+    - \frac{a^3 \alpha \nu}{\piup^2}
+    + \sbr{\frac{a^2}{2} + \frac{2 a^4 \alpha}{\piup^3}} \nu^2
+    + \mathrm O(\nu^3) \,.
+\]
+Taking only the first order in $\nu$ will only give the solution $\nu = 0$
+which is not that interesting. In second order we obtain the additional
+solution
+\[
+    \nu = \frac{2 a \piup \alpha}{\piup^3 + 4 a^2 \alpha} \,.
+\]
+
+The electron energy can be found by solving $K(E)$ for $E$. That is
+\[
+    E = \frac{K^2}{2m} \,.
+\]
+Inserting the just found expression we have
+\[
+    E
+    = \frac 1{2m} \sbr{\frac{\piup}{a} + \frac{2 a \piup \alpha}{\piup^3 + 4 a^2 \alpha}}^2
+    = \frac 1{2m} \sbr{\frac{\piup}{a} - \frac{2 a \piup m V_0}{\piup^3 - 4 a^2
+    m V_0}}^2
+    \,.
+\]
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
