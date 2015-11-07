@@ -269,6 +269,101 @@ and use that in the matrix equation:
     \end{pmatrix}
     \,.
 \]
+This equation allows us to carry coefficients from one cell to another cell on
+the left (smaller $x$).
+
+The idea now is to translate the function $u_k(x)$ by the lattice spacing $a$
+to the right (larger $x$). Then the coefficients $A$ and $B$ change but the
+function should stay the same. The new coefficients can be “pulled back” using
+the matrix equation. This operation should not change the coefficients. We will
+express the shifting of $u_k(x)$ as a matrix which acts on the coefficients as
+well. The product of both matrices needs to have an eigenvalue of unity such
+that the periodicity actually is preserved. The needed translation matrix for
+$u_k(x)$ is
+\[
+    \begin{pmatrix}
+        \exp(\iup [K - k] a) & 0 \\
+        0 & \exp(\iup [-K - k] a)
+    \end{pmatrix} \,.
+\]
+The matrix product which does one round-trip is
+\[
+    \begin{pmatrix}
+        [c+1] \exp(\iup [K - k] a) & c \exp(\iup [- K - k] a) \\
+        -c \exp(\iup [K - k] a) & [1-c] \exp(\iup [- K - k] a) \\
+    \end{pmatrix} \,.
+\]
+This one has to have an eigenvalue of unity. We subtract $\mat 1_2$ from this
+and set the determinant equal to zero. This gives us the following equation:
+\begin{align*}
+    0
+    &= \sbr{[c+1] \exp(\iup [K - k] a) - 1} \sbr{[1-c] \exp(\iup [- K - k] a) - 1}
+    \\&\quad
+    + c^2 \exp(\iup [- K - k] a) \exp(\iup [K - k] a) \,.
+    \intertext{%
+        In the first term, we need to expand this into four terms. We can
+        combine the exponentials in the last term.
+    }
+    &= [c+1] [1-c] \exp(\iup [K - k] a) \exp(\iup [- K - k] a)
+    - [c+1] \exp(\iup [K - k] a)
+    \\&\quad
+    - [1-c] \exp(\iup [- K - k] a)
+    + 1
+    + c^2 \exp(- 2 \iup ka)
+    \intertext{%
+        We simplify the first term a bit.
+    }
+    &= [1 - c^2] \exp(- 2 \iup k a) 
+    - [c+1] \exp(\iup [K - k] a)
+    - [1-c] \exp(\iup [- K - k] a)
+    + 1
+    \\&\quad
+    + c^2 \exp(- 2 \iup ka)
+    \intertext{%
+        The second term in the first bracket (the $-c^2$ term) and the very
+        last one cancel. We move the $+1$ term to the second position, this
+        will become clear in a bit.
+    }
+    &= \exp(- 2 \iup k a) 
+    + 1
+    - [c+1] \exp(\iup [K - k] a)
+    - [1-c] \exp(\iup [- K - k] a)
+    \intertext{%
+        From the exponentials, we can factor out the term going with $k$. From
+        the $+1$ term we can do this as well.
+    }
+    &= \exp(- \iup k a) \exp(- \iup k a) 
+    + \exp(- \iup k a) \exp(\iup k a) 
+    \\&\quad
+    - \exp(- \iup k a) \sbr{[c+1] \exp(\iup K a) - [1-c] \exp(- \iup K a)}
+    \intertext{%
+        Now all the terms have an exponential up front, we factor that out.
+        Then we drop it as it cannot be zero and the remainder needs to be
+        zero.
+    }
+    \impliedby 0 &= \exp(- \iup k a) 
+    + \exp(\iup k a) 
+    - [c+1] \exp(\iup K a) - [1-c] \exp(- \iup K a)
+    \intertext{%
+        The first two terms form a cosine. For the last two terms we need to
+        expand the square bracket in front first.
+    }
+    &= 2 \cos(ka)
+    - \exp(\iup K a) - \exp(- \iup K a)
+    - c \exp(\iup K a) + c \exp(- \iup K a)
+    \intertext{%
+        Then we have another cosine and another sine here.
+    }
+    &= 2 \cos(ka) - 2 \cos(Ka) - 2 \iup c \sin(Ka) \\
+    \intertext{%
+        We cancel the factor of two and insert $c$.
+    }
+    0 &= \cos(ka) - \cos(Ka) - \iup \frac{i m V_0}{K} \sin(Ka)
+    \intertext{%
+        And this gives us the desired result:
+    }
+    0 &= \cos(ka) - \cos(Ka) + \frac{m V_0}{K} \sin(Ka) \,.
+\end{align*}
 
 \end{document}
 
