@@ -358,7 +358,7 @@ and set the determinant equal to zero. This gives us the following equation:
     \intertext{%
         We cancel the factor of two and insert $c$.
     }
-    0 &= \cos(ka) - \cos(Ka) - \iup \frac{i m V_0}{K} \sin(Ka)
+    0 &= \cos(ka) - \cos(Ka) - \iup \frac{\iup m V_0}{K} \sin(Ka)
     \intertext{%
         And this gives us the desired result:
     }
@@ -368,6 +368,37 @@ By comparing the coefficients we gather that $\alpha = - m V_0$. If the
 potential was defined as being negative, this sign might be the other way
 around. On my problem set, the potential is defined as being $V(x) = V_0
 \delta(x)$.
+
+\subsection{Plot}
+
+The relation is plotted in Figure~\ref{fig:plot}. All the constants have been
+set to unity such that the function plotted is just
+\[
+    f(x) = - \frac{1}{\sqrt{2x}} \sin\del{\sqrt{2x}} + \cos\del{\sqrt{2x}} \,.
+\]
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics{plot}
+    \caption{%
+        Plot of the relation in Equation~(6) from the problem set.
+    }
+    \label{fig:plot}
+\end{figure}
+
+It can be seen from the zoomed plot in Figure~\ref{fig:zoom} that the function
+$f(E)$ overshoots the absolute value of unity by a little bit. This behaviour
+will probably last for $E \to \infty$ as well. Therefore not all values of $E$
+satisfy that condition.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{zoom}
+    \caption{%
+        Subset of Figure~\ref{fig:plot}.
+    }
+    \label{fig:zoom}
+\end{figure}
 
 \end{document}
 
