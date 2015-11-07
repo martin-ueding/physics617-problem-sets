@@ -193,6 +193,82 @@ So that was the first derivative. We will differentiate again.
 \end{align*}
 
 At this point we have all the parts to assemble the Schrödinger equation.
+\begin{align*}
+    0
+    &= \sbr{- \frac{\laplace}{2m} + V - E} \psi(x)
+    \intertext{%
+        Inserting the terms gives us
+    }
+    &= \frac{\iup k}{2m} \delta(x) [A - B - C + D]
+    + \sbr{\frac{k^2}{2m} + V_0 \delta(x) - E} \psi(x) \,.
+\end{align*}
+
+In case $x \neq 0$ we should have
+\[
+    E = \frac{K^2}{2m}
+\]
+which is indeed the definition of $K$. For the case $x = 0$ it would be
+convenient to have the other terms vanish independent of $\psi$.
+\begin{align*}
+    0 &= \delta(x) \sbr{\frac{\iup k}{2m} [A - B - C + D] + V_0 \psi(x)}
+    \intertext{%
+        With the $\delta(x)$ there, we can directly write $A + B$ (or $C + D$)
+        for $\psi(x)$ as we did in the derivatives as well.
+    }
+    &= \delta(x) \sbr{\frac{\iup k}{2m} [A - B - C + D] + V_0 [A + B]}
+    \intertext{%
+        This equation is certainly satisfied if the square bracket vanishes, so
+        we will see how we can do this.
+    }
+    \impliedby 0 &= \frac{\iup k}{2m} [A - B - C + D] + V_0 [A + B]
+    \intertext{%
+        We will replace $D$ with $A + B - C$.
+    }
+    &= \frac{\iup k}{m} [A - C] + V_0 [A + B]
+\end{align*}
+
+We would like to have two functions, namely $A(C, D)$ and $B(C, D)$. Those can
+be acquired by massaging the above equation into a suitable form. Together with
+$A + B = C + D$ we obtain
+\[
+    A = \frac{\iup m V_0}{K} [C + D] + C
+    \eqnsep
+    B = D - \frac{\iup m V_0}{K} [C + D] \,.
+\]
+This can be written as a matrix equation:
+\[
+    \begin{pmatrix}
+        A \\ B
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \frac{\iup m V_0}{K} + 1 & \frac{\iup m V_0}{K} \\
+        - \frac{\iup m V_0}{K} & 1 - \frac{\iup m V_0}{K}
+    \end{pmatrix}
+    \begin{pmatrix}
+        C \\ D
+    \end{pmatrix}
+    \,.
+\]
+In order to remove the visual clutter we define
+\[
+    c := \frac{\iup m V_0}{K}
+\]
+and use that in the matrix equation:
+\[
+    \begin{pmatrix}
+        A \\ B
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        c + 1 & c \\
+        - c & 1 - c
+    \end{pmatrix}
+    \begin{pmatrix}
+        C \\ D
+    \end{pmatrix}
+    \,.
+\]
 
 \end{document}
 
