@@ -1,0 +1,168 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{2}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \\
+        \nameref{homework:2} & & \\
+        \midrule
+        %Total & & \arabic{totalpoints} \\
+        Total & & 25 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Linear chain with next-nearest neighbor hopping}
+\label{homework:1}
+
+\subsection{Dispersion}
+
+We are given a linear chain with distance~$a$ between the sites. The there
+first- and second-neighbor hopping amplitudes $t_1$ and $t_2$. The situation is
+depicted in Figure~\ref{fig:hopping}.
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics{hopping}
+    \caption{%
+        Hopping amplitudes between the lattice sites.
+    }
+    \label{fig:hopping}
+\end{figure}
+
+Instead of building up a Hamiltonian from (unknown) potential and kinetic
+energy we will just use the hopping amplitudes as was done in the in-class
+exercise “Tight-binding model on a honeycomb lattice”. The Hamiltonian then
+looks like this:
+\[
+    H =
+    - t_1 \sum_{i, j \; \text{nearest neighbors}}
+    [c_i^\dagger c_j + \hc]
+    - t_2 \sum_{i, j \; \text{next nearest neighbors}}
+    [c_i^\dagger c_j + \hc] \,.
+\]
+There is probably nice notation like $\braket{i, j}$ for the first part. I do
+not know how to deal with the second part, so we will just use indices for
+that. Then the Hamiltonian will take take the following form:
+\[
+    H =
+    - \sum_i
+    [c_i^\dagger c_{j+1} + c_i^\dagger c_{j+2} + \hc] \,.
+\]
+In total there are four terms which correspond to the four possible hopping
+distances of \numlist{+1;+2;-1;-2}. This Hamiltonian has a similar form
+compared to the one shown on Monday in class. It is not diagonal and needs to
+be diagonalized to give sensible energy eigenvalues. The diagonalization starts
+with a Fourier transformation of the ladder operators. It is given as
+\[
+    c_j = \frac{1}{\sqrt{N}} \sum_k c_k \exp(\iup kaj) \,,
+\]
+where $N$ is the number of lattice sites, $j$ the lattice site, $k$ is a
+momentum and $a$ the spacing of the lattice. Although the imaginary unit~$\iup$
+and the index~$i$ can distinguished in print, we try not to mix them too much.
+
+
+
+
+\begin{figure}[tb]
+    \begin{subfigure}[c]{0.5\linewidth}
+        \centering
+        \includegraphics{linear-band}
+        \caption{%
+            $t_1 = 1$, $t_2 = 1$
+        }
+        \label{fig:linear-band/1}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.5\linewidth}
+        \centering
+        \includegraphics{linear-band-0_5__-0_5}
+        \caption{%
+            $t_1 = 1/2$, $t_2 = -1/2$
+        }
+        \label{fig:linear-band/2}
+    \end{subfigure}
+    \caption{%
+        Band structure of the linear chain. The bold line is the solution where
+        the square root is added (instead of subtracted).
+    }
+    \label{fig:linear-band}
+\end{figure}
+
+\subsection{Number of minima}
+
+\subsection{Density of states}
+
+I must admit that I was thinking of few other things before I realized that
+“DOS” is supposed to stand for:
+
+\begin{itemize}
+    \item Denial of Service
+    \item Degrees of Separation
+    \item Disk Operating System
+\end{itemize}
+
+\section{Tight-binding model on a kagomé lattice}
+\label{homework:2}
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79

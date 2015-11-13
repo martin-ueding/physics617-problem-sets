@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=.5\linewidth,
+            height=.3\linewidth,
+            xlabel={$k_2 \cdot 2 \piup a$},
+            ylabel={$E(k_2)$},
+            domain=-1:1,
+            samples=300,
+    ]
+    \addplot[black, thick] {2*(1)*cos(deg(x*6.282)) + 2*(1)*cos(deg(2*x*6.282)) + sqrt((1)^2 + (1)^2 + 2*(1)*(1)*cos(deg(x*6.282)))};
+    \addplot[black] {2*(1)*cos(deg(x*6.282)) + 2*(1)*cos(deg(2*x*6.282)) - sqrt((1)^2 + (1)^2 + 2*(1)*(1)*cos(deg(x*6.282)))};
+    \end{axis}
+\end{tikzpicture}
