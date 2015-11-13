@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=0.5\linewidth,
+            height=0.3\linewidth,
+            xlabel={$E$},
+            ylabel={$D(E)$},
+            samples=300,
+            domain=-0.95:0.95,
+        ]
+
+        \addplot[black] {sqrt(0.5 + 0.5*(2*x^2-1))/(3.141*x*sqrt(1 - x^2))};
+    \end{axis}
+
+\end{tikzpicture}
