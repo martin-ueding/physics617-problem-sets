@@ -76,8 +76,9 @@
 \subsection{Dispersion}
 
 We are given a linear chain with distance~$a$ between the sites. The there
-first- and second-neighbor hopping amplitudes $t_1$ and $t_2$. The situation is
-depicted in Figure~\ref{fig:hopping}.
+first- and second-neighbor hopping amplitudes $t_1$ and $t_2$. We will assume
+that the hopping amplitudes are real. The situation is depicted in
+Figure~\ref{fig:hopping}.
 
 \begin{figure}[tb]
     \centering
@@ -118,6 +119,115 @@ with a Fourier transformation of the ladder operators. It is given as
 where $N$ is the number of lattice sites, $j$ the lattice site, $k$ is a
 momentum and $a$ the spacing of the lattice. Although the imaginary unit~$\iup$
 and the index~$i$ can distinguished in print, we try not to mix them too much.
+We insert the Fourier expansion into the Hamiltonian and obtain
+\begin{align*}
+    H
+    &= - \frac 1N \sum_{j,k_1,k_2}
+    \sbr{
+        t_1 c_{k_1}^\dagger \exp(- \iup k_1 a j)
+        c_{k_2} \exp(\iup k_2 a [j+1])
+        + t_2 c_{k_1}^\dagger \exp(- \iup k_1 a j)
+        c_{k_2} \exp(\iup k_2 a [j+2])
+    }
+    \\&\quad
+    + \hc \,.
+    \intertext{%
+        The exponentials can be joined to yield
+    }
+    &= - \frac 1N \sum_{j,k_1,k_2}
+    \sbr{
+        t_1 c_{k_1}^\dagger c_{k_2} \exp(\iup a [- k_1 j + k_2 [j+1]])
+        + t_2 c_{k_1}^\dagger c_{k_2} \exp(\iup a [- k_1 j + k_2 [j+2]])
+    } + \hc \,.
+    \intertext{%
+        The parts with $j$ can be factored out.
+    }
+    &= - \frac 1N \sum_{j,k_1,k_2}
+    \sbr{
+        [t_1 + t_2] c_{k_1}^\dagger c_{k_2} \exp(\iup a [k_2 - k_1] j)
+        + t_1 c_{k_1}^\dagger c_{k_2} \exp(\iup a k_2)
+        + t_2 c_{k_1}^\dagger c_{k_2} \exp(2 \iup a k_2)
+    }
+    \\&\quad
+    + \hc
+    \intertext{%
+        The first exponential together with $\sum_j/N$ will give a
+        $\delta_{k_1k_2}$. The other terms will just obtain a factor $N$ which
+        cancels the one up front. The sum over $k_1$ can be directly removed
+        with the Kronecker symbol, then. The only things left then are
+    }
+    &= - \sum_{k_2}
+    \sbr{
+        [t_1 + t_2] c_{k_2}^\dagger c_{k_2}
+        + t_1 c_{k_1}^\dagger c_{k_2} \exp(\iup a k_2)
+        + t_2 c_{k_1}^\dagger c_{k_2} \exp(2 \iup a k_2)
+    } + \hc \,.
+    \intertext{%
+        The first term apparently is the energy for a single wave. The two
+        others are terms which bind two different momenta together. We can
+        write this as a matrix where we have to consider the hermitian
+        conjugate terms such that we obtain a hermitian matrix. All the terms
+        (with $k_1 = k_2$) will be on the diagonal. On the diagonal, the
+        hermitian conjugate will convert the exponentials into cosine
+        functions. The off-diagonal terms will only contain the last two terms.
+        The Hamiltonian then assumes the form
+    }
+    &= - \sum_{k_2}
+    \begin{pmatrix}
+        c_{k_1} \\ c_{k_2}
+    \end{pmatrix}^\dagger
+    \mat M
+    \begin{pmatrix}
+        c_{k_1} \\ c_{k_2}
+    \end{pmatrix} \,,
+\end{align*}
+where
+\[
+    \mat M = 
+    \begin{pmatrix}
+        [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)] &
+        t_1 \exp(\iup a k_2) + t_2 \exp(2 \iup a k_2)
+        \\
+        t_1 \exp(- \iup a k_2) + t_2 \exp(- 2 \iup a k_2)
+        & [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
+    \end{pmatrix} \,.
+\]
+We now want to diagonalize this matrix in order to get the energy eigenvalues.
+This amounts to computing the characteristic polynomial.
+\begin{align*}
+    0 &\overset !=
+    \cbr{[t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)] - \lambda}^2
+    - \abs{t_1 \exp(\iup a k_2) + t_2 \exp(2 \iup a k_2)}^2
+    \intertext{%
+        Those terms have to be expanded.
+    }
+    &=
+    [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2
+    - 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)] \lambda
+    + \lambda^2
+    \\&\quad
+    - t_1^2 - t_2^2 - 2 t_1 t_2 \cos(ak_2)
+\end{align*}
+This can be put into the solution formula for quadratic equations.
+\begin{align*}
+    \lambda_\pm
+    &= 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
+    \\&\quad
+    \pm
+    \sqrt{
+        \begin{gathered}[]
+            [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2
+            - [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2 \\
+            + t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)
+        \end{gathered}
+    }
+    \intertext{%
+        In the square root, the first two terms cancel. That was probably to be
+        expected.
+    }
+    &= 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
+    \pm \sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)}
+\end{align*}
 
 
 
@@ -150,14 +260,15 @@ and the index~$i$ can distinguished in print, we try not to mix them too much.
 
 \subsection{Density of states}
 
-I must admit that I was thinking of few other things before I realized that
-“DOS” is supposed to stand for:
+I must admit that I first thought that “DOS” is supposed to stand for:
 
 \begin{itemize}
     \item Denial of Service
     \item Degrees of Separation
     \item Disk Operating System
 \end{itemize}
+
+Only then later I realized that it it “Density of States” here.
 
 \section{Tight-binding model on a kagomé lattice}
 \label{homework:2}
