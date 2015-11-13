@@ -211,6 +211,7 @@ well. The two solutions of the equation are
     = 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
     \pm \sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)} \,.
 \]
+The energy depending on the momentum~$E(k_2)$ then is the negative of this.
 This band structure is shown in Figure~\ref{fig:linear-band} for two values of
 $t_1$ and $t_2$.
 
@@ -233,13 +234,27 @@ $t_1$ and $t_2$.
     \end{subfigure}
     \caption{%
         Band structure of the linear chain within the first Brillouin zone. The
-        bold line is the solution where the square root is added (instead of
-        subtracted).
+        bold line is the solution where the square root is subtracted (instead
+        of added).
     }
     \label{fig:linear-band}
 \end{figure}
 
 \subsection{Number of minima}
+
+The number of minima depends on the two parameters $t_1$ and $t_2$. If both are
+taken positive, the bands always looks similar to
+Figure~\ref{fig:linear-band/1}. Then the number of minima always is four. When
+one parameter becomes negative, the number of minima changes. Depending on the
+way minima at the boundary count there are between three and five minima as can
+be seen in Figure~\ref{fig:linear-band/2}. In the special case discussed in the
+next part of this problem, there are only two minima in the lower band. See
+Figure~\ref{fig:band-3} for a graph of that case.
+
+One can solve for the derivative of the energy and set it to zero. Except for
+$k_2 = 0$ all the points of vanishing slope are complicated expressions. I
+assume that this is not really what was asked here \emph{or} my energy bands
+are wrong.
 
 \subsection{Density of states}
 
@@ -251,10 +266,7 @@ I must admit that I first thought that “DOS” is supposed to stand for:
     \item Disk Operating System
 \end{itemize}
 
-Only then later I realized that it it “Density of States” here.
-
-The special values for $t_1$ and $t_2$ simplify the band structure drastically.
-The two bands are shown in Figure~\ref{fig:band-3}.
+Only then later I realized that it is “Density of States” here :-).
 
 \begin{figure}
     \centering
@@ -265,6 +277,71 @@ The two bands are shown in Figure~\ref{fig:band-3}.
     }
     \label{fig:band-3}
 \end{figure}
+
+The special values for $t_1$ and $t_2$ simplify the band structure drastically.
+The two bands are shown in Figure~\ref{fig:band-3}. It now is
+\[
+    E(k_2) = \mp \sqrt{\frac 12 + \frac 12 \cos(a k_2)} \,.
+\]
+The inverse of this is
+\[
+    k_2 = \frac 1a \arccos(2 E^2 - 1) \,.
+\]
+Taking the derivative of the energy we have
+\[
+    E'(k_2) = \pm \frac{a \sin(a k_2)}{4 \sqrt{\frac 12 + \frac 12 \cos(a
+    k_2)}} \,.
+\]
+Then the density of states is
+\[
+    D(E) = \frac{1}{2 \piup} \frac{1}{E'(k_2)}
+\]
+which has to be evaluated at the point where $k_2(E)$, i.e.\ the inverse
+function in the reciprocal derivative.
+
+Putting all together we have a density of states
+\[
+    D(E) = \mp \frac{\sqrt{\frac 12 + \frac 12 [2 E^2 - 1]}}{\piup a E \sqrt{1 -
+    E^2}} \,.
+\]
+One of the two branches is shown in Figure~\ref{fig:dos/2}. It has a jump at $E
+= 0$ which makes sense when compared to Figure~\label{fig:band-3}. The density
+of states is some sort of histogram of the band structure to the ordinate axis.
+At $E = 0$ the two bands just barely meet such that there is no point there,
+really. Then going to slightly higher energies~$E$ there are a couple of states
+in the four intersections of the band with the horizontal line where $E$ is a
+small constant value. Then at $E \to \pm 1$ the density of states diverges as
+the bands become horizontal. A horizontal band with a continuous density of
+states per arc length or momentum (almost the same at vanishing slope) will
+have lots of states with the exact same energy. Therefore the density diverges
+there.
+
+\begin{figure}
+    \begin{subfigure}[t]{0.47\linewidth}
+        \centering
+        \includegraphics{dos2}
+        \caption{%
+            Density function with sign. One can see that it has a jump at $E =
+            0$.
+        }
+        \label{fig:dos/2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.47\linewidth}
+        \centering
+        \includegraphics{dos}
+        \caption{%
+            Absolute value of the previous function such that is is always
+            positive. At $E = 0$ the function takes the value 0.
+        }
+        \label{fig:dos/1}
+    \end{subfigure}
+    \caption{%
+        Density of states in the linear chain.
+    }
+    \label{fig:dos}
+\end{figure}
+
 
 \section{Tight-binding model on a kagomé lattice}
 \label{homework:2}
