@@ -13,6 +13,10 @@
 \newcommand\eye{\mat 1_4}
 \newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
 
+\makeatletter
+\def\fps@figure{tb}
+\makeatother
+
 \hypersetup{
     pdftitle=
 }
@@ -80,7 +84,7 @@ first- and second-neighbor hopping amplitudes $t_1$ and $t_2$. We will assume
 that the hopping amplitudes are real. The situation is depicted in
 Figure~\ref{fig:hopping}.
 
-\begin{figure}[tb]
+\begin{figure}
     \centering
     \includegraphics{hopping}
     \caption{%
@@ -207,11 +211,10 @@ well. The two solutions of the equation are
     = 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
     \pm \sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)} \,.
 \]
+This band structure is shown in Figure~\ref{fig:linear-band} for two values of
+$t_1$ and $t_2$.
 
-
-
-
-\begin{figure}[tb]
+\begin{figure}
     \begin{subfigure}[c]{0.5\linewidth}
         \centering
         \includegraphics{linear-band}
@@ -222,15 +225,16 @@ well. The two solutions of the equation are
     \end{subfigure}
     \begin{subfigure}[c]{0.5\linewidth}
         \centering
-        \includegraphics{linear-band-0_5__-0_5}
+        \includegraphics{band-3}
         \caption{%
-            $t_1 = 1/2$, $t_2 = -1/2$
+            $t_1 = \num{0.5}$, $t_2 = \num{-0.64}$
         }
         \label{fig:linear-band/2}
     \end{subfigure}
     \caption{%
-        Band structure of the linear chain. The bold line is the solution where
-        the square root is added (instead of subtracted).
+        Band structure of the linear chain within the first Brillouin zone. The
+        bold line is the solution where the square root is added (instead of
+        subtracted).
     }
     \label{fig:linear-band}
 \end{figure}
@@ -248,6 +252,19 @@ I must admit that I first thought that “DOS” is supposed to stand for:
 \end{itemize}
 
 Only then later I realized that it it “Density of States” here.
+
+The special values for $t_1$ and $t_2$ simplify the band structure drastically.
+The two bands are shown in Figure~\ref{fig:band-3}.
+
+\begin{figure}
+    \centering
+    \includegraphics{linear-band-0_5__-0_5}
+    \caption{%
+        Band structure with the special values $t_1 = \num{0.5}$, $t_2 =
+        \num{-0.5}$.
+    }
+    \label{fig:band-3}
+\end{figure}
 
 \section{Tight-binding model on a kagomé lattice}
 \label{homework:2}
