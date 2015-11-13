@@ -194,40 +194,19 @@ where
 \]
 We now want to diagonalize this matrix in order to get the energy eigenvalues.
 This amounts to computing the characteristic polynomial.
-\begin{align*}
-    0 &\overset !=
+\[
+    0 \overset !=
     \cbr{[t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)] - \lambda}^2
     - \abs{t_1 \exp(\iup a k_2) + t_2 \exp(2 \iup a k_2)}^2
-    \intertext{%
-        Those terms have to be expanded.
-    }
-    &=
-    [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2
-    - 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)] \lambda
-    + \lambda^2
-    \\&\quad
-    - t_1^2 - t_2^2 - 2 t_1 t_2 \cos(ak_2)
-\end{align*}
-This can be put into the solution formula for quadratic equations.
-\begin{align*}
+\]
+One can pull the modulus squared to the other side and take the square root.
+The term with the many square brackets needs to be put to the other side as
+well. The two solutions of the equation are
+\[
     \lambda_\pm
-    &= 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
-    \\&\quad
-    \pm
-    \sqrt{
-        \begin{gathered}[]
-            [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2
-            - [t_1 + t_2]^2 [1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]^2 \\
-            + t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)
-        \end{gathered}
-    }
-    \intertext{%
-        In the square root, the first two terms cancel. That was probably to be
-        expected.
-    }
-    &= 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
-    \pm \sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)}
-\end{align*}
+    = 2 [t_1 + t_2][1 + 2 \cos(ak_2) + 2 \cos(2 ak_2)]
+    \pm \sqrt{t_1^2 + t_2^2 + 2 t_1 t_2 \cos(ak_2)} \,.
+\]
 
 
 

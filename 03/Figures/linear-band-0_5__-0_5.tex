@@ -7,7 +7,7 @@
             domain=-1:1,
             samples=300,
     ]
-    \addplot[black, thick] {2*(0.5)*cos(deg(x*6.282)) + 2*(-0.5)*cos(deg(2*x*6.282)) + sqrt((0.5)^2 + (-0.5)^2 + 2*(0.5)*(-0.5)*cos(deg(x*6.282)))};
-    \addplot[black] {2*(0.5)*cos(deg(x*6.282)) + 2*(-0.5)*cos(deg(2*x*6.282)) - sqrt((0.5)^2 + (-0.5)^2 + 2*(0.5)*(-0.5)*cos(deg(x*6.282)))};
+    \addplot[black, thick] {2*((0.5) + (-0.5))*(1 + 2*cos(deg(x*6.282)) + 2*cos(deg(2*x*6.282))) + sqrt((0.5)^2 + (-0.5)^2 + 2*(0.5)*(-0.5)*cos(deg(x*6.282)))};
+    \addplot[black] {2*((0.5) + (-0.5))*(1 + 2*cos(deg(x*6.282)) + 2*cos(deg(2*x*6.282))) - sqrt((0.5)^2 + (-0.5)^2 + 2*(0.5)*(-0.5)*cos(deg(x*6.282)))};
     \end{axis}
 \end{tikzpicture}
