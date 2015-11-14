@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=.49\linewidth,
+            height=.4\linewidth,
+            xtick={0,1,2,3},
+            xticklabels={$\Gamma$,$K$,$M$,$\Gamma$},
+            ylabel={$\lambda_\pm$},
+        ]
+        \addplot[black, domain=0:1]
+        {0.5 + sqrt(3 + 2*cos(deg((3.141*x)/3.)) + 2*cos(deg((2*3.141*x)/3.)) + 2*cos(deg((7*3.141*x)/6.)))/2.};
+        \addplot[black, domain=0:1]
+        {0.5 - sqrt(3 + 2*cos(deg((3.141*x)/3.)) + 2*cos(deg((2*3.141*x)/3.)) + 2*cos(deg((7*3.141*x)/6.)))/2.};
+
+        \addplot[black, domain=1:2]
+        { 0.5 + sqrt(3 + 2*cos(deg(((3.141*(2 - x))/3. + (2*3.141*(-1 +
+        x))/3.)/2. + (3.141*(2 - x))/2.)) + 2*cos(deg(((3.141*(2 - x))/3. +
+        (2*3.141*(-1 + x))/3.)/2. + 3.141*(2 - x))) + 2*cos(deg((3.141*(2 - x))/3.
+        + (2*3.141*(-1 + x))/3.)))/2.};
+        \addplot[black, domain=1:2]
+        { 0.5 - sqrt(3 + 2*cos(deg(((3.141*(2 - x))/3. + (2*3.141*(-1 +
+        x))/3.)/2. + (3.141*(2 - x))/2.)) + 2*cos(deg(((3.141*(2 - x))/3. +
+        (2*3.141*(-1 + x))/3.)/2. + 3.141*(2 - x))) + 2*cos(deg((3.141*(2 - x))/3.
+        + (2*3.141*(-1 + x))/3.)))/2.};
+
+        \addplot[black, domain=2:3]
+        { 0.5 + sqrt(3 + 4*cos(deg((3.141*(3 - x))/3.)) + 2*cos(deg((2*3.141*(3 - x))/3.)))/2.};
+        \addplot[black, domain=2:3]
+        { 0.5 - sqrt(3 + 4*cos(deg((3.141*(3 - x))/3.)) + 2*cos(deg((2*3.141*(3 - x))/3.)))/2.};
+    \end{axis}
+\end{tikzpicture}
+
