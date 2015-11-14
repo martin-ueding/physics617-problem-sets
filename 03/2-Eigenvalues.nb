@@ -1,0 +1,182 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4775,        172]
+NotebookOptionsPosition[      4251,        148]
+NotebookOutlinePosition[      4586,        163]
+CellTagsIndexPosition[      4543,        160]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"m", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", 
+      RowBox[{"Cos", "[", "k1", "]"}], ",", 
+      RowBox[{"Cos", "[", "k2", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Cos", "[", "k1", "]"}], ",", "0", ",", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"k1", "-", "k2"}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Cos", "[", "k2", "]"}], ",", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"k1", "-", "k2"}], "]"}], ",", "0"}], "}"}]}], 
+   "}"}]}]], "Input",
+ CellChangeTimes->{{3.656486539922246*^9, 3.656486579981566*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"Cos", "[", "k1", "]"}], ",", 
+     RowBox[{"Cos", "[", "k2", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "k1", "]"}], ",", "0", ",", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"k1", "-", "k2"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "k2", "]"}], ",", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"k1", "-", "k2"}], "]"}], ",", "0"}], "}"}]}], "}"}]], "Output",\
+
+ CellChangeTimes->{3.656486580776431*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixForm", "[", "m", "]"}]], "Input",
+ CellChangeTimes->{{3.656486581774535*^9, 3.656486583758003*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"0", 
+      RowBox[{"Cos", "[", "k1", "]"}], 
+      RowBox[{"Cos", "[", "k2", "]"}]},
+     {
+      RowBox[{"Cos", "[", "k1", "]"}], "0", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"k1", "-", "k2"}], "]"}]},
+     {
+      RowBox[{"Cos", "[", "k2", "]"}], 
+      RowBox[{"Cos", "[", 
+       RowBox[{"k1", "-", "k2"}], "]"}], "0"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.656486584104845*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Eigenvalues", "[", "m", "]"}]], "Input",
+ CellChangeTimes->{{3.656486587086825*^9, 3.6564865892707777`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      SqrtBox[
+       RowBox[{"3", "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"2", " ", "k1"}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           RowBox[{"2", " ", "k1"}], "-", 
+           RowBox[{"2", " ", "k2"}]}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"2", " ", "k2"}], "]"}]}]}]]}], ")"}]}], ",", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      SqrtBox[
+       RowBox[{"3", "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"2", " ", "k1"}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           RowBox[{"2", " ", "k1"}], "-", 
+           RowBox[{"2", " ", "k2"}]}], "]"}]}], "+", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"2", " ", "k2"}], "]"}]}]}]]}], ")"}]}]}], "}"}]], "Output",\
+
+ CellChangeTimes->{3.656486589677718*^9}]
+}, Open  ]]
+},
+WindowSize->{958, 1059},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 632, 19, 32, "Input"],
+Cell[1215, 43, 564, 18, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1816, 66, 129, 2, 32, "Input"],
+Cell[1948, 70, 927, 27, 83, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2912, 102, 132, 2, 32, "Input"],
+Cell[3047, 106, 1188, 39, 89, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

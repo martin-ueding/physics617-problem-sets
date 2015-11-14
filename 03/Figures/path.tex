@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+    \node[draw, circle] (gamma) at (0, 0) {$\Gamma$};
+    \node[draw, circle] (K) at (1.047, 1.813457) {$K$};
+    \node[draw, circle] (M) at (2.094, 0) {$M$};
+
+    \draw[->] (gamma) to node[midway, above, sloped] {1} (K);
+    \draw[->] (K) to node[midway, above, sloped] {2} (M);
+    \draw[->] (M) to node[midway, below, sloped] {3} (gamma);
+\end{tikzpicture}
