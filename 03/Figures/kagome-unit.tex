@@ -1,0 +1,20 @@
+\begin{tikzpicture}[
+        atom/.style={fill=black, circle},
+        ghost/.style={fill=black!30, circle},
+    ]
+    \draw (60:1) -- ++(-60:1);
+    \draw (60:1) ++(0:2) -- ++(120:1);
+
+    \draw (0, 0) node[atom] {}
+    -- ++(60:1) node[atom] {}
+    -- ++(60:1) node[ghost] {}
+    -- ++(0:1) node[ghost] {}
+    -- ++(0:1) node[ghost] {}
+    -- ++(60:-1) node[ghost] {}
+    -- ++(60:-1) node[ghost] {}
+    -- ++(0:-1) node[atom] {}
+    -- ++(0:-1);
+
+    \draw[|-|] (0, -.3) -- ++(2, 0) node[midway, below] {$a$};
+    
+\end{tikzpicture}

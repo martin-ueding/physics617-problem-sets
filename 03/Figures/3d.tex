@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=.49\linewidth,
+            height=.4\linewidth,
+            domain=-6.282:6.272,
+            y domain=-6.282:6.272,
+            unbounded coords=jump,
+            samples=30,
+            xlabel={$k^1$},
+            ylabel={$k^2$},
+            zlabel={$\lambda_\pm$},
+        ]
+        \addplot3[surf] {
+            1/2 - 1/2*sqrt( 3 + 2*cos(deg(x)) + 2*cos(deg(y/2 + sqrt(3)/2*y)) + 
+            2*cos(deg(x/2 + sqrt(3)*y)))
+        };
+        \addplot3[surf] {
+            1/2 + 1/2*sqrt( 3 + 2*cos(deg(x)) + 2*cos(deg(y/2 + sqrt(3)/2*y)) + 
+            2*cos(deg(x/2 + sqrt(3)*y)))
+        };
+    \end{axis}
+\end{tikzpicture}

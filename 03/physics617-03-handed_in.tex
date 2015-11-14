@@ -360,6 +360,16 @@ same energy. Therefore the density diverges there.
 
 \subsection{Dispersion relation}
 
+\begin{figure}
+    \centering
+    \includegraphics{kagome-unit}
+    \caption{%
+        Unit cell of the kagomé lattice. Only black points are included in the
+        unit cell.
+    }
+    \label{fig:kagome-unit}
+\end{figure}
+
 \subsection{Band structure}
 
 \begin{figure}
@@ -369,6 +379,33 @@ same energy. Therefore the density diverges there.
         Path in the reciprocal space.
     }
     \label{fig:path}
+\end{figure}
+
+\begin{figure}
+    \begin{subfigure}[c]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{2-Eigenvalues.pdf}
+    \caption{%
+        \emph{Mathematica} version
+    }
+    \label{fig:}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.49\linewidth}
+    \centering
+    \includegraphics{3d}
+    \caption{%
+        \emph{pgfplots} version. Unbounded points had to be skipped which makes
+        the package also drop the surface segment with the options tried.
+    }
+    \label{fig:}
+    \end{subfigure}
+    \caption{%
+        Upper and lower band as a function of the two-vector $\vec k$. One can see that
+        interesting surfaces which form as well as a couple points where both
+        bands nearly touch.
+    }
+    \label{fig:band-3d}
 \end{figure}
 
 \end{document}
