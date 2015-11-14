@@ -354,13 +354,13 @@ same energy. Therefore the density diverges there.
     \label{fig:dos}
 \end{figure}
 
-
 \section{Tight-binding model on a kagomé lattice}
 \label{homework:2}
 
 \subsection{Dispersion relation}
 
 \begin{figure}
+    \begin{subfigure}[c]{0.48\linewidth}
     \centering
     \includegraphics{kagome-unit}
     \caption{%
@@ -369,9 +369,9 @@ same energy. Therefore the density diverges there.
         sites in the unit cell.
     }
     \label{fig:kagome-unit}
-\end{figure}
-
-\begin{figure}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.48\linewidth}
     \centering
     \includegraphics{neighbors}
     \caption{%
@@ -379,21 +379,160 @@ same energy. Therefore the density diverges there.
         \leftrightarrow 3$ can be constructed by a sum of these vectors.
     }
     \label{fig:neighbors}
-\end{figure}
-
-\subsection{Band structure}
-
-\begin{figure}
-    \centering
-    \includegraphics{path}
+    \end{subfigure}
     \caption{%
-        Path in the reciprocal space.
+        Kagomé lattice with unit cell and next neighbors.
     }
-    \label{fig:path}
 \end{figure}
 
+This lattice was also covered on the first sheet, so we will copy some of the
+results derived there as well as the figures. We chose the unit cell as shown
+in Figure~\ref{fig:kagome-unit}. The Bravais vectors are
+\[
+    \vec a_1 = a
+    \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}
+    \eqnsep
+    \vec a_2 = a
+    \begin{pmatrix}
+        1/2 \\ \sqrt{3} / 2
+    \end{pmatrix} \,.
+\]
+The two next-neighbor translation vectors are
+\[
+    \vec \delta_1 = \frac a2
+    \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}
+    \eqnsep
+    \vec \delta_2 = \frac a2
+    \begin{pmatrix}
+        1/2 \\ \sqrt{3} / 2
+    \end{pmatrix} \,.
+\]
+Those vectors are illustrated in Figure~\ref{fig:neighbors}. If the unit cell
+has been chosen differently, those vectors might be rotated by a multiple of
+$\piup/3$. This should not change the derivation of the band structure much.
+Later in the explicit path within the first Brillouin zone that might become a
+problem.
+
+We construct the Hamiltonian using next neighbors:
+\begin{align*}
+    H
+    &= -t \sum_{\bracket{x, l, y, l'}} c_{xl}^\dagger c_{yl'} + \hc \,.
+    \intertext{%
+        Now we insert the Fourier transform of the ladder operators.
+    }
+    &= -\frac{t}{N_\mathrm c} \sum_{\bracket{x, l, y, l'}, k, k'} c_{kl}^\dagger c_{k'l'}
+    \exp(-\iup k \cdot [\vec x + \vec l]) \exp(\iup k' \cdot [\vec y + \vec l']) + \hc
+    \intertext{%
+        There are too many summation indices for this to be useful. We will set
+        $\vec x = \vec y$ and then only go to the next neighbors using the
+        $\vec l$ and $\vec l'$.
+    }
+    &= -\frac{t}{N_\mathrm c} \sum_{\bracket{x, l, l'}, k, k'} c_{kl}^\dagger c_{k'l'}
+    \exp(-\iup [\vec k - \vec k'] \cdot \vec x )
+    \exp(-\iup \vec k \cdot \vec l)
+    \exp(\iup \vec k' \cdot \vec l') + \hc
+    \intertext{%
+        This will give us a Kronecker-symbol from the exponentials. Using it
+        directly to get rid of the $\vec k'$ sum we obtain
+    }
+    &= - t \sum_{\bracket{l, l'}, k} c_{kl}^\dagger c_{kl'}
+    \exp(-\iup \vec k \cdot [\vec l - \vec l']) + \hc \,.
+    \intertext{%
+        The sum over all next neighbors amounts to including all the
+        transitions between the neighbors shown in Table~\ref{tab:transitions}.
+        For some reason the case $\vec l = \vec l'$ is not included in the
+        solution on Monday. We do not include that here and have a traceless
+        matrix. What is the underlying reason for that? We have $\vec \delta_l
+        = \vec l - \vec l'$ and then introduce the shorthand $k_i = \vec k
+        \cdot \vec \delta_l$. We obtain two terms for the direction forward and
+        backwards. Both terms together give a cosine.
+    }
+    &= - 2 t \sum_{k}
+    \sbr{
+        c_{k2}^\dagger c_{k1} \cos(k_1)
+        + c_{k3}^\dagger c_{k1} \cos(k_2)
+        + c_{k3}^\dagger c_{k2} \cos(k_1 - k_2)
+    }
+    + \hc
+    \intertext{%
+        This looks sufficiently parallel to the derivation of the honeycomb
+        lattice presented in class. We put that into a hermitian matrix.
+    }
+    &= -2 t \sum_{k}
+    \begin{pmatrix}
+        c_{k1} \\ c_{k2} \\ c_{k2}
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        0 & \cos(k_1) & \cos(k_2) \\
+        \cos(k_1) & 0 & \cos(k_1 - k_2) \\
+        \cos(k_2) & \cos(k_1 - k_2) & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{k1} \\ c_{k2} \\ c_{k2}
+    \end{pmatrix}
+\end{align*}
+
+\begin{table}
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        From & To & Vector \\
+        \midrule
+        1 & 2 & $\delta_1$ \\
+        1 & 2 & $-\delta_1$ \\
+        1 & 3 & $\delta_2$ \\
+        1 & 3 & $-\delta_2$ \\
+        2 & 3 & $\delta_2 - \delta_1$ \\
+        2 & 3 & $\delta_1 - \delta_2$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{%
+        Allowed transitions between the next neighbors.
+    }
+    \label{tab:transitions}
+\end{table}
+
+The eigenvalues of this matrix have to be found. \emph{Mathematica} happily did
+that for us. They are
+\[
+    \lambda = 0
+    \eqnsep
+    \lambda_\pm = \frac 12 \pm \frac 12 \sqrt{3 + 2 \cos(2 k_1) + 2 \cos(2 k_1
+    - 2 k_2) + 2 \cos(2 k_2)} \,.
+\]
+The shorthands $k_1$ and $k_2$ have to be expanded. We have
+\[
+    k_1 = \frac a2 k^1
+    \eqnsep
+    k_2 = \frac a4 [k^1 + \sqrt 3 k^2] \,,
+\]
+where the $k^i$ are the components of $\vec k$ whereas the $k_i$ are the
+shorthands. This can be inserted into the expression for $\lambda_\pm$ and then
+we yield $\lambda_\pm(\vec k)$ which we can plot in the reciprocal lattice.
+
+
+%The reciprocal lattice is
+%\[
+%    \vec b_1 = \frac{2\piup}{a}
+%    \begin{pmatrix}
+%        1 \\ -1 / \sqrt{3}
+%    \end{pmatrix}
+%    \eqnsep
+%    \vec b_2 = \frac{2\piup}{a}
+%    \begin{pmatrix}
+%        0 \\ 2 / \sqrt{3}
+%    \end{pmatrix} \,.
+%\]
+
+Figure~\ref{fig:band-3d} shows a 3D-plot of the two eigenvalues which are the
+bands (except for constants factors).
+
 \begin{figure}
-    \begin{subfigure}[c]{0.49\linewidth}
+    \begin{subfigure}[c]{0.48\linewidth}
     \centering
     \includegraphics[width=\linewidth]{2-Eigenvalues.pdf}
     \caption{%
@@ -402,7 +541,7 @@ same energy. Therefore the density diverges there.
     \label{fig:}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[c]{0.49\linewidth}
+    \begin{subfigure}[c]{0.48\linewidth}
     \centering
     \includegraphics{3d}
     \caption{%
@@ -419,11 +558,37 @@ same energy. Therefore the density diverges there.
     \label{fig:band-3d}
 \end{figure}
 
+\subsection{Band structure}
+
+The band structure is shown in Figure~\ref{fig:band-3d} in a 3D representation
+which is not very helpful to get an exact feeling for certain types of wave
+vectors. Therefore it is common to look at the bands along a certain path in
+the reciprocal space. The path we will look at is shown in
+Figure~\ref{fig:along-path/1}. Depending on the choice of unit cell above the
+reciprocal space can differ. In the worst case the coordinates do not make for
+an interesting band. The resulting section through the band-surfaces is shown
+in Figure~\ref{fig:along-path/2}.
+
 \begin{figure}
+    \begin{subfigure}[c]{0.48\linewidth}
+    \centering
+    \includegraphics{path}
+    \caption{%
+        Chosen path in reciprocal space.
+    }
+    \label{fig:along-path/1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.48\linewidth}
     \centering
     \includegraphics{along-path}
     \caption{%
-        Bands along the path shown in Figure~\ref{fig:path}.
+        Bands along the path.
+    }
+    \label{fig:along-path/2}
+    \end{subfigure}
+    \caption{%
+        Band structure along path.
     }
     \label{fig:along-path}
 \end{figure}
