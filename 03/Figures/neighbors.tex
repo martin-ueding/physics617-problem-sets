@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+    \node[draw, circle] (m) at (0:0) {1};
+    \node[draw, circle] (n) at (60:2) {3};
+    \node[draw, circle] (w) at (0:2) {2};
+    \node[draw, circle] (s) at (240:2) {3};
+    \node[draw, circle] (o) at (180:2) {2};
+
+    \draw[->] (m) -- node[above, midway, sloped] {$\vec \delta_1$} (w);
+    \draw[->] (m) -- node[above, midway, sloped] {$-\vec \delta_1$} (o);
+    \draw[->] (m) -- node[above, midway, sloped] {$\vec \delta_2$} (n);
+    \draw[->] (m) -- node[above, midway, sloped] {$-\vec \delta_2$} (s);
+\end{tikzpicture}
