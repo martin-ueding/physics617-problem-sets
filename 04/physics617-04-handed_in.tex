@@ -182,6 +182,53 @@ The peak at around $\epsilon/\omega_0 = \num{1.4}$ arises from the parts of the
 dispersion without curvature. The vanishing of curvature can be seen as
 straight contour lines on Figure~\ref{fig:dispersion/2}.
 
+\subsection{Analytical approximation}
+
+Here we are supposed to use the approximation
+\[
+    \omega = \omega_0 \frac{|\vec k|}{\sqrt 2} \,.
+\]
+We can compute the density of states using the definition:
+\begin{align*}
+    \rho(\epsilon)
+    &= \frac{2}{N} \sum_{\vec k} \delta(\epsilon - \epsilon(\vec k)) \,.
+    \intertext{%
+        We need to write this as an integral in two dimensional volume $V$.
+    }
+    &= \frac{V}{[2 \piup]^2} \int \dif^2 k \,
+    \delta(\epsilon-\epsilon(\vec k))
+    \intertext{%
+        With the explicit approximation this integral becomes
+    }
+    &= \frac{V}{[2 \piup]^2} \int \dif^2 k \,
+    \delta\del{\epsilon-\frac{\omega_0}{\sqrt{2}} \sqrt{k_1^2 + k_2^2}} \,.
+    \intertext{%
+        Now we change to polar coordinates to make this solvable. We directly
+        perform the $\phi$ integral which gives us a factor of $2 \piup$.
+    }
+    &= \frac{V}{2 \piup} \int \dif k \, k
+    \delta\del{\epsilon-\frac{\omega_0}{\sqrt{2}} k} \,.
+    \intertext{%
+        Another change of variables will move the factor out front.
+    }
+    &= \frac{V}{\omega_0 \piup} \int \dif \kappa \, \kappa
+    \delta(\epsilon- \kappa)
+    \intertext{%
+        The result is easy, we just have
+    }
+    &= \frac{V}{\omega_0 \piup} \epsilon \,.
+\end{align*}
+In order to have a proper density function we need to normalize this to be
+\[
+    \rho(\epsilon) = \frac 12 \epsilon \,.
+\]
+We cannot compare this to the numerical result, though. Therefore we use the
+same form with $V = 1$ and $\omega_0 = 1$ and have
+\[
+    \rho(\epsilon) \frac 1\piup \epsilon.
+\]
+This is also shown in Figure~\ref{fig:dos-numerical}.
+
 
 \end{document}
 

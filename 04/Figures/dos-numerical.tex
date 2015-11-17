@@ -10,5 +10,7 @@
         \addlegendentry{C++, \num{1000} bins, $\num{10000}^2$ samples}
         \addplot[dashed] table {../../dos-py.txt};
         \addlegendentry{Python, \num{100} bins, $\num{1000}^2$ samples}
+        \addplot[dashdotted, domain=0:2] {x/3.141};
+        \addlegendentry{Approximation}
     \end{axis}
 \end{tikzpicture}
