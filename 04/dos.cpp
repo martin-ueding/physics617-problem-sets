@@ -1,7 +1,7 @@
 // Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
 
 #include <cmath>
-#include <iostream>
+#include <fstream>
 #include <vector>
 
 size_t get_bin(const double value,
@@ -32,12 +32,12 @@ int main(const int argc, const char * const * const argv) {
             ++histogram[get_bin(energy, bin_count, 0, 2)];
         }
     }
-    
+
+    std::ofstream out{"dos-cpp.txt"};
     for (int i = 0; i != histogram.size(); ++i) {
-        std::cout << (i * 2.0 / histogram.size()) << "\t"
-                  << histogram[i] * 4.0 / (step_count * step_count) << "\n";
+        out << (i * 2.0 / histogram.size()) << "\t"
+            << histogram[i] * 4.0 / (step_count * step_count) << "\n";
     }
-    std::cout << std::flush;
 
     return 0;
 }
