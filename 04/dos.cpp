@@ -20,7 +20,8 @@ double get_energy(const double k_x, const double k_y) {
 int main(const int argc, const char * const * const argv) {
     const auto pi = std::atan(1) * 4;
 
-    const auto bin_count = 100;
+    const auto bin_count = 1000;
+    const auto bin_width = 2.0 / bin_count;
     std::vector<int> histogram(bin_count, 0);
 
     const auto step_count = 10000;
@@ -36,7 +37,8 @@ int main(const int argc, const char * const * const argv) {
     std::ofstream out{"dos-cpp.txt"};
     for (int i = 0; i != histogram.size(); ++i) {
         out << (i * 2.0 / histogram.size()) << "\t"
-            << histogram[i] * 4.0 / (step_count * step_count) << "\n";
+            << static_cast<double>(histogram[i]) / (step_count * step_count) /
+                   bin_width << "\n";
     }
 
     return 0;

@@ -5,6 +5,7 @@
 
 import argparse
 import numpy as np
+import scipy.integrate
 
 
 def get_energy(k_x, k_y):
@@ -23,8 +24,12 @@ def main():
     energies = get_energy(k_x, k_y)
 
     counts, bins = np.histogram(energies, bins=100)
-    y = counts * 4.0 / pillars**2
+    width = bins[1] - bins[0]
+    y = counts / pillars**2 / width
     np.savetxt('dos-py.txt', np.column_stack([bins[:-1], y]))
+
+    integral = scipy.integrate.simps(y, bins[:-1])
+    print(integral)
 
 
 def _parse_args():
