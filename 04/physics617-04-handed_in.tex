@@ -54,11 +54,11 @@
         \toprule
         Problem & Achieved points & Possible points \\
         \midrule
-        \nameref{homework:1} & & \\
-        \nameref{homework:2} & & \\
+        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:2} & & \punkte{5} \\
+        \nameref{homework:3} & & \punkte{10} \\
         \midrule
-        %Total & & \arabic{totalpoints} \\
-        Total & & 25 \\
+        Total & & \arabic{totalpoints} \\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -70,6 +70,12 @@
         This document consists of \pageref{LastPage} pages.
     \end{small}
 \end{center}
+
+\section{The $\mathrm{CuO_2}$ lattice}
+\label{homework:1}
+
+\section{Density of states for hybridized bands}
+\label{homework:2}
 
 \section{Density of states of a phonon mode of a 2D system}
 \label{homework:3}
@@ -84,6 +90,37 @@ is given. The energy values lie in the interval $[0, 2]$. The wave vectors
 $\vec k$ lie in the first Brillouin zone which is $(-\piup, \piup]^2$ here. Due
 to the symmetry of the dispersion relation it suffices to iterate in the
 interval $[0, \piup]^2$.
+
+The dispersion relation is illustrated in Figure~\ref{fig:dispersion}. The
+contour plot in Figure~\ref{fig:dispersion/2} makes it clear that there are
+some straight contour lines. At those points the gradient vanishes in one
+direction which will give rise to an peak in density of states.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[c]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{dispersion.pdf}
+        \caption{%
+            3D plot, energy versus wave vectors.
+        }
+        \label{fig:dispersion/1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{contour.pdf}
+        \caption{%
+            Contour plot, energy versus wave vectors.
+        }
+        \label{fig:dispersion/2}
+    \end{subfigure}
+    \caption{%
+        Dispersion relation in two different plot variants. Both were made with
+        \emph{Mathematica} as \emph{pgfplots} has a hard time with 3D plots.
+    }
+    \label{fig:dispersion}
+\end{figure}
 
 We haven chosen the approach to sample a grid in the interval $[0, \piup]^2$
 and compute the energy for each of those wave vectors. Then we build up a
@@ -140,6 +177,10 @@ is not surprising that the result looks better.
     }
     \label{fig:dos-numerical}
 \end{figure}
+
+The peak at around $\epsilon/\omega_0 = \num{1.4}$ arises from the parts of the
+dispersion without curvature. The vanishing of curvature can be seen as
+straight contour lines on Figure~\ref{fig:dispersion/2}.
 
 
 \end{document}
