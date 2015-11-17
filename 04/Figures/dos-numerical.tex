@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=\linewidth,
+            height=0.6\linewidth,
+            xlabel={Energy $\epsilon$},
+            ylabel={Density of states $\rho(\epsilon)$},
+            legend pos=north west,
+        ]
+        \addplot[black] table {../../dos-cpp.txt};
+        \addlegendentry{C++, \num{1000} bins, $\num{10000}^2$ samples}
+        \addplot[dashed] table {../../dos-py.txt};
+        \addlegendentry{Python, \num{100} bins, $\num{1000}^2$ samples}
+    \end{axis}
+\end{tikzpicture}

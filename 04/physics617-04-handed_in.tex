@@ -1,0 +1,147 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+\usepackage{minted}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{4}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \\
+        \nameref{homework:2} & & \\
+        \midrule
+        %Total & & \arabic{totalpoints} \\
+        Total & & 25 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Density of states of a phonon mode of a 2D system}
+\label{homework:3}
+
+\subsection{Numerical computation}
+
+A dispersion
+\[
+    E(\vec k) \propto \sqrt{2 - \cos(k_x) - \cos(k_y)}
+\]
+is given. The energy values lie in the interval $[0, 2]$. The wave vectors
+$\vec k$ lie in the first Brillouin zone which is $(-\piup, \piup]^2$ here. Due
+to the symmetry of the dispersion relation it suffices to iterate in the
+interval $[0, \piup]^2$.
+
+We haven chosen the approach to sample a grid in the interval $[0, \piup]^2$
+and compute the energy for each of those wave vectors. Then we build up a
+histogram with the energies. The resulting distribution is the density of
+states with respect to the energy.
+
+Listing~\ref{lst:cpp} shows the C++ version of it. Except for the use of the
+brace initialization this would compile with the C++03 standard. It uses a
+simple histogram implementation which is enough for this application. After the
+sampling of the grid it will scale the histogram counts such that the end
+result is a proper density function with unit integral. Listing~\ref{lst:cmake}
+shows the short CMake file to compile the program.
+
+\begin{listing}[tb]
+    \inputminted[linenos, fontsize=\footnotesize]{cpp}{dos.cpp}
+    \caption{%
+        C++ program for density of state computation.
+    }
+    \label{lst:cpp}
+\end{listing}
+
+\begin{listing}[tb]
+    \inputminted[linenos, fontsize=\footnotesize]{cmake}{CMakeLists.txt}
+    \caption{%
+        CMake build file for C++ program.
+    }
+    \label{lst:cmake}
+\end{listing}
+
+We implemented the same algorithm again in Python with the NumPy and SciPy
+libraries. This is shown in Listing~\ref{lst:python}. In order to benefit from
+the native implementation of the NumPy routines we have chosen not to iterate
+the grid with Python itself but using 2D arrays of the grid points. As a last
+step we compute the integral of the density function to make sure that the
+integral is approximately unity.
+
+\begin{listing}[tb]
+    \inputminted[linenos, fontsize=\footnotesize]{python}{dos.py}
+    \caption{%
+        Python program for density of state computation.
+    }
+    \label{lst:python}
+\end{listing}
+
+The results of both programs are shown in Figure~\ref{fig:dos-numerical}. The
+C++ version was run with a lot more sampling points and more bins. Therefore it
+is not surprising that the result looks better.
+
+\begin{figure}
+    \centering
+    \includegraphics{dos-numerical}
+    \caption{%
+        Numerical density of states function.
+    }
+    \label{fig:dos-numerical}
+\end{figure}
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
