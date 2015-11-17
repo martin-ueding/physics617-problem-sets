@@ -39,6 +39,5 @@ int main(const int argc, const char * const * const argv) {
     }
     std::cout << std::flush;
 
-
     return 0;
 }
