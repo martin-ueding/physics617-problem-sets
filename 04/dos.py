@@ -5,7 +5,6 @@
 
 import argparse
 import numpy as np
-import matplotlib.pyplot as pl
 
 
 def get_energy(k_x, k_y):
@@ -24,13 +23,8 @@ def main():
     energies = get_energy(k_x, k_y)
 
     counts, bins = np.histogram(energies, bins=100)
-
     y = counts * 4.0 / pillars**2
-
     np.savetxt('dos-py.txt', np.column_stack([bins[:-1], y]))
-
-    pl.plot(bins[1:], y)
-    pl.savefig('py.pdf')
 
 
 def _parse_args():
