@@ -119,8 +119,9 @@ We are given the tight-binding Hamiltonian
             c_{\vec x, l} = \frac{1}{\sqrt{N_\mathrm c}} \sum_{\vec k} c_{\vec
             k, l} \exp(\iup \vec k \cdot [\vec x + \vec r_l])
         \]
-        for the position space ladder operators. Then we end up with a huge
-        Hamiltonian.
+        for the position space ladder operators. We call the copper lattice
+        site “0”, the first p-orbital “1” and the second p-orbital “2” within
+        the unit cell. Inserting all this will give us a very long Hamiltonian.
     }
     H &= \frac1{N_\mathrm c} \sum_{\vec j, \sigma} \sum_{\vec k, \vec k'} \left[
     \ed c_{\vec k' 0}^\dagger c_{\vec k 0}
@@ -191,12 +192,11 @@ We are given the tight-binding Hamiltonian
     \sbr{
         \ed c_{\vec k 0}^\dagger c_{\vec k 0}
         + \ep \sbr{c_{\vec k 1}^\dagger c_{\vec k 1} + c_{\vec k 2}^\dagger c_{\vec k 2}}
-        \right.
         - 2 t c_{\vec k 0}^\dagger c_{\vec k 1}
         \cos(\iup \vec k \cdot \vec y/2)
         - 2 t c_{\vec k 0}^\dagger c_{\vec k 2}
         \cos(\iup \vec k \cdot \vec x/2)
-    } + \hc \,.
+    } \\&\quad + \hc \,.
     \intertext{%
         To diagonalize the Hamiltonian it is convenient to write it in matrix
         form with the three ladder operators that we have.
@@ -213,7 +213,38 @@ We are given the tight-binding Hamiltonian
     \begin{pmatrix}
         c_{\vec k 0} \\ c_{\vec k 1} \\ c_{\vec k 2}
     \end{pmatrix}
+    \intertext{%
+        The vectors $\vec x$ and $\vec y$ are of length $a$ and in the $x$ and
+        $y$ direction. Therefore the scalar products simplify to the components
+        of $\vec k$.
+    }
+    H &= 2 \sum_{\sigma} \sum_{\vec k}
+    \begin{pmatrix}
+        c_{\vec k 0} \\ c_{\vec k 1} \\ c_{\vec k 2}
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        \ed & -t \cos(k_y) & -t \cos(k_x) \\
+        -t \cos(k_y) & \ep & 0 \\
+        -t \cos(k_x) & 0 & \ep
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{\vec k 0} \\ c_{\vec k 1} \\ c_{\vec k 2}
+    \end{pmatrix}
 \end{align*}
+
+Then again we diagonalize this matrix using \emph{Mathematica} and retrieve the
+eigenvalues
+\[
+    \lambda_1 = \ep
+    \eqnsep
+    \lambda_\pm
+    = \frac{\ep + \ed}{2} \pm \sqrt{
+        \sbr{\frac{\ed - \ep}{2}}^2
+        + t^2 + \frac{t^2}{2} \sbr{\cos(2 k_x) + \cos(2 k_y)}
+    } \,.
+\]
+
+Those eigenvalues are visualized in Figure~\ref{fig:eigenvalues}.
 
 \begin{figure}
     \centering
@@ -225,7 +256,7 @@ We are given the tight-binding Hamiltonian
             $\ep = \num{1}$,
             $t = \num{1}$. There is no gap between the three bands.
         }
-        \label{fig:/1}
+        \label{fig:eigenvalues/1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\linewidth}
@@ -237,14 +268,14 @@ We are given the tight-binding Hamiltonian
             $t = \num{1}$. One can see how a band gap between the two
             interesting bands occurs.
         }
-        \label{fig:/2}
+        \label{fig:eigenvalues/2}
     \end{subfigure}
     \caption{%
         Band structure of the $\mathrm{CuO_2}$ lattice plotted against $a k_x$
         and $a k_y$ in the Brillouin zone. Shown are all three bands with a
         rainbow color scheme for the energy.
     }
-    \label{fig:}
+    \label{fig:eigenvalues}
 \end{figure}
 
 \section{Density of states for hybridized bands}
