@@ -74,6 +74,179 @@
 \section{The $\mathrm{CuO_2}$ lattice}
 \label{homework:1}
 
+There must be one oxygen atom missing in Figure~1 on the problem set. Otherwise
+the unit cell would be more complex and would contain more than three atoms.
+The wording with the lattice spacing is not completely clear to me. I will now
+assume that the distance between neighboring O and Cu atoms is $a$ as shown in
+Figure~\ref{fig:cuo-unit-cell}.
+
+\begin{figure}
+    \centering
+    \includegraphics{cuo-unit-cell}
+    \caption{%
+        Unit cell of $\mathrm{CuO_2}$.
+    }
+    \label{fig:cuo-unit-cell}
+\end{figure}
+
+\newcommand\ed{\epsilon_\mathrm d}
+\newcommand\ep{\epsilon_\mathrm p}
+
+We are given the tight-binding Hamiltonian
+\begin{align*}
+    H
+    &= \sum_{\vec j, \sigma} \left[
+        \ed d_{\vec j, \sigma}^\dagger d_{\vec j, \sigma}
+        + \ep \sbr {
+            p_{1 \, \vec j, \sigma}^\dagger p_{1 \, \vec j, \sigma}
+            p_{2 \, \vec j, \sigma}^\dagger p_{2 \, \vec j, \sigma}
+        }
+        \right.
+        \\&\quad
+        \left.
+        - t \sbr{
+            d_{\vec j, \sigma}^\dagger p_{1 \, \vec j, \sigma}
+            + d_{\vec j, \sigma}^\dagger p_{2 \, \vec j, \sigma}
+            + d_{\vec j + \vec y, \sigma}^\dagger p_{1 \, \vec j, \sigma}
+            + d_{\vec j + \vec x, \sigma}^\dagger p_{2 \, \vec j, \sigma}
+        }
+    \right] + \hc \,.
+    \intertext{%
+        In order to say anything about the band structure, we need to represent
+        this in some momentum basis. We do this again by a simple Fourier
+        transform with
+        \[
+            c_{\vec x, l} = \frac{1}{\sqrt{N_\mathrm c}} \sum_{\vec k} c_{\vec
+            k, l} \exp(\iup \vec k \cdot [\vec x + \vec r_l])
+        \]
+        for the position space ladder operators. Then we end up with a huge
+        Hamiltonian.
+    }
+    H &= \frac1{N_\mathrm c} \sum_{\vec j, \sigma} \sum_{\vec k, \vec k'} \left[
+    \ed c_{\vec k' 0}^\dagger c_{\vec k 0}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec 0])
+    \exp(\iup \vec k \cdot [\vec j + \vec 0])
+    \right.
+    \\&\quad
+    +
+    \ep c_{\vec k' 1}^\dagger c_{\vec k 1}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec y/2])
+    \exp(\iup \vec k \cdot [\vec j + \vec y/2])
+    \\&\quad
+    +
+    \ep c_{\vec k' 2}^\dagger c_{\vec k 2}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec x/2])
+    \exp(\iup \vec k \cdot [\vec j + \vec x/2])
+    \\&\quad
+    -
+    t c_{\vec k' 0}^\dagger c_{\vec k 1}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec 0])
+    \exp(\iup \vec k \cdot [\vec j + \vec y/2])
+    \\&\quad
+    -
+    t c_{\vec k' 0}^\dagger c_{\vec k 2}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec 0])
+    \exp(\iup \vec k \cdot [\vec j + \vec x/2])
+    \\&\quad
+    -
+    t c_{\vec k' 0}^\dagger c_{\vec k 1}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec 0])
+    \exp(\iup \vec k \cdot [\vec j + \vec y/2])
+    \\&\quad
+    \left.
+    -
+    t c_{\vec k' 0}^\dagger c_{\vec k 2}
+    \exp(-\iup \vec k' \cdot [\vec j + \vec y + \vec 0])
+    \exp(\iup \vec k \cdot [\vec j + \vec x + \vec x/2])
+    \right] + \hc
+    \intertext{%
+        The two exponentials each can be joined. The terms with $\vec j$ in
+        both exponentials will, together with $\sum_{\vec j}$ and the
+        $1/N_\mathrm c$, give a $\delta(\vec k - \vec k')$. We remove the
+        $\sum_{\vec k'}$ using that $\delta$ right away. The remainder of the
+        exponentials will stay there with $\vec k = \vec k'$. Then we end up
+        with
+    }
+    H &= \sum_{\sigma} \sum_{\vec k}
+    \left[
+    \ed c_{\vec k 0}^\dagger c_{\vec k 0}
+    + \ep \sbr{c_{\vec k 1}^\dagger c_{\vec k 1} + c_{\vec k 2}^\dagger c_{\vec k 2}}
+    \right.
+    - t c_{\vec k 0}^\dagger c_{\vec k 1}
+    \exp(\iup \vec k \cdot \vec y/2)
+    - t c_{\vec k 0}^\dagger c_{\vec k 2}
+    \exp(\iup \vec k \cdot \vec x/2)
+    \\&\quad
+    \left.
+    - t c_{\vec k 0}^\dagger c_{\vec k 1}
+    \exp(- \iup \vec k \cdot \vec y/2)
+    - t c_{\vec k 0}^\dagger c_{\vec k 2}
+    \exp(- \iup \vec k \cdot \vec x/2)
+    \right] + \hc \,.
+    \intertext{%
+        The last four terms can be joined into two terms with a cosine
+        contribution. Then our final form is
+    }
+    H &= \sum_{\sigma} \sum_{\vec k}
+    \sbr{
+        \ed c_{\vec k 0}^\dagger c_{\vec k 0}
+        + \ep \sbr{c_{\vec k 1}^\dagger c_{\vec k 1} + c_{\vec k 2}^\dagger c_{\vec k 2}}
+        \right.
+        - 2 t c_{\vec k 0}^\dagger c_{\vec k 1}
+        \cos(\iup \vec k \cdot \vec y/2)
+        - 2 t c_{\vec k 0}^\dagger c_{\vec k 2}
+        \cos(\iup \vec k \cdot \vec x/2)
+    } + \hc \,.
+    \intertext{%
+        To diagonalize the Hamiltonian it is convenient to write it in matrix
+        form with the three ladder operators that we have.
+    }
+    H &= 2 \sum_{\sigma} \sum_{\vec k}
+    \begin{pmatrix}
+        c_{\vec k 0} \\ c_{\vec k 1} \\ c_{\vec k 2}
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        \ed & -t \cos(\vec k \cdot \vec y/2) & -t \cos(\vec k \cdot \vec x/2) \\
+        -t \cos(\vec k \cdot \vec y/2) & \ep & 0 \\
+        -t \cos(\vec k \cdot \vec x/2) & 0 & \ep
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{\vec k 0} \\ c_{\vec k 1} \\ c_{\vec k 2}
+    \end{pmatrix}
+\end{align*}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{1_1_1.pdf}
+        \caption{%
+            $\ed = \num{1}$,
+            $\ep = \num{1}$,
+            $t = \num{1}$. There is no gap between the three bands.
+        }
+        \label{fig:/1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{05_1_1.pdf}
+        \caption{%
+            $\ed = \num{1}$,
+            $\ep = \num{0.5}$,
+            $t = \num{1}$. One can see how a band gap between the two
+            interesting bands occurs.
+        }
+        \label{fig:/2}
+    \end{subfigure}
+    \caption{%
+        Band structure of the $\mathrm{CuO_2}$ lattice plotted against $a k_x$
+        and $a k_y$ in the Brillouin zone. Shown are all three bands with a
+        rainbow color scheme for the energy.
+    }
+    \label{fig:}
+\end{figure}
+
 \section{Density of states for hybridized bands}
 \label{homework:2}
 
@@ -128,11 +301,12 @@ histogram with the energies. The resulting distribution is the density of
 states with respect to the energy.
 
 Listing~\ref{lst:cpp} shows the C++ version of it. Except for the use of the
-brace initialization this would compile with the C++03 standard. It uses a
-simple histogram implementation which is enough for this application. After the
-sampling of the grid it will scale the histogram counts such that the end
-result is a proper density function with unit integral. Listing~\ref{lst:cmake}
-shows the short CMake file to compile the program.
+brace initialization and \texttt{auto} this would compile with the C++03
+standard. But why use that when one has two C++14 compliant compilers on the
+system? It uses a simple histogram implementation which is enough for this
+application. After the sampling of the grid it will scale the histogram counts
+such that the end result is a proper density function with unit integral.
+Listing~\ref{lst:cmake} shows the short CMake file to compile the program.
 
 \begin{listing}[tb]
     \inputminted[linenos, fontsize=\footnotesize]{cpp}{dos.cpp}

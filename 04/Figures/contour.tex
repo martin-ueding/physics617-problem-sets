@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+    \begin{axis} [
+            domain=-3.141:3.141,
+            y domain=-3.141:3.141,
+            samples=60,
+        ]
+        \addplot3[surf] {sqrt(2 - cos(x) - cos(y))};
+    \end{axis}
+\end{tikzpicture}

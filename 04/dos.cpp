@@ -10,7 +10,7 @@ size_t get_bin(const double value,
                const double max) {
     const auto offset = value - min;
     const auto ratio = offset / (max - min);
-    return ratio * (bin_count);
+    return ratio * bin_count;
 }
 
 double get_energy(const double k_x, const double k_y) {
