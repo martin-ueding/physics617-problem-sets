@@ -9,3 +9,12 @@ physics*-??-handed_in.log
 physics*-??-handed_in.out
 physics*-??-handed_in.pdf
 physics*-??-handed_in.run.xml
+04/CMakeCache.txt
+04/CMakeFiles/
+04/Makefile
+04/cmake_install.cmake
+04/dos
+04/dos-cpp.txt
+04/dos-py.txt
+04/physics617-04-handed_in.pyg
+04/py.pdf
