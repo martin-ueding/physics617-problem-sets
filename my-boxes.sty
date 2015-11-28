@@ -1,0 +1,30 @@
+% Copyright © 2014-2015 Martin Ueding <dev@martin-ueding.de>
+
+\RequirePackage[tikz]{mdframed}
+
+\newmdenv[%
+    backgroundcolor=black!0,
+    frametitlebackgroundcolor=black!0,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+    nobreak=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=black!0,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    nobreak=true,
+]{question}
+
+\newenvironment{remark}{\small}{}

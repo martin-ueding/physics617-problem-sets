@@ -1,0 +1,218 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    skipabove=\topskip,
+    roundcorner=4pt,
+]{theorem}{Theorem}[section]
+
+\usepackage{../my-boxes}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{4}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:2} & & \punkte{15} \\
+        \midrule
+        Total & & \arabic{totalpoints} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Matsubara Green's function}
+\label{homework:1}
+
+\subsection{Translation in imaginary time}
+
+Today I feel a bit mathematical, therefore I will structure this in theorems
+and proofs.
+
+\begin{theorem}[Time translation]
+    \label{the:time-translation}
+    Let $G$ be the Matsubara Green's function. Then we have a time translation
+    invariance, i.e.\ $G(\tau, \tau') = G(\tau - \tau', 0)$.
+\end{theorem}
+
+\begin{proof}
+    In general we have
+    \begin{align*}
+        G(\tau, \tau')
+        &= - \bracket{T_\tau A(\tau) B(\tau')} \,.
+        \intertext{%
+            We assume $\tau > \tau'$. Then we have the special case of
+        }
+        &= - \bracket{A(\tau) B(\tau')} \,,
+        \intertext{%
+            where only the first part of the time ordering is needed. We have
+            to expand the thermodynamic average and the time evolution
+            operators. We obtain
+        }
+        &= - \frac1Z \tr\del{\eup^{\beta H} \eup^{\tau H} A(\tau) \eup^{-\tau H}
+        \eup^{\tau' H} B \eup^{-\tau' H}} \,.
+        \intertext{%
+            Now we us the cyclicity of the trace and move the time evolution
+            operators around. Specifically we move the last one to the front.
+            Then we have
+        }
+        &= - \frac1Z \tr\del{\eup^{-\tau' H} \eup^{\beta H} \eup^{\tau H} A(\tau) \eup^{-\tau H}
+        \eup^{\tau' H} B} \,.
+        \intertext{%
+            Next we can commute the first two exponentials as they are
+            functions of the Hamiltonian only. The expression then assumes the
+            form
+        }
+        &= - \frac1Z \tr\del{\eup^{\beta H} \eup^{-\tau' H} \eup^{\tau H} A(\tau) \eup^{-\tau H}
+        \eup^{\tau' H} B} \,.
+        \intertext{%
+            Here we can join the exponentials suggestively to obtain
+        }
+        &= - \frac1Z \tr\del{\eup^{\beta H} \eup^{[\tau - \tau'] H} A(\tau)
+        \eup^{-[\tau - \tau'] H}
+        B} \,,
+        \intertext{%
+            which is
+        }
+        &= G(\tau - \tau') \,.
+    \end{align*}
+    Therefore the Green's function as defined is imaginary time translational
+    invariant. It only depends on the difference of the times, not the actual
+    times themselves.
+\end{proof}
+
+\subsection{Periodicity}
+
+\begin{theorem}
+    If $-\beta < \tau < 0$ then $G(\tau) = - \epsilon G(\tau + \beta)$.
+\end{theorem}
+
+\begin{proof}
+    We will start with the assumption and show that it actually holds.
+    \begin{align*}
+        G(\tau) &= - \epsilon G(\tau + \beta)
+        \intertext{%
+            We insert the explicit definitions.
+        }
+        - \bracket{A(\tau)B} \Theta(\tau) + \epsilon \bracket{B A(\tau)}
+        \Theta(-\tau) &= \epsilon \bracket{A(\tau + \beta) B} \Theta(\tau +
+        \beta) - \epsilon^2 \bracket{BA(\tau + \beta)} \Theta(-\tau-\beta)
+        \intertext{%
+            We have $-\beta < \tau < 0$. Therefore only one term on each side
+            actually is selected by the step function.
+            We can even drop the step function then.
+        }
+        \epsilon \bracket{B A(\tau)}
+        &= \epsilon \bracket{A(\tau + \beta) B}
+        \intertext{%
+            Then we write out the thermodynamic average.
+        }
+        \epsilon \tr\del{\eup^{-\beta H} B \eup^{\tau H} A \eup^{-\tau H}}
+        &= \epsilon \tr\del{\eup^{-\beta H} \eup^{\beta H} \eup^{\tau H} A
+        \eup^{-\tau H} \eup^{-\beta H} B}
+        \intertext{%
+            The first two exponentials on the right side cancel.
+        }
+        \epsilon \tr\del{\eup^{-\beta H} B \eup^{\tau H} A \eup^{-\tau H}}
+        &= \epsilon \tr\del{\eup^{\tau H} A
+        \eup^{-\tau H} \eup^{-\beta H} B}
+        \intertext{%
+            And then we use the cyclic property of the trace to move the last
+            two terms up front.
+        }
+        \epsilon \tr\del{\eup^{-\beta H} B \eup^{\tau H} A \eup^{-\tau H}}
+        &= \epsilon \tr\del{\eup^{-\beta H} B \eup^{\tau H} A \eup^{-\tau H}}
+    \end{align*}
+    Then the relation holds.
+\end{proof}
+
+\begin{question}
+    In the very last step I have exchanged the order of $A$ and $B$. The
+    cyclicity of the trace can be shown easily when it is done with (finite)
+    matrices and one just uses the two indices per matrix and contracts them
+    round-robin. Since everything is contracted, one can shuffle the terms. Do
+    the individual elements of $A$ and $B$ simply commute then? In general they
+    have an (anti)commutator which should be zero at different times (which we
+    have here). However, if the elements anticommute, then the overall
+    calculation should have another minus sign. From the desired expression it
+    seems that the elements of $A$ and $B$ do commute. The cyclicity of the
+    trace seems to be completely independent of the nature of the operators in
+    the trace. Is that the case, can I always use the cyclic property even with
+    badly non-(anti)commuting operators?
+\end{question}
+
+\subsection{Requirements for Equation~(2)}
+
+We can look at Equation~(3) where the Green's function is decomposed into
+Fourier modes. It reads
+\[
+    G(\tau) = \frac 1 \beta \sum_l \tilde G(\omega_l) \exp(- \iup \omega_l
+    \tau) \,.
+\]
+If we shift $\tau$ by $\beta$
+
+\section{Green's function of an impurity immersed in a fermionic bath}
+\label{homework:2}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
