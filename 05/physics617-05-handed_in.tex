@@ -234,8 +234,166 @@ and proofs.
     $\piup/\beta$. Both cases together are what the conjecture says.
 \end{proof}
 
+\subsection{Fourier transform}
+
+We are asked to rewrite the Green's function
+\begin{align*}
+    \tilde G(\omega_l)
+    &= \int_0^\beta \dif \tau \exp(\iup \omega_l \tau) G(\tau) \,.
+    \intertext{%
+        We insert the explicit form of $G$. We then have
+    }
+    &= \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \sbr{- \bracket{A(\tau) B} \Theta(\tau) + \epsilon \bracket{BA(\tau)}
+    \Theta(-\tau)}
+    \,.
+    \intertext{%
+        In the domain of integration $\tau$ is always in the interval $(0,
+        \beta)$ as we can omit zero measure intervals in the Riemann integral.
+        This means that only the first summand with $\Theta(\tau)$ will
+        contribute to this integral. This means that the remainder is
+    }
+    &= - \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \bracket{A(\tau) B}
+    \,.
+    \intertext{%
+        Then we insert the thermodynamic average as well as the time evolution
+        explicitly and obtain
+    }
+    &= - \frac{1}{Z} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \tr\del{\eup^{-\beta H} \eup^{\tau H} A \eup^{-\tau H} B}
+    \,.
+    \intertext{%
+        However, this is not very helpful as is. We need to insert some
+        eigenstates of $n$ and $m$ in oder to make this useful. Our
+        intermediate state then is
+    }
+    &= - \frac{1}{Z} \sum_{m,n} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \tr\del{\eup^{-\beta H} \eup^{\tau H} \ket n \bra n A \ket m \bra m \eup^{-\tau H} B}
+    \,,
+    \intertext{%
+        where we will evaluate the energy expectation values of the inserted
+        states. We chose to let the first two exponentials act to the right. The
+        last exponential acts to the left. This get us
+    }
+    &= - \frac{1}{Z} \sum_{m,n} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \tr\del{\eup^{-\beta E_n} \eup^{\tau E_n} \ket n \bra n A \ket m \bra m
+    \eup^{-\tau E_m} B}
+    \,.
+    \intertext{%
+        Using the cyclicity of the trace we want to sandwich the operators into
+        matrix elements. However, we will have to write the trace explicitly to
+        see how exactly that is possible. The trace is just a sandwich of all
+        states. We introduce another summation index, $k$. This gives us
+    }
+    &= - \frac{1}{Z} \sum_{k,m,n} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \bra k \sbr{\eup^{-\beta E_n} \eup^{\tau E_n} \ket n \bra n A \ket m \bra m
+    \eup^{-\tau E_m} B} \ket k
+    \,.
+    \intertext{%
+        All the constant factors can be extracted and all the bra-kets combined
+        to give nice compact terms:
+    }
+    &= - \frac{1}{Z} \sum_{k,m,n} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \eup^{-\beta E_n} \eup^{\tau E_n} \eup^{-\tau E_m}
+    \braket{k|n} \braket{n|A|m} \braket{m|B|k}
+    \,.
+    \intertext{%
+        The first and last bra-ket is just a Kronecker symbol. We can eliminate
+        the summation index $k$ using those directly. This simplifies the
+        expression to
+    }
+    &= - \frac{1}{Z} \sum_{m,n} \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \eup^{-\beta E_n} \eup^{\tau E_n} \eup^{-\tau E_m}
+    \braket{n|A|m} \braket{m|B|n}
+    \,,
+    \intertext{%
+        where we can use the shorthands for the matrix elements to yield
+    }
+    &= - \frac{1}{Z} \sum_{m,n} A_{nm} B_{mn}
+    \eup^{-\beta E_n}
+    \int_0^\beta \dif \tau \exp(\iup \omega_l \tau)
+    \eup^{\tau E_n} \eup^{-\tau E_m}
+    \,.
+    \intertext{%
+        We have pulled the matrix elements up front directly as they do not
+        depend on the integral any more. The one term that does not depend on
+        $\tau$ is now also outside of the integral. We combine all the
+        exponentials into one to make the integration easier. This then is
+    }
+    &= - \frac{1}{Z} \sum_{m,n} A_{nm} B_{mn}
+    \eup^{-\beta E_n}
+    \int_0^\beta \dif \tau \exp(\tau[E_n - E_m + \iup \omega_l])
+    \,.
+    \intertext{%
+        This integral is actually simple and we can directly compute it. Our
+        preliminary result is
+    }
+    &= - \frac{1}{Z} \sum_{m,n} A_{nm} B_{mn}
+    \eup^{-\beta E_n}
+    \frac{\exp(\beta[E_n - E_m + \iup \omega_l]) - 1}{E_n - E_m + \iup \omega_l}
+    \,,
+    \intertext{%
+        which we will simplify to
+    }
+    &= - \frac{1}{Z} \sum_{m,n} A_{nm} B_{mn}
+    \frac{\exp(\beta[- E_m + \iup \omega_l]) - \exp(-\beta E_n)}{E_n - E_m + \iup \omega_l}
+    \,.
+\end{align*}
+That did not work out quite right. There is no $\epsilon$ term. We would have
+gotten that one in case that the $\tau$ would be negative at some point. Also
+we have never interchanged $A$ and $B$ which would also give a factor
+$-\epsilon$. It seems that the integral consists of two parts which need to be
+added up. Then the $\exp(\iup \beta \omega_l)$ would cancel perhaps and we
+would obtain some factor of $- \epsilon$ along the way.
+
+Maybe this can be done by using the time translation and making the integral
+symmetric around zero and let it run in the interval $(- \beta, \beta)$. This
+would make it symmetric in the positive and negative imaginary time and then we
+would have the needed factors.
+
+\subsection{Integration along real line}
+
 \section{Green's function of an impurity immersed in a fermionic bath}
 \label{homework:2}
+
+\subsection{Equations of motion}
+
+For the equation of motion we need the time derivative of both Green's
+functions.
+\begin{align*}
+    \pd{}\tau G(\tau)
+    &= \pd{}\tau \sbr{- \bracket{c(\tau) c^\dagger } \Theta(\tau) + \epsilon
+    \bracket{c^\dagger c(\tau)}
+    \Theta(-\tau)}
+    \intertext{%
+        The time derivative will act on both the thermodynamic average as well
+        as the step function, giving four terms in total.
+    }
+    &= - \sbr{\pd{}\tau \bracket{c(\tau) c^\dagger }} \Theta(\tau)
+    - \bracket{c(\tau) c^\dagger } \delta(\tau)
+    + \epsilon \sbr{\pd{}\tau \bracket{c^\dagger c(\tau)}} \Theta(-\tau)
+    - \epsilon \bracket{c^\dagger c(\tau)} \delta(-\tau)
+    \intertext{%
+        The thermodynamic average does not depend on the time, so we can just
+        move the time derivative into the thermodynamic bracket.
+    }
+    &= - \Bracket{\pd{}\tau c(\tau) c^\dagger } \Theta(\tau)
+    - \bracket{c(\tau) c^\dagger } \delta(\tau)
+    + \epsilon \Bracket{\pd{}\tau c^\dagger c(\tau)} \Theta(-\tau)
+    - \epsilon \bracket{c^\dagger c(\tau)} \delta(-\tau)
+    \intertext{%
+        As can be seen quickly by expressing $c(\tau)$ as $c$ and time
+        evolution operators, the time derivative is given by the commutator
+        with the Hamiltonian.
+    }
+    &= - \bracket{[H, c(\tau)] c^\dagger } \Theta(\tau)
+    - \bracket{c(\tau) c^\dagger } \delta(\tau)
+    + \epsilon \bracket{c^\dagger [H, c(\tau)]} \Theta(-\tau)
+    - \epsilon \bracket{c^\dagger c(\tau)} \delta(-\tau)
+\end{align*}
+
+\subsection{Solutions}
 
 \end{document}
 
