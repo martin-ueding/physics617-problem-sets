@@ -200,15 +200,39 @@ and proofs.
     badly non-(anti)commuting operators?
 \end{question}
 
+\needspace{4cm}
 \subsection{Requirements for Equation~(2)}
 
-We can look at Equation~(3) where the Green's function is decomposed into
-Fourier modes. It reads
-\[
-    G(\tau) = \frac 1 \beta \sum_l \tilde G(\omega_l) \exp(- \iup \omega_l
-    \tau) \,.
-\]
-If we shift $\tau$ by $\beta$
+\begin{theorem}
+    The frequencies are given by
+    \[
+        \omega_l = \frac 1 \beta
+        \begin{cases}
+            2 l \piup & \epsilon = 1 \,, \\
+            [2 l + 1] \piup & \epsilon = -1 \,.
+        \end{cases}
+    \]
+\end{theorem}
+
+\begin{proof}
+    We can look at Equation~(3) where the Green's function is decomposed into
+    Fourier modes. It reads
+    \[
+        G(\tau) = \frac 1 \beta \sum_l \tilde G(\omega_l) \exp(- \iup \omega_l
+        \tau) \,.
+    \]
+    Assume $\epsilon = -1$. Then we expect from the previous problem that we do
+    not occur a sign change with a shift. If we shift $\tau$ by $\beta$, then
+    the exponential obtains an additional factor $\exp(-\iup \omega_l \beta)$.
+    The exponent must be an integer multiple of $2 \piup \iup$ such that we do
+    not incur a phase factor. Therefore we have
+    \[
+        \omega_l = \frac{2 l \piup}{\beta}
+    \]
+    for the case $\epsilon = -1$. Now look at $\epsilon = 1$. Then we do need a
+    phase factor of $-1$ which means that $\omega_l$ must be larger by
+    $\piup/\beta$. Both cases together are what the conjecture says.
+\end{proof}
 
 \section{Green's function of an impurity immersed in a fermionic bath}
 \label{homework:2}
