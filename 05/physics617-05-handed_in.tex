@@ -409,13 +409,11 @@ An analogous time derivative also holds for the second Green's function:
     - \epsilon \bracket{c^\dagger f_{\vec k}(\tau)} \delta(-\tau)
 \]
 
-Before it makes any sense to plug those time derivatives and the functions
-themselves in the equations of motion, we need a way to set the states that are
-annihilated by $c$ and $f_{\vec k}$ in relation with each other.
-
 \paragraph{Complete set of eigenstates}
 
-The term
+Before it makes any sense to plug those time derivatives and the functions
+themselves in the equations of motion, we need a way to set the states that are
+annihilated by $c$ and $f_{\vec k}$ in relation with each other. The term
 \[
     \sum_{\vec k} \sbr{c^\dagger f_{\vec k} + f_{\vec k}^\dagger c}
 \]
@@ -453,25 +451,152 @@ motion is
     \braket{\vec q | \eup^{-\tau H} c^\dagger | \vec p}
     \intertext{%
         Now $f_{\vec k}$ can annihilate the state $\ket{\vec q}$ which will
-        give us $\delta(\vec k - \vec q)$. Then the overlap will give
-        $\delta{\vec k - \vec p}$. That eats up both summations and we have the
-        more decent looking result
+        give us $\delta(\vec k - \vec q) \ket 0$. Then the overlap
+        $\braket{\vec p | 0}$ will give
+        0. Therefore we have
     }
-    &= \frac 1Z \eup^{-\beta E_{\vec k}} \eup^{\tau E_{\vec k}}
-    \braket{\vec k | \eup^{-\tau H} c^\dagger | \vec k}
-    \intertext{%
-        Again we can apply the Hamiltonian to the left and see that it cancels
-        a previous term.
-    }
-    &= \frac 1Z \eup^{-\beta E_{\vec k}}
-    \braket{\vec k | c^\dagger | \vec k}
+    &= 0 \,.
 \end{align*}
-Note that $\braket{\vec k | c^\dagger | \vec k} = \braket{\vec k | c | \vec
-k}^*$, that might come in helpful later.
+This cannot be right. Otherwise the Green's function would be zero all the
+time.
+
+The assumption that $\sum_{\vec k} \ket{\vec k} \bra{\vec k} = \mat 1$ is
+wrong and there are states missing there. Perhaps the state $c^\dagger \ket 0$
+must be included there as well. Since that state is supposed to have
+non-vanishing overlap with the momentum states, it does seem redundant to
+insert this state into the sum. However, since have a variable particle number,
+we need the Fock space. Therefore we have to consider the states with arbitrary
+particle number here in order to get the correct matrix elements. So going back
+and inserting a set of two-particle states we have
+\begin{align*}
+    F_{\vec k}(\tau)
+    &= \frac 1Z \sum_{\vec p, \vec q, \vec Q} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \braket{\vec p | f_{\vec k} | \vec q, \vec Q}
+    \braket{\vec q, \vec Q | \eup^{-\tau H} c^\dagger | \vec p} \,.
+    \intertext{%
+        The case $\vec q = \vec Q$ will give the state $\ket{\vec q, \vec q}$
+        which is just 0, so we do not need to worry about that explicitly. The
+        annihilation $f_{\vec k}$ can make some sense now. It can annihilate
+        either of the two states, so we have
+    }
+    &= \frac 1Z \sum_{\vec p, \vec q, \vec Q} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \bra{\vec p}
+    \sbr{
+        \delta(\vec k - \vec q) \ket{\vec Q}
+        + \delta(\vec k - \vec Q) \ket{\vec q}
+    }
+    \braket{\vec q, \vec Q | \eup^{-\tau H} c^\dagger | \vec p} \,.
+    \intertext{%
+        We expand the whole term.
+    }
+    &= \frac 1Z \sum_{\vec p, \vec q, \vec Q} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \sbr{
+        \braket{\vec p | \delta(\vec k - \vec q) | \vec Q}
+        \braket{\vec q, \vec Q | \eup^{-\tau H} c^\dagger | \vec p}
+        + \braket{\vec p | \delta(\vec k - \vec Q) | \vec q}
+        \braket{\vec q, \vec Q | \eup^{-\tau H} c^\dagger | \vec p}
+    }
+    \intertext{%
+        Then we can apply the $\delta$-distribution.
+    }
+    &= \frac 1Z \sum_{\vec p} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \sbr{
+        \sum_{\vec Q}
+        \braket{\vec p | \vec Q}
+        \braket{\vec k, \vec Q | \eup^{-\tau H} c^\dagger | \vec p}
+        +
+        \sum_{\vec q}
+        \braket{\vec p | \vec q}
+        \braket{\vec q, \vec k | \eup^{-\tau H} c^\dagger | \vec p}
+    }
+    \intertext{%
+        Here we can rename the dummy state $\vec q$ and $\vec Q$ in the
+        respective terms.
+    }
+    &= \frac 1Z \sum_{\vec p, \vec q} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \braket{\vec p | \vec q}
+    \sbr{
+        \braket{\vec k, \vec q | \eup^{-\tau H} c^\dagger | \vec p}
+        +
+        \braket{\vec q, \vec k | \eup^{-\tau H} c^\dagger | \vec p}
+    }
+    \intertext{%
+        The two terms are almost the same. They differ in the order, though.
+        Therefore we have to interchange one of them and incur a minus sign.
+        The overlap $\braket{\vec p | \vec q}$ is just $\delta(\vec p - \vec
+        q)$. We remove the sum over $\vec q$ with that.
+    }
+    &= \frac 1Z \sum_{\vec p} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \sbr{
+        \braket{\vec k, \vec p | \eup^{-\tau H} c^\dagger | \vec p}
+        -
+        \braket{\vec k, \vec p | \eup^{-\tau H} c^\dagger | \vec p}
+    }
+    \intertext{%
+        \emph{If} the change of sign was correct, then this vanishes again.
+    }
+    &= 0
+\end{align*}
+I just cannot accept that $F_{\vec k}(\tau)$ vanishes for every $\vec k$ and
+every $\tau$. It does not make any sense to have an always vanishing object.
+
+It is pointless to continue without a way of setting $f_{\vec k}$ and $c$ in a
+relation. The left and right side of the equation contain different operators
+such that one cannot directly compare them. Although there are three pages of
+stuff, none of that really brings me closer to show that the equations of
+motion hold. Therefore I stop here and wait for next week's tutorial.
 
 \subsection{Solutions}
 
-\emph{Missing}
+We are asked to Fourier transform the equations of motion and then solve them.
+But we do have the solutions in imaginary time already given, right? So in
+principle one should be able to Fourier transform those to get the same result,
+right?
+
+The Fourier transform of the first equation is
+\[
+    \int \dif \tau \, \exp(- \iup \omega \tau) \sbr{\pd{}\tau + \epsilon_c}
+    G(\tau) = \int \dif \tau \, \exp(- \iup \omega \tau)  \sbr{-\delta(\tau) -
+    V \sum_{\vec k} F_{\vec k}(\tau)} \,.
+\]
+With the conventions made, a derivative can be moved using a partial
+integration and just gives a factor $\iup \omega$. We therefore have
+\[
+    \epsilon_c + \iup \omega \tilde G(\omega) = -1 - V \sum_{\vec k} \tilde
+    F_{\vec k}(\omega) \,.
+\]
+
+The same can be done for the other equation, that will yield
+\[
+    [\iup \omega + \epsilon(\vec k)] \tilde F_{\vec k}(\omega) = - V \tilde
+    G(\omega) \,.
+\]
+
+Then we insert the equations for $\tilde F$ into the other equation and have
+\begin{align*}
+    [\epsilon_c + \iup \omega] \tilde G(\omega) &= - 1 - V \sum_{\vec k}
+    \frac{- V \tilde G(\omega)}{\iup \omega + \epsilon(k)} \,.
+    \intertext{%
+        From here we bring all the $\tilde G$ dependent terms onto the other
+        side.
+    }
+    \sbr{\epsilon_c + \iup \omega - \sum_{\vec k}
+    \frac{V^2}{\iup \omega + \epsilon(k)}} \tilde G(\omega) &= - 1 \,.
+    \intertext{%
+        And as a last step we divide by that square bracket.
+    }
+    \tilde G(\omega) &= \sbr{- \epsilon_c - \iup \omega + \sum_{\vec k}
+    \frac{V^2}{\iup \omega + \epsilon(k)}}^{-1}
+\end{align*}
+This is somewhat like in Equation~(10) on the problem set. I guess that another
+sign convention for the Fourier transformation is used such that all the
+$\iup\omega$ terms have the other sign. Changing those signs, it turns to the
+right result:
+\[
+    \tilde G(\omega) = \sbr{- \epsilon_c + \iup \omega - \sum_{\vec k}
+    \frac{V^2}{\iup \omega - \epsilon(k)}}^{-1} \,.
+\]
+So this was just a deviation in the Fourier transform, nothing more.
 
 \end{document}
 
