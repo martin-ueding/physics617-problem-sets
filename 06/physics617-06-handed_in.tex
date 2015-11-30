@@ -1,0 +1,212 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+
+\usepackage{../my-boxes}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{6}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:2} & & \punkte{10} \\
+        \nameref{homework:3} & & \punkte{0} \\
+        \midrule
+        Total & & \arabic{totalpoints} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Free-phonon Green's function}
+\label{homework:1}
+
+\subsection{Ladder operators}
+
+\newcommand\omegaq{\omega_{\vec q}}
+\newcommand\omegamq{\omega_{-\vec q}}
+
+We have
+\[
+    a_{\vec q}^\dagger = \eup^{\tau H} a_{\vec q}^\dagger \eup^{-\tau H} \,.
+\]
+To simplify this, we want to use the Baker-Campbell-Hausdorff formula with $A =
+\tau H$ and $B = a_{\vec q}^\dagger$. The commutator of $A$ and $B$ is
+\begin{align*}
+    [A, B]
+    &= [\tau H, a_{\vec q}^\dagger] \,.
+    \intertext{%
+        We insert the explicit form of the Hamiltonian.
+    }
+    &= \tau \sum_{\vec k} \omega_{\vec k}
+    [a_{\vec k}^\dagger a_{\vec k}, a_{\vec q}^\dagger]
+    \intertext{%
+        Since the raising operator always commutes with itself, we can pull
+        that out of the commutator already.
+    }
+    &= \tau \sum_{\vec k} \omega_{\vec k}
+    a_{\vec k}^\dagger [a_{\vec k}, a_{\vec q}^\dagger]
+    \intertext{%
+        This commutator is just $\delta(\vec k - \vec q)$.
+    }
+    &= \tau \omegaq a_{\vec q}^\dagger
+\end{align*}
+
+We see that the commutator $[A, B]$ is just $\tau \omegaq B$ again. Therefore
+the next commutator is $[A, [A, B]] = \tau\omegaq [A, B]$. We can factor out
+the remaining $B$ and yield
+$\exp(\tau \omegaq) B$ from all the terms. Our result therefore is
+\[
+    a_{\vec q}^\dagger(\tau) = \exp(\tau \omegaq) a_{\vec q}^\dagger \,.
+\]
+
+The derivation for $a_{\vec q}$ is very similar. The sign in the exponent
+changes as the two terms in the commutator are now in the wrong order, they
+need to be switched first before the canonical commutation relation can be
+applied. Therefore we have
+\[
+    a_{\vec q}(\tau) = \exp(- \tau \omegaq) a_{\vec q} \,.
+\]
+
+\subsection{Green's function}
+
+First we have to build up $A(\vec q, \tau)$ from the time dependent ladder
+operators that we have just derived. Given is
+\begin{align*}
+    A(\vec q, \tau)
+    &= \eup^{\tau H} [a_{\vec q} + a_{- \vec q}^\dagger] \eup^{- \tau H} \,.
+    \intertext{%
+        There we insert the expressions for the ladder operators.
+    }
+    &= \exp(- \tau \omegaq) a_{\vec q} + \exp(\tau \omegamq) a_{-\vec q}^\dagger
+\end{align*}
+
+Having that, we can compute the Green's function. The definition is
+\begin{align*}
+    D(\vec q, \tau)
+    &= - \bracket{T_\tau A(\vec q, t) A(- \vec q, 0)} \,.
+    \intertext{%
+        Then we insert $A$.
+    }
+    &= - \bracket{T_\tau
+    \sbr{\exp(- \tau \omegaq) a_{\vec q} + \exp(\tau \omegamq) a_{-\vec q}^\dagger}
+    [a_{-\vec q} + a_{\vec q}^\dagger]}
+    \intertext{%
+        We expand the time ordering.
+    }
+    &= - \bracket{\sbr{\exp(- \tau \omegaq) a_{\vec q} + \exp(\tau \omegamq) a_{-\vec q}^\dagger}
+    [a_{-\vec q} + a_{\vec q}^\dagger]} \Theta(\tau)
+    \\&\quad
+    - \bracket{[a_{-\vec q} + a_{\vec q}^\dagger]
+    \sbr{\exp(- \tau \omegaq) a_{\vec q} + \exp(\tau \omegamq) a_{-\vec
+    q}^\dagger}} \Theta(-\tau)
+    \intertext{%
+        Only number operators contribute to the traces. Therefore only two
+        products for each time branch do anything.
+    }
+    &= - \bracket{\exp(- \tau \omegaq) a_{\vec q} a_{\vec q}^\dagger
+    + \exp(\tau \omegamq) a_{-\vec q}^\dagger a_{-\vec q}} \Theta(\tau)
+    \\&\quad
+    - \bracket{\exp(\tau \omegamq) a_{-\vec q} a_{-\vec q}^\dagger
+    + \exp(- \tau \omegaq) a_{\vec q}^\dagger a_{\vec q}} \Theta(-\tau)
+    \intertext{%
+        The exponentials can be taken out of the traces.
+    }
+    &= - \exp(- \tau \omegaq) \bracket{a_{\vec q} a_{\vec q}^\dagger} \Theta(\tau)
+    - \exp(\tau \omegamq) \bracket{a_{-\vec q}^\dagger a_{-\vec q}} \Theta(\tau)
+    \\&\quad
+    - \exp(\tau \omegamq) \bracket{a_{-\vec q} a_{-\vec q}^\dagger} \Theta(-\tau)
+    - \exp(- \tau \omegaq) \bracket{a_{\vec q}^\dagger a_{\vec q}} \Theta(-\tau)
+    \intertext{%
+        The first terms in each row can be simplified by using the commutation
+        relation. This will give a occupation number plus 1. This one will stay
+        1 in the thermodynamic average. The last terms in each rows give just
+        the bosonic occupation number.
+    }
+    &= - \exp(- \tau \omegaq) [N_{\vec q} + 1] \Theta(\tau)
+    - \exp(\tau \omegamq) N_{-\vec q} \Theta(\tau)
+    \\&\quad
+    - \exp(\tau \omegamq) [N_{-\vec q} + 1] \Theta(-\tau)
+    - \exp(- \tau \omegaq) N_{\vec q} \Theta(-\tau)
+    \intertext{%
+        Now we can group the terms further. Equation~(9) on the problem set
+        suggests $\omegaq = \omegamq$. Using that we can join the terms in each
+        row.
+    }
+    &= - \sbr{\exp(- \tau \omegaq) [N_{\vec q} + 1]
+    + \exp(\tau \omegaq) N_{\vec q}} \Theta(\tau)
+    \\&\quad
+    - \sbr{\exp(\tau \omegaq) [N_{\vec q} + 1]
+    + \exp(- \tau \omegaq) N_{\vec q}} \Theta(-\tau)
+\end{align*}
+That is the desired result as given on the problem set.
+
+\begin{question}
+    Why does $\omegaq = \omegamq$ hold? Is that some assumption that I missed?
+\end{question}
+
+\subsection{Fourier coefficients}
+
+\section{Another frequency summation}
+\label{homework:2}
+
+\section[Benzene]{A representation of the low-energy physics in the Benzene molecule}
+\label{homework:3}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
