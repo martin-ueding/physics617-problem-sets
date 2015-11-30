@@ -354,10 +354,14 @@ would have the needed factors.
 
 \subsection{Integration along real line}
 
+\emph{Missing}
+
 \section{Green's function of an impurity immersed in a fermionic bath}
 \label{homework:2}
 
 \subsection{Equations of motion}
+
+\paragraph{Time derivative of $G$}
 
 For the equation of motion we need the time derivative of both Green's
 functions.
@@ -393,7 +397,81 @@ functions.
     - \epsilon \bracket{c^\dagger c(\tau)} \delta(-\tau)
 \end{align*}
 
+\paragraph{Time derivative of $F$}
+
+An analogous time derivative also holds for the second Green's function:
+\[
+    \pd{}\tau F_{\vec k}(\tau)
+    =
+    - \bracket{[H, f_{\vec k}(\tau)] c^\dagger } \Theta(\tau)
+    - \bracket{f_{\vec k}(\tau) c^\dagger } \delta(\tau)
+    + \epsilon \bracket{c^\dagger [H, f_{\vec k}(\tau)]} \Theta(-\tau)
+    - \epsilon \bracket{c^\dagger f_{\vec k}(\tau)} \delta(-\tau)
+\]
+
+Before it makes any sense to plug those time derivatives and the functions
+themselves in the equations of motion, we need a way to set the states that are
+annihilated by $c$ and $f_{\vec k}$ in relation with each other.
+
+\paragraph{Complete set of eigenstates}
+
+The term
+\[
+    \sum_{\vec k} \sbr{c^\dagger f_{\vec k} + f_{\vec k}^\dagger c}
+\]
+in the Hamiltonian suggests that the overlap $\braket{c | \vec k}$ is non-zero,
+the state $\ket c$ is a superposition of the momentum states. A complete set of
+eigenstates should therefore be obtained by $\sum_{\vec k} \ket{\vec k}
+\bra{\vec k} = \mat 1$.
+
+\paragraph{Evaluation of $F$}
+
+One of the thermodynamic averages that we encounter in the first equation of
+motion is
+\begin{align*}
+    F_{\vec k}(\tau)
+    &= \braket{f_{\vec k}(\tau) c^\dagger} \,. \\
+    \intertext{%
+        We expand the thermodynamic average and yield
+    }
+    &= \frac 1Z \sum_{\vec p} \braket{\vec p | \eup^{-\beta H} \eup^{\tau H}
+    f_{\vec p} \eup^{-\tau H} c^\dagger | \vec p} \,.
+    \intertext{%
+        We let the Hamiltonians act to the left.
+    }
+    &= \frac 1Z \sum_{\vec p} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \braket{\vec p | f_{\vec k} \eup^{-\tau H} c^\dagger | \vec p}
+    \intertext{%
+        Now we can let $f_{\vec k}$ act to the left and see that it would
+        create another state with momentum $\vec k$. If $\vec k = \vec p$, this
+        would give zero as we are working with Fermions. If $\vec k \neq \vec
+        p$ that would create a multi particle state which has a non-trivial
+        energy. Therefore we insert another set of eigenstates here.
+    }
+    &= \frac 1Z \sum_{\vec p, \vec q} \eup^{-\beta E_{\vec p}} \eup^{\tau E_{\vec p}}
+    \braket{\vec p | f_{\vec k} | \vec q}
+    \braket{\vec q | \eup^{-\tau H} c^\dagger | \vec p}
+    \intertext{%
+        Now $f_{\vec k}$ can annihilate the state $\ket{\vec q}$ which will
+        give us $\delta(\vec k - \vec q)$. Then the overlap will give
+        $\delta{\vec k - \vec p}$. That eats up both summations and we have the
+        more decent looking result
+    }
+    &= \frac 1Z \eup^{-\beta E_{\vec k}} \eup^{\tau E_{\vec k}}
+    \braket{\vec k | \eup^{-\tau H} c^\dagger | \vec k}
+    \intertext{%
+        Again we can apply the Hamiltonian to the left and see that it cancels
+        a previous term.
+    }
+    &= \frac 1Z \eup^{-\beta E_{\vec k}}
+    \braket{\vec k | c^\dagger | \vec k}
+\end{align*}
+Note that $\braket{\vec k | c^\dagger | \vec k} = \braket{\vec k | c | \vec
+k}^*$, that might come in helpful later.
+
 \subsection{Solutions}
+
+\emph{Missing}
 
 \end{document}
 
