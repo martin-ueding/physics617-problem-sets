@@ -7,6 +7,7 @@
 \usepackage{simplewick}
 \usepackage{slashed}
 \usepackage{subcaption}
+\usepackage{tikzsymbols}
 
 \usepackage{../my-boxes}
 
@@ -200,6 +201,98 @@ That is the desired result as given on the problem set.
 \end{question}
 
 \subsection{Fourier coefficients}
+
+So we now want to compute the Fourier coefficients of Green's function. The
+function in imaginary time is given by
+\[
+    D^{(0)}(\vec q, \tau)
+    =
+    - \Theta(\tau) \sbr{
+        [1 + N_{\vec q} \eup^{-\tau \omegaq} + N_{\vec q} \eup^{\tau \omegaq}
+    }
+    - \Theta(-\tau) \sbr{
+        [1 + N_{\vec q} \eup^{\tau \omegaq} + N_{\vec q} \eup^{-\tau \omegaq}
+    }
+\]
+The Fourier transform is easily compute \emph{if} one recalls that imaginary
+time only extends to $\beta$ and then repeats itself \Winkey.
+
+So transform with
+positive sign convention.
+\begin{align*}
+    \tilde D^{(0)}(\vec q, \nu_n)
+    &=
+    - \int_0^\beta \dif \tau \, \eup^{\iup \tau \nu_n}
+    \sbr{
+        \Theta(\tau) \sbr{
+            [1 + N_{\vec q}] \eup^{-\tau \omegaq} + N_{\vec q} \eup^{\tau \omegaq}
+        }
+        \Theta(-\tau) \sbr{
+            [1 + N_{\vec q}] \eup^{\tau \omegaq} + N_{\vec q} \eup^{-\tau \omegaq}
+        }
+    }
+    \intertext{%
+        The $-\tau$ branch can directly be discarded due to the limits of the
+        integral.
+    }
+    &=
+    - \int_0^\beta \dif \tau \, \eup^{\iup \tau \nu_n}
+    \sbr{
+        [1 + N_{\vec q}] \eup^{-\tau \omegaq} + N_{\vec q} \eup^{\tau \omegaq}
+    }
+    \intertext{%
+        Then we can join the exponentials.
+    }
+    &= - \int_0^\beta \dif \tau
+    \sbr{
+        [1 + N_{\vec q}] \eup^{\tau[\iup \nu_n - \omegaq]}
+        + N_{\vec q} \eup^{\tau [\iup \nu_n + \omegaq]}
+    }
+    \intertext{%
+        The integration itself is not hard, it will give us
+    }
+    &= -
+    \frac{1 + N_{\vec q}}{\iup \nu_n - \omegaq} \sbr{\eup^{\beta[\iup \nu_n -
+    \omegaq]} - 1}
+    - \frac{N_{\vec q}}{\iup \nu_n + \omegaq} \sbr{\eup^{\beta [\iup \nu_n +
+    \omegaq]} - 1}
+    \intertext{%
+        We use that $\nu_n = 2 \piup n / \beta$. Therefore we can drop that
+        drop that from the exponentials.
+    }
+    &= -
+    \frac{1 + N_{\vec q}}{\iup \nu_n - \omegaq} \sbr{ \eup^{-\beta\omegaq} - 1}
+    - \frac{N_{\vec q}}{\iup \nu_n + \omegaq} \sbr{\eup^{\beta\omegaq} - 1}
+    \intertext{%
+        Also note that $1 + N_{\vec q} = \eup^{\beta \omega_n} N_{\vec q}$.
+        Therefore we can simplify the expression a bit further.
+    }
+    &= -
+    \frac{N_{\vec q}}{\iup \nu_n - \omegaq} \sbr{1 - \eup^{\beta\omegaq}}
+    - \frac{N_{\vec q}}{\iup \nu_n + \omegaq} \sbr{\eup^{\beta\omegaq} - 1}
+    \intertext{%
+        Now we can cancel $N_{\vec q}$ from both terms. The first will obtain
+        another minus sign.
+    }
+    &= \frac{1}{\iup \nu_n - \omegaq}
+    - \frac{1}{\iup \nu_n + \omegaq}
+    \intertext{%
+        Next we bring the two fractions to equal denominators. We directly
+        pull out the minus that we get in the denominator.
+    }
+    &= - \frac{\iup \nu_n + \omegaq - \iup \nu_n + \omegaq}{\nu_n^2 -
+    \omegaq^2}
+    \intertext{%
+        And the numerator simplifies to the final result:
+    }
+    &= - \frac{2 \omegaq}{\nu_n^2 - \omegaq^2}
+\end{align*}
+
+\begin{question}
+    I think I should know that, but why did imaginary time repeat itself? Just
+    because there is some imaginary part in an exponential which then cycles in
+    the complex plane?
+\end{question}
 
 \section{Another frequency summation}
 \label{homework:2}
