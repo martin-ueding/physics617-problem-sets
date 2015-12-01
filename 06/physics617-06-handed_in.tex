@@ -204,8 +204,135 @@ That is the desired result as given on the problem set.
 \section{Another frequency summation}
 \label{homework:2}
 
+We are asked to show
+\[
+    \frac 1\beta \sum_{n}
+    \tilde G^{(0)} (\vec p, \omega_n)
+    \tilde G^{(0)} (\vec k, \omega_n + \nu_m)
+    = \frac{n_\text F(\epsilon_{\vec p}) - n_\text F(\epsilon_{\vec k})}
+        {\iup \nu_m + \epsilon_{\vec p} - \epsilon_{\vec k}} \,.
+\]
+I took the liberty to give the $\nu$ another index as this is just one fixed
+phonon frequency which we do not sum over.
+
+The overall approach is the same as shown in the tutorial class. The left side
+contains a sum over countable infinite many summands. We want to find a
+function which has as many residues as the original sum has summands. And the
+residues of the poles have to match the summands of the original sum. Then a
+contour integral around all the poles will give the sum of the residues. This
+then is the sum that we want to compute. The function to be constructed will
+also have additional poles. Including all the poles we can stretch the contour
+to infinity and have the whole integral vanish. Therefore the finite number of
+additional poles will have the same magnitude as all interesting poles
+combined. Therefore we can compute the whole sum by computing a few residues
+and adding them up.
+
+Now that the direction is clear (hopefully), we can dive into the individual
+steps. The left hand side of our equation with explicit form of the Green's
+functions is
+\[
+    \text{LHS} = \frac{1}{\beta} \sum_n \frac{1}{\iup \omega_n - \epsilon_{\vec
+    p}} \frac{1}{\iup \omega_n + \iup \nu_n - \epsilon_{\vec k}} \,.
+\]
+Taking the similar form you did in the tutorial class, we use
+\[
+    I = \oint \frac{\dif z}{2\piup \iup} \, f(z) \, n_\text F(z)
+\]
+where
+\[
+    f(z) = - \frac{1}{z - \epsilon_{\vec p}} \frac{1}{z + \iup \nu_m - \epsilon_{\vec k}}
+    \eqnsep
+    n_\text F(z) = \frac 12 - \beta \sum_{n = 0}^\infty \sbr{
+        \frac1{z + \iup \omega_n}
+        +
+        \frac1{z - \iup \omega_n}
+    } \,.
+\]
+
+This construction has poles at $z_1 := \epsilon_{\vec p}$ and $z_2 :=
+\epsilon_{\vec k} - \iup \nu_m$ as well as a lot of poles at $z = \pm \iup
+\omega_n$. The first two poles lie away from the imaginary axis, the latter all
+lie on the imaginary axis. A contour encompassing the imaginary axis will give
+the desired result.
+
+The whole function decays with $z^{-2}$ or stronger. The arc length scales with
+$z$, so we are good here, the contour integral along a great all-encompassing
+circle will vanish. Therefore we know that the sum of all the residues is zero.
+Zero minus the residues at $z_1$ and $z_2$ will therefore give the desired
+quantity. So all we have to do now is to compute the residues at $z_1$ and
+$z_2$. The first one is
+\begin{align*}
+    R_1
+    &= \lim_{z \to z_1} [z - z_1] \, f(z) \, n_\text F(z) \,.
+    \intertext{%
+        We insert $f(z)$. The other function does not have any poles in this
+        region around $z_1$, therefore we do not have to look into that
+        function.
+    }
+    &= - \lim_{z \to \epsilon_{\vec p}} [z - \epsilon_{\vec p}] \frac{1}{z - \epsilon_{\vec p}} \frac{1}{z
+    + \iup \nu_m - \epsilon_{\vec k}} \, n_\text F(z) \\
+    \intertext{%
+        The first fractions conveniently cancels.
+    }
+    &= - \lim_{z \to \epsilon_{\vec p}} \frac{1}{z + \iup \nu_m -
+    \epsilon_{\vec k}} \, n_\text F(z) \\
+    \intertext{%
+        We can perform the limit now as everything is well behaved.
+    }
+    &= - \frac{1}{\epsilon_{\vec p} + \iup \nu_m
+    - \epsilon_{\vec k}} \, n_\text F(\epsilon_{\vec p}) \\
+\end{align*}
+Similarly we can compute $R_2$ and obtain
+\[
+    R_2
+    = - \frac{1}{\epsilon_{\vec k} + \iup \nu_m - \epsilon_{\vec p}} \, n_\text
+    F(\epsilon_{\vec k} - \iup \nu_m) \,.
+\]
+
+The quantity of interest then is
+\[
+    -R_1 - R_2
+    = \frac{n_\text F(\epsilon_{\vec p}) - n_\text F(\epsilon_{\vec k} - \iup
+    \nu_m)}{\epsilon_{\vec p} - \epsilon_{\vec k} + \iup \nu_m} \,.
+\]
+Somehow the second Fermi function is shifted by the phonon frequency. Other
+than that it matches the desired right hand side of Equation~(11) given on the
+problem set.
+
 \section[Benzene]{A representation of the low-energy physics in the Benzene molecule}
 \label{homework:3}
+
+Either I am missing something fundamental or this is a rather easy task. In the
+tight binding model we have some energy~$\epsilon$ for the electrons at each site. Then
+there might be a next-neighbor hopping amplitude~$t$. The states $\ket i$ are
+the orbitals at each lattice site. Then the ladder operators $c_i$ and
+$c_i^\dagger$ create an annihilate electrons at the lattice sites.
+
+Defining $c_7 := c_1$ for the periodic boundary conditions, the tight binding
+Hamiltonian is
+\[
+    H = \epsilon \sum_i c_i^\dagger c_i + t \sum_i \sbr{c_i^\dagger c_{i+1} +
+    \hc} \,.
+\]
+In matrix form it can be written as
+\[
+    H = \vec c^\dagger
+    \begin{pmatrix}
+        \epsilon & t &&&& \epsilon \\
+        t & \epsilon & t &&& \\
+          & t & \epsilon & t && \\
+          && t & \epsilon & t & \\
+          &&& t & \epsilon & t  \\
+        \epsilon &&&& t & \epsilon
+    \end{pmatrix}
+    \vec c
+\]
+where $\vec c$ is the vector with all the ladder operators.
+
+As a next step this symmetric matrix can be diagonalized by expressing the
+ladder operators in momentum space via a Fourier transform. The eigenvalues of
+the matrix correspond to the energy bands of the system. One should get
+something with cones over the lattice sites if I recall that correctly.
 
 \end{document}
 
