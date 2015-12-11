@@ -83,7 +83,6 @@
 \section{Yet another pair of frequency summations}
 \label{homework:2}
 
-
 \section{Wick's theorem for non-operators}
 \label{homework:3}
 
@@ -191,8 +190,25 @@ case of three terms. We introduce even more shorthand notation. We write
     &= \sum_{i, j, k} \Ensemble{\rho_1^i \rho_2^j \rho_3^k}
     \intertext{%
         where the upper indices are the index of the $\vec R$ that appears in
-        the exponential.
+        the exponential. As seen above we need to split this up into cases
+        where some of the indices are the same.
     }
+    &= \sump_{i, j, k} \Ensemble{\rho_1^i \rho_2^j \rho_3^k}
+    + \sump_{i, j} \Ensemble{\rho_1^i \rho_2^j \rho_3^j}
+    + \sump_{i, j} \Ensemble{\rho_1^j \rho_2^j \rho_3^i}
+    \\&\qquad
+    + \sump_{i, j} \Ensemble{\rho_1^j \rho_2^i \rho_3^j}
+    + \sum_{i} \Ensemble{\rho_1^i \rho_2^i \rho_3^i}
+    \intertext{%
+        By looking at the above calculations, we can just write down the
+        results.
+    }
+    &= N^3 \delta(\vec q_1) \delta(\vec q_2) \delta(\vec q_3)
+    + N^2 \delta(\vec q_1 + \vec q_2) \delta(\vec q_3)
+    + N^2 \delta(\vec q_1 + \vec q_3) \delta(\vec q_2)
+    \\&\qquad
+    + N^2 \delta(\vec q_1) \delta(\vec q_2 + \vec q_3)
+    + N \delta(\vec q_1 + \vec q_2 + \vec q_3)
 \end{align*}
 
 \subsection{Feynman diagrams}
@@ -202,9 +218,12 @@ well! \Laughey The \emph{Advanced Quantum Field Theory} course has lots of
 opportunities to make those. Now you will not be spared with them either.
 \Winkey
 
-Table~\ref{tab:single} shows the Feynman diagrams for the scattering on a
-single impurity. Multiple of those can be combined when multiple impurities are
-considered in a scattering process.
+An impurity cannot absorb any momentum in the case where the positions are
+averaged over. Therefore it can only “reflect” momentum which leads to the
+momentum sum $\delta$-distributions. In analogy to the diagrams shown in the
+lecture we can construct diagrams to correspond to each of the terms in the
+previous subsection. Table~\ref{tab:single} shows the Feynman diagrams for the
+scattering on a single impurity.
 
 \begin{table}
     \centering
@@ -227,18 +246,72 @@ considered in a scattering process.
     \label{tab:single}
 \end{table}
 
+Multiple of those single impurity Feynman diagrams can be combined when
+multiple impurities are considered in a scattering process.
+Figure~\ref{fig:iij} shows one of the mixed terms from the previous
+computation, the term with
+\[
+    \sump_{i, j} \Ensemble{\rho_1^j \rho_2^j \rho_3^i} \,.
+\]
+
 \begin{figure}
     \centering
-    \includegraphics{iij}
+    \begin{subfigure}[c]{0.48\linewidth}
+        \centering
+        \includegraphics{iij}
+        \caption{%
+             Diagram corresponding to $\ensemble{\rho_1^j \rho_2^j \rho_3^i}$
+             or $\contraction{}1{}2 123$.
+        }
+        \label{fig:iij}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[c]{0.48\linewidth}
+        \centering
+        \includegraphics{mixed}
+        \caption{%
+             Diagram corresponding to $\ensemble{\rho_1^j \rho_2^i \rho_3^j}$
+             or $\contraction{}1{2}3 123$.
+        }
+        \label{fig:iji}
+    \end{subfigure}
     \caption{%
-        Feynman diagram for scattering three times on two impurities. This
-        diagrams corresponds to the quantity $\ensemble{\rho_1^i \rho_2^i
-        \rho_3^k}$ as defined in the text.
+        Feynman diagrams for scattering three times on two impurities.
+        Interference is not excluded with the current formalism. The diagrams
+        only differ the be order of the indices.
     }
-    \label{fig:iij}
+    \label{fig:iji/mixed}
 \end{figure}
 
 \subsection{$n$-th order}
+
+The emerging pattern is that all cases of equal and unequal indices must be
+taken into account. That can be thought of as indices being coupled or
+independent. Actually they are not really independent as they must not equal
+each other, but that seems to be glossed over in the $N - 1 \approx N$
+approximation. We can write those coupling similar to the Wick contractions in
+the correlation functions. Here we can have uncoupled or groups with more than
+two elements. Writing $\rho_1 \rho_2 \rho_3$ as a super-short $123$
+we can express this as
+\[
+    \ensemble{123}
+    = 123
+    +
+    \contraction{1}2{}3
+    123
+    +
+    \contraction{}1{}2
+    123
+    +
+    \contraction{}1{2}3
+    123
+    +
+    \contraction{1}2{}3
+    \contraction{}1{}2
+    123 \,.
+\]
+Those are the five terms that we have computed above. All numbers that are not
+contracted are a scattering with a single impurity.
 
 \end{document}
 
