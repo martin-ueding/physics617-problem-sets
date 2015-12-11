@@ -1,0 +1,245 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+\usepackage{tikzsymbols}
+\usepackage{stmaryrd}
+
+\usepackage{../my-boxes}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+\newcommand\ensemble[1]{\llbracket #1 \rrbracket}
+\newcommand\Ensemble[1]{\left\llbracket #1 \right\rrbracket}
+\newcommand\sump{\sideset{}{'}\sum}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{7}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{5} \\
+        \nameref{homework:2} & & \punkte{10} \\
+        \nameref{homework:3} & & \punkte{15} \\
+        \midrule
+        Total & & \arabic{totalpoints} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Green's function of an impurity immersed in a fermionic bath}
+\label{homework:1}
+
+\section{Yet another pair of frequency summations}
+\label{homework:2}
+
+
+\section{Wick's theorem for non-operators}
+\label{homework:3}
+
+The location of the impurities is defined as
+\[
+    \rho_{\vec q} := \sum_i \exp(- \iup \vec q \cdot \vec R_i) \,.
+\]
+
+\subsection{Ensemble averages}
+
+The definition of the ensemble average given in the lecture is
+\[
+    \ensemble G := \int \sbr{\prod_{i=1}^N \dif^3 R_i} G(\vec R_1, \dotsc, \vec R_N) \,.
+\]
+The notation is a bit different here. First I use some other brackets. There
+are double angle brackets in \texttt{MnSymbol} but that clashes with
+\texttt{amssymb} and I do not want to get those to work right now. Those are
+taken from \texttt{stmaryrd} which plays nice with \texttt{amssymb}. Then I
+like to have function evaluation with round brackets no matter what the
+arguments are. From a programming perspective I find it illogical that the
+function arguments should be enclosed in square brackets if one of them is
+another function. And because the theorist convinced me that writing the
+differential forms (or measure or integration variable) up front makes more
+sense, I will do that here as well.
+
+It is important that the integration only applies to the actual values of $\vec
+R$ used. Otherwise they would create infinite multiplicative factors which is
+not the desired outcome. With that in mind we can start to evaluate some
+averages.
+\begin{align*}
+    \ensemble{\rho_{\vec q}}
+    &= \Ensemble{\sum_i \exp(- \iup \vec q \cdot \vec R_i)} \\
+    \intertext{%
+        The ensemble average is linear so we can pull out the sum.
+    }
+    &= \sum_i \Ensemble{\exp(- \iup \vec q \cdot \vec R_i)} \\
+    \intertext{%
+        Each of the terms is a functional of only one of the $\vec R$ now.
+        Therefore we only need one integration.
+    }
+    &= \sum_i \int \dif^3 R_i \, \exp(- \iup \vec q \cdot \vec R_i)
+    \intertext{%
+        This integration just gives a $\delta$-distribution (perhaps with
+        another factor of $2 \piup$?) and we have
+    }
+    &= \sum_i \delta(\vec q) \,.
+    \intertext{%
+        All the $N$ summands are equal, therefore this reduces to
+    }
+    &= N \delta(\vec q) \,.
+\end{align*}
+This matches the expression given in the lecture. There, both $n$ and $N$ are
+used for the same thing I assume, so I will go with $N$ for everything.
+
+The two-density expression can be computed similarly. We start with
+\begin{align*}
+    \ensemble{\rho_{\vec q_1} \rho_{\vec q_2}}
+    &=: \ensemble{\rho_1 \rho_2}
+    \intertext{%
+        where we have introduced some shorthand notation. Next we write out the
+        sums and have
+    }
+    &= \sum_{i, j} \Ensemble{\exp(- \iup \vec q_1 \cdot \vec R_i) \exp(- \iup
+    \vec q_2 \cdot \vec R_j)} \,.
+    \intertext{%
+        The cases $i = j$ and $i \neq j$ have to be treated differently. We
+        introduce the notation $\sum'$ which means that only unique elements
+        are summed over. With that notation we have
+    }
+    &= \sum_{i} \Ensemble{\exp(- \iup [\vec q_1 + \vec q_2] \cdot \vec R_i)}
+    +
+    \sump_{i, j} \Ensemble{\exp(- \iup \vec q_1 \cdot \vec R_i) \exp(- \iup
+    \vec q_2 \cdot \vec R_j)}
+    \,.
+    \intertext{%
+        The first summand is something we have just calculated, it is just $N
+        \delta(\vec q_1 + \vec q_2)$. In the second summand, we have two
+        distinct integrals.
+    }
+    &= N \delta(\vec q_1 + \vec q_2)
+    +
+    \sump_{i, j}
+    \int \dif^3 R_i \, \exp(- \iup \vec q_1 \cdot \vec R_i)
+    \int \dif^3 R_j \, \exp(- \iup \vec q_2 \cdot \vec R_j)
+    \intertext{%
+        Each of the integrals gives a $\delta$-distribution.
+    }
+    &= N \delta(\vec q_1 + \vec q_2)
+    + \sump_{i, j} \delta(\vec q_1) \delta(\vec q_2)
+    \intertext{%
+        There are $N[N-1] = N^2 - N$ summands in the second term. In the
+        lecture, it was shown to be $N^2$, though. Perhaps it is because $N \gg
+        1$ and therefore this can be approximated to be $N^2$ directly? We will
+        just use this argument to obtain the result in the lecture on
+        2015-12-01 which is the canonical result.
+    }
+    &= N \delta(\vec q_1 + \vec q_2)
+    + N^2 \delta(\vec q_1) \delta(\vec q_2)
+\end{align*}
+
+From here the systematics are clear, there are just more combinations in the
+case of three terms. We introduce even more shorthand notation. We write
+\begin{align*}
+    \ensemble{\rho_1 \rho_2 \rho_3}
+    &= \sum_{i, j, k} \Ensemble{\rho_1^i \rho_2^j \rho_3^k}
+    \intertext{%
+        where the upper indices are the index of the $\vec R$ that appears in
+        the exponential.
+    }
+\end{align*}
+
+\subsection{Feynman diagrams}
+
+Finally I can create some Feynman diagrams with Ti\emph{k}Z for this course as
+well! \Laughey The \emph{Advanced Quantum Field Theory} course has lots of
+opportunities to make those. Now you will not be spared with them either.
+\Winkey
+
+Table~\ref{tab:single} shows the Feynman diagrams for the scattering on a
+single impurity. Multiple of those can be combined when multiple impurities are
+considered in a scattering process.
+
+\begin{table}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        Term & Feynman Diagram \\
+        \midrule
+        $\delta(\vec q_1)$ & \includegraphics{one} \\
+        \midrule
+        $\delta(\vec q_1 + \vec q_2)$ & \includegraphics{two} \\
+        \midrule
+        $\delta(\vec q_1 + \vec q_2 + \vec q_3)$ & \includegraphics{three} \\
+        \bottomrule
+    \end{tabular}
+    \caption{%
+        Feynman diagrams with scattering on a single impurity. The impurity is
+        denoted with a box as Ti\emph{k}Z does not seem to have a pre-made
+        shape which resembles the cross used in the lecture.
+    }
+    \label{tab:single}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics{iij}
+    \caption{%
+        Feynman diagram for scattering three times on two impurities. This
+        diagrams corresponds to the quantity $\ensemble{\rho_1^i \rho_2^i
+        \rho_3^k}$ as defined in the text.
+    }
+    \label{fig:iij}
+\end{figure}
+
+\subsection{$n$-th order}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79

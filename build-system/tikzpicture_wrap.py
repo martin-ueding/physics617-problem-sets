@@ -13,6 +13,7 @@ template_text = r'''
 \usepackage{../../../header}
 
 \usepackage{tikz}
+\usepackage{tikz-feynman}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
 

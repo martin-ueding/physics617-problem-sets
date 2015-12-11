@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+    \graph[feynman electrical layout, horizontal=in to out]
+    {
+        {[edges=fermion]
+            in -- a -- b -- out;
+        };
+    };
+
+    \coordinate (middle1) at ($(a)!.5!(b)$);
+
+    \vertex[draw, shape=rectangle, above=of middle1] (i) {};
+
+    \draw[scalar, momentum'={$\vec q_1$}] (a) to  (i);
+    \draw[scalar, momentum={$\vec q_2$}]  (b) to (i);
+\end{tikzpicture}
