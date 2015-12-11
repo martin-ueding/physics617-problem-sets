@@ -80,8 +80,112 @@
 \section{Green's function of an impurity immersed in a fermionic bath}
 \label{homework:1}
 
+\subsection{Analytic in the upper half plane}
+
+$V$ and $\epsilon_{\vec k}$ are real numbers. As long as the imaginary part of
+the denominator does not vanish for $\Im(z) \neq 0$, the function is analytic.
+We look at the imaginary part of the denominator:
+\begin{align*}
+    \Im(D)
+    &= \Im\del{z - \epsilon - \sum_{\vec k} \frac{V^2}{z - \epsilon_{\vec k}}}
+    \intertext{%
+        The imaginary part is a linear operator and therefore we can directly
+        move it part the terms that are purely real.
+    }
+    &= \Im(z) - \sum_{\vec k} V^2 \Im\del{\frac{1}{z - \epsilon_{\vec k}}}
+    \intertext{%
+        The imaginary part of a fraction might not be obvious right away. So we
+        write it more explicitly:
+    }
+    &= \Im(z) - \sum_{\vec k} V^2 \Im\del{\frac{1}{\Re(z) + \iup \Im(z) - \epsilon_{\vec k}}}
+    \intertext{%
+        Then we make the denominator there real.
+    }
+    &= \Im(z) - \sum_{\vec k} V^2
+    \Im\del{\frac{[\Re(z) - \epsilon_{\vec k}] - \iup \Im(z)}{[\Re(z) -
+    \epsilon_{\vec k}]^2 + \Im(z)^2}}
+    \intertext{%
+        Now we can look at the imaginary part of that.
+    }
+    &= \Im(z) - \Im(z) \sum_{\vec k} V^2
+    \frac{1}{[\Re(z) - \epsilon_{\vec k}]^2 + \Im(z)^2} \\
+    &= \Im(z) \sbr{1 - \sum_{\vec k} V^2
+    \frac{1}{[\Re(z) - \epsilon_{\vec k}]^2 + \Im(z)^2}}
+\end{align*}
+
+If the sum is sufficiently small, this works. It is not really clear that it
+will work out, though.
+
+\subsection{Residue at infinity}
+
+The “residue” at infinity is
+\begin{align*}
+    \lim_{|z| \to \infty} z G(z)
+    &=
+    \frac{z}{z - \epsilon - \sum_{\vec k} \frac{V^2}{z - \epsilon_{\vec k}}}
+    \,.
+    \intertext{%
+        We can cancel a $z$ in the denominator.
+    }
+    &=
+    \lim_{|z| \to \infty}
+    \sbr{1 - \frac\epsilon{z} - \sum_{\vec k} \frac{V^2}{z^2 - z\epsilon_{\vec
+    k}}}\inv
+\end{align*}
+The denominator goes to one in the limit, therefore the whole fraction
+is constant, namely unity.
+
 \section{Yet another pair of frequency summations}
 \label{homework:2}
+
+We want to evaluate a countable infinite sum over the fermionic Matsubara
+frequencies~$\omega_n$ which are $[2n + 1] \piup / \beta$. In order to compute
+this sum we want to use the residue theorem and construct a helper function
+such that it has a pole for every summand. The function
+\[
+    \sbr{\exp(\beta z) + 1}\inv
+\]
+has poles at $z = \iup \omega_n$, which is exactly what we want. That function
+is the Fermi function. In order to use this in our sum, we need the residues at
+the poles. They are
+\begin{align*}
+    R_n &=
+    \lim_{z \to \iup \omega_n} [z - \iup \omega_n] \sbr{\exp(\beta z) + 1}\inv
+    \,.
+    \intertext{%
+        It is easier with $\epsilon := z - \iup \omega$. This leads us to
+    }
+    &= \lim_{\epsilon \to 0} \frac{\epsilon}{\exp(\beta \epsilon) \exp(\iup
+    \beta \omega_n) + 1} \,.
+    \intertext{%
+        The factor $\exp(\beta\epsilon)$ can be linearized to $1 +
+        \beta\epsilon$.
+    }
+    &= \lim_{\epsilon \to 0} \frac{\epsilon}{[1 + \beta\epsilon] \exp(\iup
+    \beta \omega_n) + 1} \,.
+    \intertext{%
+        Since the fermionic Matsubara frequencies are “odd”, the exponential
+        will always just give a minus sign. Therefore the denominator is just
+    }
+    &= \lim_{\epsilon \to 0} \frac{\epsilon}{1 - 1 - \beta\epsilon} \\
+    &= - \lim_{\epsilon \to 0} \frac{\epsilon}{\beta\epsilon} \\
+    &= - \frac{1}{\beta} \,.
+\end{align*}
+Therefore the residue is just $-\beta\inv$. This can easily be accounted for in
+the transformation of the sum into a contour integral.
+
+The Fourier transformed Matsubara Green's function for non-interacting
+particles was given on the sixth homework sheet as
+\[
+    \tilde G^{(0)}(\vec k, \vec \xi_n) = \frac{1}{\iup \xi_n - \epsilon_{\vec
+    k}} \,.
+\]
+We start with the expression to compute. That is
+\begin{align*}
+    - \frac1\beta \sum_n
+    \tilde G^{(0)}(\vec p, \omega_n)
+    \tilde G^{(0)}(\vec k, \nu_m - \omega_n) 
+\end{align*}
 
 \section{Wick's theorem for non-operators}
 \label{homework:3}
