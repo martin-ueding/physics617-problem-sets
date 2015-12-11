@@ -138,6 +138,11 @@ is constant, namely unity.
 \section{Yet another pair of frequency summations}
 \label{homework:2}
 
+Perhaps the first part is not really needed as we have done a few frequency
+summations already. I want to explain all the steps here in detail to show that
+I understood the general principle and in order to have something to get up to
+speed when studying for the exam in a month.
+
 We want to evaluate a countable infinite sum over the fermionic Matsubara
 frequencies~$\omega_n$ which are $[2n + 1] \piup / \beta$. In order to compute
 this sum we want to use the residue theorem and construct a helper function
@@ -180,11 +185,32 @@ particles was given on the sixth homework sheet as
     \tilde G^{(0)}(\vec k, \vec \xi_n) = \frac{1}{\iup \xi_n - \epsilon_{\vec
     k}} \,.
 \]
-We start with the expression to compute. That is
+We start with the expression to compute. The left hand side is
 \begin{align*}
+    \text{LHS}
+    &=
     - \frac1\beta \sum_n
     \tilde G^{(0)}(\vec p, \omega_n)
-    \tilde G^{(0)}(\vec k, \nu_m - \omega_n) 
+    \tilde G^{(0)}(\vec k, \nu_m - \omega_n) \,.
+    \intertext{%
+        We insert the function from the previous exercise sheet.
+    }
+    &= - \frac1\beta \sum_n
+    \frac{1}{\iup \omega_n - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - \iup \omega_n - \epsilon_{\vec p}}
+    \intertext{%
+        As derived above, the function $n_\text F(z)$ will give us the correct
+        residues for $z = \iup \omega_n$. Therefore we can replace the sum with
+        a contour integral. The contour will be along a narrow strip around the
+        imaginary axis to include only the poles at $\iup \omega_n$ and none of
+        the other poles. The factor $- \beta\inv$ will now come from the
+        residuals. This transforms the expression to
+    }
+    &= \frac{1}{2 \piup \iup} \ointop_{\text{narrow}}
+    \dif z \,
+    \frac{1}{z - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - z - \epsilon_{\vec p}}
+    \frac{1}{\exp(\beta z) + 1} \,.
 \end{align*}
 
 \section{Wick's theorem for non-operators}
