@@ -316,7 +316,46 @@ negative sign we have
 
 \subsection{Limit}
 
-\emph{Missing}
+In the problem set the momentum is set to zero, although on the right hand side
+a vector $\vec k$ comes up. We will use a vector $\vec X$ which would be just
+the zero vector on the problem set. We expand the momentum-time Green's function as
+a momentum-frequency Green's function first. This give us
+\begin{align*}
+    \lim_{\tau \nearrow 0} G^{(0)}(\tau, \vec X)
+    &= \lim_{\tau \nearrow 0} \frac 1\beta \sum_{n} \exp(- \iup \omega_n \tau)
+    \tilde G^{(0)}(\omega_n, \vec X) \,.
+    \intertext{%
+        The exponential on the problem set lacks a factor $\tau$, we have just
+        added it here to make sense of the units. This is just another
+        frequency summation problem. We insert $\tilde G^{(0)}$ explicitly and
+        obtain
+    }
+    &= \lim_{\tau \nearrow 0} \frac 1\beta \sum_{n} \exp(- \iup \omega_n \tau)
+    \frac1{\iup \omega_n - \epsilon_{\vec X}} \,,
+    \intertext{%
+        As before we rewrite this as a contour integral with a narrow curve
+        around the imaginary axis. This is
+    }
+    &= - \lim_{\tau \nearrow 0} \ointop_\text{narrow}
+    \frac{\dif z}{2 \piup \iup} \, \exp(- z \tau)
+    \frac{n_\text F(z)}{z - \epsilon_{\vec X}} \,,
+\end{align*}
+Only at this point it is apparent that the limit $\tau \nearrow 0$ does
+something useful. If we had performed the limit already then the
+exponential factor was gone. The denominator only decays with $z\inv$
+such that the total integral over a great circle does not vanish without any
+such help. If we do not care about convergence and just do the contour
+integration we would have to take the pole at $z = \epsilon_{\vec X}$ into
+account. The residue at this pole is just
+\[
+    \lim_{\tau \nearrow 0} \exp(- \epsilon_{\vec X} \tau) \,
+    n_\text F(\epsilon_{\vec X}) \,.
+\]
+In the limit $\tau \nearrow 0$ we just have $n_\text F(\epsilon_{\vec X})$. If
+that $\vec X$ had been $\vec k$ all the way, this would be close to the correct
+result. We cancel the minus sign since we need to subtract this pole from the
+“great circle” contour. We do not know that this “great circle” contour
+integral will give zero, so one cannot really say that this works out here.
 
 \section{Wick's theorem for non-operators}
 \label{homework:3}
