@@ -138,6 +138,8 @@ is constant, namely unity.
 \section{Yet another pair of frequency summations}
 \label{homework:2}
 
+\subsection{Frequency summation}
+
 Perhaps the first part is not really needed as we have done a few frequency
 summations already. I want to explain all the steps here in detail to show that
 I understood the general principle and in order to have something to get up to
@@ -197,7 +199,7 @@ We start with the expression to compute. The left hand side is
     }
     &= - \frac1\beta \sum_n
     \frac{1}{\iup \omega_n - \epsilon_{\vec p}}
-    \frac{1}{\iup \nu_m - \iup \omega_n - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - \iup \omega_n - \epsilon_{\vec k}}
     \intertext{%
         As derived above, the function $n_\text F(z)$ will give us the correct
         residues for $z = \iup \omega_n$. Therefore we can replace the sum with
@@ -209,9 +211,112 @@ We start with the expression to compute. The left hand side is
     &= \frac{1}{2 \piup \iup} \ointop_{\text{narrow}}
     \dif z \,
     \frac{1}{z - \epsilon_{\vec p}}
-    \frac{1}{\iup \nu_m - z - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - z - \epsilon_{\vec k}}
     \frac{1}{\exp(\beta z) + 1} \,.
+    \intertext{%
+        We do not need the explicit form of the Fermi function, so we just
+        replace that with the name.
+    }
+    &= \frac{1}{2 \piup \iup} \ointop_{\text{narrow}}
+    \dif z \,
+    \frac{1}{z - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - z - \epsilon_{\vec k}}
+    n_\text F(z)
+    \intertext{%
+        The idea now is the same as usual. The contour tightly wrapped around
+        the imaginary axis will give the desired result. To compute it we need
+        to add all the residues, something we would like to get around with.
+        If we push the contour to infinity, the integral itself will go to zero
+        as the integrand decays with $z^{-2}$. In doing so we pick up the poles
+        of the two fractions in the integrand. So in order to account for that
+        we have
+    }
+    &= \frac{1}{2 \piup \iup}
+    \sbr{
+        \ointop_{\text{great circle}}
+        -
+        \ointop_{\text{other poles}}
+    }
+    \dif z \,
+    \frac{1}{z - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - z - \epsilon_{\vec k}}
+    n_\text F(z) \,.
+    \intertext{%
+        By the argument given above the contour integral along the great circle
+        has to vanish. Therefore we are left with
+    }
+    &= - \frac{1}{2 \piup \iup} \ointop_{\text{other poles}}
+    \dif z \,
+    \frac{1}{z - \epsilon_{\vec p}}
+    \frac{1}{\iup \nu_m - z - \epsilon_{\vec k}}
+    n_\text F(z) \,.
+    \intertext{%
+        Now this is easy. Just locate the remaining poles and add the residues.
+        The Fermi function does not have any poles with a real part, therefore
+        the residue will just be the Fermi function at the pole. Those poles
+        are $z = \epsilon_{\vec p}$ and $z = \iup \nu_m - \epsilon_{\vec p}$.
+        The residues of the fractions are both $[\iup \nu_m - [ \epsilon_{\vec
+        p} + \epsilon_{\vec k}]]\inv$ which is a nice coincidence. The value of
+        the Fermi function is different in each case. In total we have
+    }
+    &= \frac{- n_\text F(\epsilon_{\text p}) - n_\text F(\iup \nu_m - \epsilon_{\vec
+    k})}{\iup \nu_m - \epsilon_{\vec p} - \epsilon_{\vec k}}
+    \,.
+    \intertext{%
+        This looks very good, the argument of the second Fermi function needs
+        some adjustment, though. Using the trick to be shown below, we obtain
+        the final result of
+    }
+    &= \frac{-1 - n_\text F(\epsilon_{\text p}) + n_\text F(\epsilon_{\vec
+    k})}{\iup \nu_m - \epsilon_{\vec p} - \epsilon_{\vec k}}
+    \,.
 \end{align*}
+There is a sign mistake somewhere, though. Perhaps one of the residues has a
+different sign, then it would work out. Now the trick mentioned above. Using
+the definition of the Fermi function with the expression which contained the
+negative sign we have
+\begin{align*}
+    n_\text F(\iup \nu_m - \epsilon_{\vec k})
+    &= \frac{1}{\exp(\iup \beta \nu_m - \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        Then we just split the exponential to give
+    }
+    &= \frac{1}{\exp(\iup \beta \nu_m) \exp(- \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        The boson frequencies are integer multiples of $2 \piup/\beta$ and
+        therefore just give $\exp(2 \piup \iup n) = 1$. We can drop the term
+        and are left with
+    }
+    &= \frac{1}{\exp(- \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        Then we expand the fraction with $\exp(\beta \epsilon_{\vec k})$ to get
+        rid of the minus sign. We then have
+    }
+    &= \frac{\exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta \epsilon_{\vec k})}
+    \,.
+    \intertext{%
+        In the numerator we add zero to have
+    }
+    &= \frac{1 + \exp(\beta \epsilon_{\vec k}) - 1}{1 + \exp(\beta
+    \epsilon_{\vec k})} \,.
+    \intertext{%
+        From here we can split up the two fractions in a trivial way
+    }
+    &= \frac{1 + \exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta
+    \epsilon_{\vec k})} - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})}
+    \intertext{%
+        and reduce the first fraction. We then have
+    }
+    &= 1 - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})} \,,
+    \intertext{%
+        which can be written in terms of the Fermi function again to give
+    }
+    &= 1 - n_\text F(\epsilon_{\vec k}) \,.
+\end{align*}
+
+\subsection{Limit}
+
+\emph{Missing}
 
 \section{Wick's theorem for non-operators}
 \label{homework:3}
