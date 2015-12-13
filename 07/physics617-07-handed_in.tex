@@ -353,7 +353,7 @@ a momentum-frequency Green's function first. This give us
 \end{align*}
 Only at this point it is apparent that the limit $\tau \nearrow 0$ does
 something useful. If we had performed the limit already then the
-exponential factor was gone. The denominator only decays with $z\inv$
+exponential factor were gone. The denominator only decays with $z\inv$
 such that the total integral over a great circle does not vanish without any
 such suppression factor.
 
@@ -373,7 +373,11 @@ result. We cancel the minus sign since we need to subtract this pole from the
 integral will give zero, so one cannot really say that this works out here.
 
 This moment here reminds me of a nice exchange I have read some time
-ago.\footnote{\url{http://arstechnica.com/science/2010/06/maybe-the-math-behind-string-theory-is-overrated-anyway/}}
+ago.\footnote{%
+    \url{http://arstechnica.com/science/2010/06/maybe-the-math-behind-string-theory-is-overrated-anyway/}
+    is one source of this, I am not sure whether I read it in that exact article
+    or somewhere else.
+}
 Chaitin is a mathematician, Livio a physicist.
 
 \begin{quote}
@@ -399,21 +403,28 @@ The location of the impurities is defined as
 
 \subsection{Ensemble averages}
 
-The definition of the ensemble average given in the lecture is
+The definition of the ensemble average given in the lecture is \footnote{%
+    The notation is a bit different here:
+    \begin{enumerate}
+        \item 
+            First I use some other brackets. There are double angle brackets in
+            \texttt{MnSymbol} but that clashes with \texttt{amssymb} and I do
+            not want to get those to work right now. Those are taken from
+            \texttt{stmaryrd} which plays nice with \texttt{amssymb}.
+        \item
+            Then I like to have function evaluation with round brackets no
+            matter what the arguments are. From a programming perspective I
+            find it illogical that the function arguments should be enclosed in
+            square brackets if one of them is another function.
+        \item
+            And because the theorists convinced me in the third semester that
+            writing the differential forms (or measure or integration variable)
+            up front makes more sense, I will do that here as well.
+    \end{enumerate}
+}
 \[
     \ensemble G := \int \sbr{\prod_{i=1}^N \dif^3 R_i} G(\vec R_1, \dotsc, \vec R_N) \,.
 \]
-The notation is a bit different here. First I use some other brackets. There
-are double angle brackets in \texttt{MnSymbol} but that clashes with
-\texttt{amssymb} and I do not want to get those to work right now. Those are
-taken from \texttt{stmaryrd} which plays nice with \texttt{amssymb}. Then I
-like to have function evaluation with round brackets no matter what the
-arguments are. From a programming perspective I find it illogical that the
-function arguments should be enclosed in square brackets if one of them is
-another function. And because the theorist convinced me that writing the
-differential forms (or measure or integration variable) up front makes more
-sense, I will do that here as well.
-
 It is important that the integration only applies to the actual values of $\vec
 R$ used. Otherwise they would create infinite multiplicative factors which is
 not the desired outcome. With that in mind we can start to evaluate some
