@@ -325,21 +325,31 @@ different sign, then it would work out.
 
 \subsection{Limit}
 
-\paragraph{Conversion to contour integral}
-
 In the problem set the momentum is set to zero, although on the right hand side
 a vector $\vec k$ comes up. We will use a vector $\vec X$ which would be just
-the zero vector on the problem set. We expand the momentum-time Green's function as
-a momentum-frequency Green's function first. This give us
+the zero vector on the problem set.
+
+\begin{question}
+    Is the imaginary time~$\tau$ a real or a purely imaginary number. For the
+    convergence arguments it seems that $\tau \in \R$. On the other hand we
+    have the real time~$t$ and definitely $t \in \R$ with $\iup t = \tau$ as
+    the connection between the two. What is the missing link? Did we do a Wick
+    rotation and then have $\tau \in \R$ and $t \in \iup \R$?
+\end{question}
+
+\paragraph{Conversion to contour integral}
+
+We expand the momentum-time Green's function as a momentum-frequency Green's
+function first. This give us
 \begin{align*}
     \lim_{\tau \nearrow 0} G^{(0)}(\tau, \vec X)
     &= \lim_{\tau \nearrow 0} \frac 1\beta \sum_{n} \exp(- \iup \omega_n \tau)
     \tilde G^{(0)}(\omega_n, \vec X) \,.
     \intertext{%
-        The exponential on the problem set lacks a factor $\tau$, we have just
-        added it here to make sense of the units. This is just another
-        frequency summation problem. We insert $\tilde G^{(0)}$ explicitly and
-        obtain
+        The exponential for the Fourier transform on the problem set lacks a
+        factor $\tau$, we have just added it here to make sense of the units.
+        This is just another frequency summation problem. We insert $\tilde
+        G^{(0)}$ explicitly and obtain
     }
     &= \lim_{\tau \nearrow 0} \frac 1\beta \sum_{n} \exp(- \iup \omega_n \tau)
     \frac1{\iup \omega_n - \epsilon_{\vec X}} \,,
@@ -352,10 +362,13 @@ a momentum-frequency Green's function first. This give us
     \frac{n_\text F(z)}{z - \epsilon_{\vec X}} \,,
 \end{align*}
 Only at this point it is apparent that the limit $\tau \nearrow 0$ does
-something useful. If we had performed the limit already then the
-exponential factor were gone. The denominator only decays with $z\inv$
-such that the total integral over a great circle does not vanish without any
-such suppression factor.
+something useful. If we had performed the limit already then the exponential
+factor were gone. The Fermi function provides exponential decay for $\Re(z) \to
+\infty$ as it is defined as $[\exp(\beta z) + 1]\inv$. It will just become
+unity for the case $\Re(z) \to -\infty$. Therefore it does not help with
+convergence on the left half-plane. The denominator only decays with $z\inv$ on
+its own. The total integral over a great circle does not vanish in the case
+$\tau = 0$.
 
 \paragraph{Careless integration}
 
@@ -393,17 +406,171 @@ better than just ignoring convergence.
 
 \paragraph{More careful analysis}
 
+The observation is that the integral does give the right result, we just need
+to carefully justify the convergence. In the case $\Re(z) \to - \infty$ the
+exponential factor is needed to give some convergence. And indeed it does. For
+negative $z$ and negative $\tau$ we have
+\[
+    \exp(- [-|z|][- |\tau|])
+    = \exp(- |\tau z|) \,.
+\]
+That will go to zero as $\Re(z) \to - \infty$. In the case $\Re(z) = 0$ we do
+not have exponential suppression. This is only for a small part of the contour,
+so it will probably not matter too much. If that works, contour can just be
+pushed to infinity. It will pick up the other pole at $z = \epsilon_{\vec X}$.
+Then we have the contour integral going to zero, the only pole is the negative
+of our final result and we are done. This only works if there is no branch cut
+along $\Im(z) = 0$.
+
+The problem statement suggests that there is such a branch cut but in the
+function $G(z)$. What is this function? We have $G^{(0)}(\tau)$ here (with
+perhaps another argument $\vec X$). Then there is $\tilde G^{(0)}(\omega_n)$
+which is the Fourier transform. The function we have that depends on $z$ is the
+integrand. The variable $z$ was introduced by us. Is that $z$ on the problem
+statement the $\tau$ generalized to the whole complex plane? Indeed for $\tau =
+0$ the integral does not converge and it will have a branch cut there. In that
+sense $G^{(0)}(z = \tau)$ has a branch cut along $\tau = 0$. Here is seems that
+$\tau \in \R$.
+
+\Textcite[Section~11.4.2]{Bruus/Many-Body} treat an analogous problem in their
+book. There they have an integrand with a branch cut on the real line. So with
+that in mind I think that the $G(z)$ with its branch cut on the real line might
+be the integrand here?
+
+With a branch cut of the integrand, we cannot do a \enquote{great circle}
+contour here. Therefore we need to chose a different contour which encompasses
+all the poles at the Matsubara frequencies but do not intersect the real axis.
+We can do this by two half-circles, one above and one below the real axis.
+Since we looked at the convergence for $|z| \to \infty$ already we can drop the
+great arcs and just have an integration along $x + \iup \epsilon$ and $x - \iup
+\epsilon$ where $x \in R$ and $\epsilon \in \R^+$.
+
+We last stopped at the point where we had
+\begin{align*}
+    \lim_{\tau \nearrow 0} G^{(0)}(\tau, \vec X)
+    &= - \lim_{\tau \nearrow 0} \ointop_\text{narrow}
+    \frac{\dif z}{2 \piup \iup} \, \exp(- z \tau)
+    \frac{n_\text F(z)}{z - \epsilon_{\vec X}} \,.
+    \intertext{%
+        As motivated we change the contour integration into two integrals now.
+    }
+    &= -
+    \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0}
+    \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup}
+    \sbr{
+        \eup^{- [x + \iup \epsilon] \tau}
+        \frac{n_\text F(x + \iup \epsilon)}{x + \iup \epsilon - \epsilon_{\vec X}}
+        -
+        \eup^{- [x - \iup \epsilon] \tau}
+        \frac{n_\text F(x - \iup \epsilon)}{x - \iup \epsilon - \epsilon_{\vec X}}
+    }
+    \,.
+    \intertext{%
+        The exponential factor depending on $x$ can be pulled out already. The
+        Fermi function is also analytic on the real axis, therefore we can just
+        pull that out and even let the limit $\epsilon \to 0$ act on it
+        already. We then have
+    }
+    &= - \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0} \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup} \, \eup^{-x \tau} n_\text F(x)
+    \sbr{
+        \frac{\eup^{- \iup \epsilon \tau}}{x + \iup \epsilon - \epsilon_{\vec X}}
+        -
+        \frac{\eup^{\iup \epsilon \tau}}{x - \iup \epsilon - \epsilon_{\vec X}}
+    }
+    \,.
+    \intertext{%
+        Both $\epsilon$ and $\tau$ are infinitesimal quantities more or less.
+        Therefore the exponentials in the numerators can be set to unity
+        already. This leaves us with a very nice and compact expression,
+    }
+    &= - \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0} \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup} \, \eup^{-x \tau} n_\text F(x)
+    \sbr{
+        \frac{1}{x + \iup \epsilon - \epsilon_{\vec X}}
+        -
+        \frac{1}{x - \iup \epsilon - \epsilon_{\vec X}}
+    }
+    \,.
+    \intertext{%
+        This looks somewhat familiar, but I am not certain what it is exactly.
+        So we will expand each fraction with its complex conjugate and obtain
+    }
+    &= - \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0} \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup} \, \eup^{-x \tau} n_\text F(x)
+    \sbr{
+        \frac{x - \iup \epsilon - \epsilon_{\vec X}}{[x - \epsilon_{\vec X}]^2 + \epsilon^2}
+        -
+        \frac{x + \iup \epsilon - \epsilon_{\vec X}}{[x - \epsilon_{\vec X}]^2 + \epsilon^2}
+    }
+    \,.
+    \intertext{%
+        The difference is now easily computed and is
+    }
+    &= - \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0} \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup} \, \eup^{-x \tau} n_\text F(x)
+    \frac{- 2 \iup \epsilon}{[x - \epsilon_{\vec X}]^2 + \epsilon^2}
+    \,.
+    \intertext{%
+        Now we can recognize the similarity with the Lorentzian peak. Some
+        factors are not correct, though. We need to have a factor $1/2$ in the
+        denominator. We define $\epsilon' = \epsilon/2$ and then have
+    }
+    &= - \lim_{\tau \nearrow 0} \lim_{\epsilon' \to 0} \int_{-\infty}^\infty 
+    \frac{\dif x}{2 \piup \iup} \, \eup^{-x \tau} n_\text F(x)
+    \frac{- \iup \epsilon'}{[x - \epsilon_{\vec X}]^2 + \sbr{\frac12 \epsilon'}^2}
+    \,.
+    \intertext{%
+        We move some of the factors around and have
+    }
+    &= \lim_{\tau \nearrow 0} \lim_{\epsilon' \to 0} \int_{-\infty}^\infty 
+    \dif x \, \eup^{-x \tau} n_\text F(x) \frac 1 \piup
+    \frac{\frac 12 \epsilon'}{[x - \epsilon_{\vec X}]^2 + \sbr{\frac12 \epsilon'}^2}
+    \,.
+    \intertext{%
+        Now we have a Lorentzian in the last term. We write that as
+    }
+    &= \lim_{\tau \nearrow 0} \lim_{\epsilon \to 0} \int_{-\infty}^\infty 
+    \dif x \, \eup^{-x \tau} n_\text F(x)
+    L(x, \epsilon_{\vec x}, 2\epsilon)
+    \,.
+    \intertext{%
+        In the limit $\epsilon \to 0$ this will become $\delta(x
+        - \epsilon_{\vec x})$ and we can carry out the integration. The
+        remainder is
+    }
+    &= \lim_{\tau \nearrow 0} \eup^{- \epsilon_{\vec X} \tau}
+    n_\text F(\epsilon_{\vec X}) \,,
+    \intertext{%
+        Exactly what we obtained when we were extremely sloppy with the
+        convergence. Taking the limit then gives us the desired result.
+    }
+    &= n_\text F(\epsilon_{\vec X}) \,.
+\end{align*}
+
+The question about $\vec X$ remains, but the problem was solvable as given more
+or less, so that should be fine. It is interesting how the careful analysis
+gives the same result as the sloppy one.
+
+The spectral function did not appear explicitly anywhere. It should be the
+fraction(s?) that then formed the Lorentzian when computing the jump around
+$\Im(z) = 0$. For free particles the spectral function is just a peak around
+the energy. This sounds familiar.
+
+\clearpage
+
 \section{Wick's theorem for non-operators}
 \label{homework:3}
 
-The location of the impurities is defined as
+The averaged impurity density is defined as
 \[
     \rho_{\vec q} := \sum_i \exp(- \iup \vec q \cdot \vec R_i) \,.
 \]
 
 \subsection{Ensemble averages}
 
-The definition of the ensemble average given in the lecture is \footnote{%
+The definition of the ensemble average given in the lecture is\footnote{%
     The notation is a bit different here:
     \begin{enumerate}
         \item 
