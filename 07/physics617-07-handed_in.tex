@@ -140,6 +140,8 @@ is constant, namely unity.
 
 \subsection{Frequency summation}
 
+\paragraph{General principle}
+
 Perhaps the first part is not really needed as we have done a few frequency
 summations already. I want to explain all the steps here in detail to show that
 I understood the general principle and in order to have something to get up to
@@ -180,6 +182,53 @@ the poles. They are
 \end{align*}
 Therefore the residue is just $-\beta\inv$. This can easily be accounted for in
 the transformation of the sum into a contour integral.
+
+\paragraph{Fermi function at negative energy}
+
+In the derivation we need to evaluate a Fermi function at a negative energy.
+Since the computation is a bit lengthy we give it here, like in a theorem with
+proof. Using the definition of the Fermi function with the expression which
+contained the negative sign we have
+\begin{align*}
+    n_\text F(\iup \nu_m - \epsilon_{\vec k})
+    &= \frac{1}{\exp(\iup \beta \nu_m - \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        Then we just split the exponential to give
+    }
+    &= \frac{1}{\exp(\iup \beta \nu_m) \exp(- \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        The boson frequencies are integer multiples of $2 \piup/\beta$ and
+        therefore just give $\exp(2 \piup \iup n) = 1$. We can drop the term
+        and are left with
+    }
+    &= \frac{1}{\exp(- \beta \epsilon_{\vec k}) + 1} \,.
+    \intertext{%
+        Then we expand the fraction with $\exp(\beta \epsilon_{\vec k})$ to get
+        rid of the minus sign. We then have
+    }
+    &= \frac{\exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta \epsilon_{\vec k})}
+    \,.
+    \intertext{%
+        In the numerator we add zero to have
+    }
+    &= \frac{1 + \exp(\beta \epsilon_{\vec k}) - 1}{1 + \exp(\beta
+    \epsilon_{\vec k})} \,.
+    \intertext{%
+        From here we can split up the two fractions in a trivial way
+    }
+    &= \frac{1 + \exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta
+    \epsilon_{\vec k})} - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})}
+    \intertext{%
+        and reduce the first fraction. We then have
+    }
+    &= 1 - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})} \,,
+    \intertext{%
+        which can be written in terms of the Fermi function again to give
+    }
+    &= 1 - n_\text F(\epsilon_{\vec k}) \,.
+\end{align*}
+
+\paragraph{Frequency summation}
 
 The Fourier transformed Matsubara Green's function for non-interacting
 particles was given on the sixth homework sheet as
@@ -264,57 +313,19 @@ We start with the expression to compute. The left hand side is
     \,.
     \intertext{%
         This looks very good, the argument of the second Fermi function needs
-        some adjustment, though. Using the trick to be shown below, we obtain
-        the final result of
+        some adjustment, though. Using the trick shown above, we obtain the
+        final result of
     }
     &= \frac{-1 - n_\text F(\epsilon_{\text p}) + n_\text F(\epsilon_{\vec
     k})}{\iup \nu_m - \epsilon_{\vec p} - \epsilon_{\vec k}}
     \,.
 \end{align*}
 There is a sign mistake somewhere, though. Perhaps one of the residues has a
-different sign, then it would work out. Now the trick mentioned above. Using
-the definition of the Fermi function with the expression which contained the
-negative sign we have
-\begin{align*}
-    n_\text F(\iup \nu_m - \epsilon_{\vec k})
-    &= \frac{1}{\exp(\iup \beta \nu_m - \beta \epsilon_{\vec k}) + 1} \,.
-    \intertext{%
-        Then we just split the exponential to give
-    }
-    &= \frac{1}{\exp(\iup \beta \nu_m) \exp(- \beta \epsilon_{\vec k}) + 1} \,.
-    \intertext{%
-        The boson frequencies are integer multiples of $2 \piup/\beta$ and
-        therefore just give $\exp(2 \piup \iup n) = 1$. We can drop the term
-        and are left with
-    }
-    &= \frac{1}{\exp(- \beta \epsilon_{\vec k}) + 1} \,.
-    \intertext{%
-        Then we expand the fraction with $\exp(\beta \epsilon_{\vec k})$ to get
-        rid of the minus sign. We then have
-    }
-    &= \frac{\exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta \epsilon_{\vec k})}
-    \,.
-    \intertext{%
-        In the numerator we add zero to have
-    }
-    &= \frac{1 + \exp(\beta \epsilon_{\vec k}) - 1}{1 + \exp(\beta
-    \epsilon_{\vec k})} \,.
-    \intertext{%
-        From here we can split up the two fractions in a trivial way
-    }
-    &= \frac{1 + \exp(\beta \epsilon_{\vec k})}{1 + \exp(\beta
-    \epsilon_{\vec k})} - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})}
-    \intertext{%
-        and reduce the first fraction. We then have
-    }
-    &= 1 - \frac{1}{1 + \exp(\beta \epsilon_{\vec k})} \,,
-    \intertext{%
-        which can be written in terms of the Fermi function again to give
-    }
-    &= 1 - n_\text F(\epsilon_{\vec k}) \,.
-\end{align*}
+different sign, then it would work out.
 
 \subsection{Limit}
+
+\paragraph{Conversion to contour integral}
 
 In the problem set the momentum is set to zero, although on the right hand side
 a vector $\vec k$ comes up. We will use a vector $\vec X$ which would be just
@@ -344,9 +355,13 @@ Only at this point it is apparent that the limit $\tau \nearrow 0$ does
 something useful. If we had performed the limit already then the
 exponential factor was gone. The denominator only decays with $z\inv$
 such that the total integral over a great circle does not vanish without any
-such help. If we do not care about convergence and just do the contour
-integration we would have to take the pole at $z = \epsilon_{\vec X}$ into
-account. The residue at this pole is just
+such suppression factor.
+
+\paragraph{Careless integration}
+
+If we do not care about convergence and just do the contour integration we
+would have to take the pole at $z = \epsilon_{\vec X}$ into account. The
+residue at this pole is just
 \[
     \lim_{\tau \nearrow 0} \exp(- \epsilon_{\vec X} \tau) \,
     n_\text F(\epsilon_{\vec X}) \,.
@@ -357,7 +372,9 @@ result. We cancel the minus sign since we need to subtract this pole from the
 “great circle” contour. We do not know that this “great circle” contour
 integral will give zero, so one cannot really say that this works out here.
 
-This moment here reminds me of a nice exchange I have read some time ago:
+This moment here reminds me of a nice exchange I have read some time
+ago.\footnote{\url{http://arstechnica.com/science/2010/06/maybe-the-math-behind-string-theory-is-overrated-anyway/}}
+Chaitin is a mathematician, Livio a physicist.
 
 \begin{quote}
     \enquote{You're not upset because you're not a mathematician,} Chaitin told
@@ -365,8 +382,12 @@ This moment here reminds me of a nice exchange I have read some time ago:
 
     \enquote{We know there's problems with quantum mechanics, but has that
     stopped anything?} Livio countered.
-    \footnote{\url{http://arstechnica.com/science/2010/06/maybe-the-math-behind-string-theory-is-overrated-anyway/}}
 \end{quote}
+
+They were talking about fundamental problems, of course. So we have to do
+better than just ignoring convergence.
+
+\paragraph{More careful analysis}
 
 \section{Wick's theorem for non-operators}
 \label{homework:3}
