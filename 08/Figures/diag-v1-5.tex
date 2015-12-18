@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+    \feynmandiagram[spring electrical layout, horizontal=a to b]
+    {
+        1 --[photon] 2;
+        a --[fermion] 1 --[fermion] b;
+        2 --[fermion, half left] 2x;
+        2x --[fermion, half left] 2;
+    };
+\end{tikzpicture}

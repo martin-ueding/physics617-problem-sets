@@ -1,0 +1,217 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{simplewick}
+\usepackage{slashed}
+\usepackage{subcaption}
+\usepackage{tikz-feynman}
+%\usepackage{tikzsymbols}
+\usepackage{stmaryrd}
+
+\usepackage{../my-boxes}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+\newcommand\eye{\mat 1_4}
+\newcommand\myslash[1]{\underline{\slashed{\vec{#1}}}}
+\newcommand\ensemble[1]{\llbracket #1 \rrbracket}
+\newcommand\Ensemble[1]{\left\llbracket #1 \right\rrbracket}
+\newcommand\sump{\sideset{}{'}\sum}
+
+\hypersetup{
+    pdftitle=
+}
+
+\graphicspath{{build/}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{8}
+
+\subject{physics617 -- Theoretical Condensed Matter Physics}
+\ihead{physics617 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Tutor: Ramsés Sánchez}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        \toprule
+        Problem & Achieved points & Possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:2} & & \punkte{10} \\
+        \midrule
+        Total & & \arabic{totalpoints} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{First order perturbation theory}
+\label{homework:1}
+
+\subsection{Wick's theorem}
+
+We are given a two-point correlation function with first order in $V$. This
+means that there are two interaction vertices at $\vec x_1$ and $\vec x_2$.
+There is a shorthand often used by \textcite{Bruus/Many-Body} that is $(1) :=
+(\vec x_1, \tau_1)$. For $(\vec x, \tau)$ we will use $(a)$ and for $(\vec x',
+\tau')$ we use $(b)$. Then we can write the given expression as
+\[
+    \frac 12 \int \dif 1 \dif 2 \, V(\vec x_1, \vec x_2), \delta(\tau_1, -
+    \tau_2) \Bracket{
+        T_\tau
+        \psi_a \psi_1 \psi_2 \psi^\dagger_2 \psi^\dagger_1 \psi^\dagger_b
+    } \,.
+\]
+
+Wick's theorem then tells us that we can write this as
+\[
+    \frac12 \int \dif 1 \dif 2 \, V(\vec x_1, \vec x_2), \delta(\tau_1, -
+    \tau_2)
+    \begin{vmatrix}
+        G^{(0)}(b, a) & G^{(0)}(b, 1) & G^{(0)}(b, 2) \\
+        G^{(0)}(1, a) & G^{(0)}(1, 1) & G^{(0)}(1, 2) \\
+        G^{(0)}(2, a) & G^{(0)}(2, 1) & G^{(0)}(2, 2) \\
+    \end{vmatrix} \,,
+\]
+where we now have a determinant as we deal with fermions. The interaction is
+always between the points $(1)$ and $(2)$. We have external vertices $(a)$ and
+$(b)$. The determinant will give us six terms of the style
+\[
+    \frac12 \int \dif 1 \dif 2 \, V(\vec x_1, \vec x_2), \delta(\tau_1, -
+    \tau_2)
+    G^{(0)}(b, a)
+    G^{(0)}(1, 1)
+    G^{(0)}(2, 2)
+\]
+from Sarrus's rule.
+
+\subsection{Diagrams}
+
+Writing only the arguments of the three Green's function we have the six
+diagrams. The first one is a disconnected one,
+\begin{align*}
+    (b, a) (1, 1) (2, 2)
+    &=
+    \feynmandiagram[spring electrical layout, horizontal=a to b, inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] b[particle=$b$];
+    };
+    \times
+    \feynmandiagram[spring electrical layout, scale=0.5, horizontal=1 to 2,
+    inline=(1.south)]
+    {
+        1 --[photon] 2;
+        1 --[fermion, half left] 1x;
+        1 --[fermion, half right] 1x;
+        2 --[fermion, half left] 2x;
+        2 --[fermion, half right] 2x;
+    };
+    \,.
+    \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \intertext{%
+        Then there are two equivalent diagrams with a Fock term,
+    }
+    (b, 1) (1, 2) (2, a)
+    &=
+    \feynmandiagram[spring electrical layout, horizontal=a to b, inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] 2[label=270:2] --[fermion] 1[label=270:1] --[fermion] b[particle=$b$];
+        2 --[photon, half left] 1;
+    }; \,, \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    (b, 2) (2, 1) (1, a)
+    &=
+    \feynmandiagram[spring electrical layout, horizontal=a to b, inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] 2[label=270:1] --[fermion] 1[label=270:2] --[fermion] b[particle=$b$];
+        2 --[photon, half left] 1;
+    }; \,. \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \intertext{%
+        The fourth is again disconnected.
+    }
+    (b, a) (1, 2) (2, 1)
+    &=
+    \feynmandiagram[horizontal=a to b, inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] b[particle=$b$];
+    };
+    \times
+    \feynmandiagram[horizontal=1 to 2, inline=(1.base)]
+    {
+        1[particle=$1$] --[photon] 2[particle=$2$];
+        1 --[fermion, half left] 2;
+        2 --[fermion, half left] 1;
+    }; \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \intertext{%
+        There are two diagrams with a tadpole subdiagram (Hartree term):
+    }
+    (b, 1) (1, a), (2, 2)
+    &=
+    \feynmandiagram[spring electrical layout, horizontal=a to b, scale=0.5,
+    inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] 1 --[fermion] b[particle=$b$];
+        1 --[photon] 2;
+        2 --[fermion, half left] 2x;
+        2x --[fermion, half left] 2;
+    }; \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    (b, 2) (2, a), (1, 1)
+    &=
+    \feynmandiagram[spring electrical layout, horizontal=a to b, scale=0.5,
+    inline=(a.base)]
+    {
+        a[particle=$a$] --[fermion] 1 --[fermion] b[particle=$b$];
+        1 --[photon] 2;
+        2 --[fermion, half left] 2x;
+        2x --[fermion, half left] 2;
+    };
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{align*}
+
+Those are all the diagrams with exact first order in $V$.
+
+\section{First order perturbation theory, part 2}
+\label{homework:2}
+
+
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
