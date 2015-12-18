@@ -283,16 +283,10 @@
 %                            Bibliography (BibTeX)                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\IfFileExists{../../central-bibtex/Central.bib}
-{\newcommand{\bibliographyfile}{../../central-bibtex/Central.bib}}
-{
-    \IfFileExists{central-bibtex/Central}
-    {\newcommand{\bibliographyfile}{central-bibtex/Central.bib}}
-    {\newcommand{\bibliographyfile}{../../../../zentrale_BibTeX/Central.bib}}
-}
+\newcommand\bibliographyfile{../../../../zentrale_BibTeX/Central.bib}
 
 \RequirePackage[
-    backend=bibtex,
+    backend=biber,
     style=authoryear-icomp,
     %isbn=false,
     %pagetracker=false,
@@ -311,11 +305,11 @@
 
 \IfFileExists{\bibliographyfile}{
     \bibliography{\bibliographyfile}
-
-    \if@bibatend
-        \AtEndDocument{\printbibliography}
-    \fi
-}{}
+    \AtEndDocument{\printbibliography}
+}{
+    \PackageError{header}{Bibliography file not found!}
+    {Try to fix the path of the bibliographyfile that is currently set to \bibliographyfile.}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                  Licences                                   %
