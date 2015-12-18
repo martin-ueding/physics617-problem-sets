@@ -197,7 +197,7 @@
 
 % Groups
 \newcommand\SO{\mathrm{SO}}
-\newcommand\SU{\mathrm{SO}}
+\newcommand\SU{\mathrm{SU}}
 \newcommand\so{\mathfrak{so}}
 \newcommand\su{\mathfrak{su}}
 
@@ -235,10 +235,6 @@
 \newcommand{\Bracket}[1]{\left\langle #1 \right\rangle}
 \newcommand{\inner}[2]{\bracket{#1, #2}}
 \newcommand{\Inner}[2]{\Bracket{#1, #2}}
-
-% Placeholders.
-\newcommand{\fehlt}{\textcolor{darkred}{Hier fehlen noch Inhalte.}}
-\newcommand{\messwert}{\textcolor{blue}{\square}}
 
 % Separator for equations on a single line.
 \newcommand{\eqnsep}{\,,\qquad}
@@ -287,12 +283,12 @@
 %                            Bibliography (BibTeX)                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\IfFileExists{../../central-bibtex/Central}
-{\newcommand{\bibliographyfile}{../../central-bibtex/Central}}
+\IfFileExists{../../central-bibtex/Central.bib}
+{\newcommand{\bibliographyfile}{../../central-bibtex/Central.bib}}
 {
     \IfFileExists{central-bibtex/Central}
-    {\newcommand{\bibliographyfile}{central-bibtex/Central}}
-    {\newcommand{\bibliographyfile}{../../../../zentrale_BibTeX/Central}}
+    {\newcommand{\bibliographyfile}{central-bibtex/Central.bib}}
+    {\newcommand{\bibliographyfile}{../../../../zentrale_BibTeX/Central.bib}}
 }
 
 \RequirePackage[
@@ -320,12 +316,6 @@
         \AtEndDocument{\printbibliography}
     \fi
 }{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                Abbreviations                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\dhabk}{\mbox{d.\,h.}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                  Licences                                   %
