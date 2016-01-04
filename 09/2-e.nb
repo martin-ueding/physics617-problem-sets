@@ -1,0 +1,743 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27508,        734]
+NotebookOptionsPosition[     25191,        653]
+NotebookOutlinePosition[     25736,        674]
+CellTagsIndexPosition[     25632,        669]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"24", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"9", 
+     RowBox[{"Pi", "/", "4"}]}], ")"}], "^", 
+   RowBox[{"(", 
+    RowBox[{"1", "/", "3"}], ")"}]}], " ", 
+  RowBox[{"Pi", "^", "3"}]}]], "Input",
+ CellChangeTimes->{{3.660927501269987*^9, 3.660927514626243*^9}}],
+
+Cell[BoxData[
+ RowBox[{"12", " ", 
+  SuperscriptBox["2", 
+   RowBox[{"1", "/", "3"}]], " ", 
+  SuperscriptBox["3", 
+   RowBox[{"2", "/", "3"}]], " ", 
+  SuperscriptBox["\[Pi]", 
+   RowBox[{"10", "/", "3"}]]}]], "Output",
+ CellChangeTimes->{3.660927516533298*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.6609275186996927`*^9, 3.660927519884939*^9}}],
+
+Cell[BoxData["1428.1428723852189`"], "Output",
+ CellChangeTimes->{3.6609275202200127`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"0.916", "/", "%"}]], "Input",
+ CellChangeTimes->{{3.660927619579328*^9, 3.660927625681923*^9}}],
+
+Cell[BoxData["0.0006413924108798294`"], "Output",
+ CellChangeTimes->{3.660927641717749*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HeavisideTheta", "[", "2", "]"}]], "Input",
+ CellChangeTimes->{{3.660927677199905*^9, 3.6609276820844727`*^9}}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.660927682413846*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Norm"}]], "Input",
+ CellChangeTimes->{{3.660927694278605*^9, 3.660927698235379*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"\!\(\*RowBox[{\\\"Norm\\\", \\\"[\\\", StyleBox[\\\"expr\\\", \
+\\\"TI\\\"], \\\"]\\\"}]\) gives the norm of a number, vector, or matrix. \\n\
+\!\(\*RowBox[{\\\"Norm\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \
+\\\"TI\\\"], \\\",\\\", StyleBox[\\\"p\\\", \\\"TI\\\"]}], \\\"]\\\"}]\) \
+gives the \!\(\*StyleBox[\\\"p\\\", \\\"TI\\\"]\)\[Hyphen]norm. \"\>", "MSG"],
+   "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Norm"]}]], "Print", "PrintUsage",
+ CellChangeTimes->{3.660927699225033*^9},
+ CellTags->"Info-6b5900a2-93aa-4850-ab38-731495187263"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Norm", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", " ", "1"}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.660927702231564*^9, 3.660927706509141*^9}}],
+
+Cell[BoxData[
+ SqrtBox["2"]], "Output",
+ CellChangeTimes->{3.660927706794257*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"integrand", "[", 
+   RowBox[{"p_", ",", "q_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"HeavisideTheta", "[", 
+    RowBox[{"1", "-", 
+     RowBox[{"Norm", "[", 
+      RowBox[{"p", "-", 
+       RowBox[{"q", "/", "2"}]}], "]"}]}], "]"}], 
+   RowBox[{"HeavisideTheta", "[", 
+    RowBox[{"1", "-", 
+     RowBox[{"Norm", "[", 
+      RowBox[{"p", "+", 
+       RowBox[{"q", "/", "2"}]}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.660927763127162*^9, 3.660927774854725*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"integrand2", "[", 
+   RowBox[{"p_", ",", "q_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"integrand", "[", 
+    RowBox[{"p", ",", "q"}], "]"}], "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Norm", "[", "q", "]"}], "^", "2"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.660928395985055*^9, 3.6609284122848663`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"DensityPlot", "[", 
+    RowBox[{
+     RowBox[{"integrand", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"px", ",", " ", "py"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"qx", ",", "qy"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"px", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"py", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<p_x\>\"", ",", " ", "\"\<p_y\>\""}], "}"}]}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qy", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6609277145755177`*^9, 3.6609277441944532`*^9}, {
+  3.660927774369233*^9, 3.660927910456524*^9}, {3.660927945229301*^9, 
+  3.6609279453199387`*^9}, {3.6609280329792747`*^9, 3.6609280401134853`*^9}, {
+  3.660928120851687*^9, 3.660928123491387*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`qx$$ = -1.26, $CellContext`qy$$ = -0.53, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`qx$$], -2, 2}, {
+      Hold[$CellContext`qy$$], -2, 2}}, Typeset`size$$ = {360., {172., 176.}},
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`qx$5652$$ = 0, $CellContext`qy$5653$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`qx$$ = -2, $CellContext`qy$$ = -2}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`qx$$, $CellContext`qx$5652$$, 0], 
+        Hold[$CellContext`qy$$, $CellContext`qy$5653$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> DensityPlot[
+        $CellContext`integrand[{$CellContext`px, $CellContext`py}, \
+{$CellContext`qx$$, $CellContext`qy$$}], {$CellContext`px, -1, 
+         1}, {$CellContext`py, -1, 1}, AxesLabel -> {"p_x", "p_y"}], 
+      "Specifications" :> {{$CellContext`qx$$, -2, 2}, {$CellContext`qy$$, -2,
+          2}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {250., 257.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6609277270340643`*^9, 3.6609277342752333`*^9}, {
+   3.660927816728607*^9, 3.660927845241824*^9}, {3.660927884485145*^9, 
+   3.660927910928053*^9}, 3.660927945735807*^9, 3.660928040757092*^9, 
+   3.660928124498824*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"integrand", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qx", ",", " ", "qy", ",", " ", "qz"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"pz", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qy", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qz", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.660927985104601*^9, 3.6609280147422333`*^9}, {
+  3.6609280695835114`*^9, 3.6609280989076138`*^9}, {3.660928138809038*^9, 
+  3.660928146910844*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.660927998927965*^9, 3.660928015296212*^9}, 
+   3.660928080453144*^9, 3.6609281125569696`*^9, 3.660928149932043*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "eincr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The global error of the strategy GlobalAdaptive has \
+increased more than \[NoBreak]\\!\\(\\*RowBox[{\\\"2000\\\"}]\\)\[NoBreak] \
+times. The global error is expected to decrease monotonically after a number \
+of integrand evaluations. Suspect one of the following: the working precision \
+is insufficient for the specified precision goal; the integrand is highly \
+oscillatory or it is not a (piecewise) smooth function; or the true value of \
+the integral is 0. Increasing the value of the GlobalAdaptive option \
+MaxErrorIncreases might lead to a convergent numerical integration. \
+NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"16.73980699556744`\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"11.656676287912973`\\\"}]\\)\[NoBreak] for the \
+integral and error estimates. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/eincr\\\", ButtonNote -> \
+\\\"NIntegrate::eincr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.660927998927965*^9, 3.660928015296212*^9}, 
+   3.660928080453144*^9, 3.6609281125569696`*^9, 3.660928168034205*^9}],
+
+Cell[BoxData["16.73980699556744`"], "Output",
+ CellChangeTimes->{{3.660928001306621*^9, 3.660928017014584*^9}, 
+   3.660928081859654*^9, 3.660928123941217*^9, 3.660928168049286*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"integrand", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", " ", "0"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"pz", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.660929806338368*^9, 3.660929811520207*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6609298124769163`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "eincr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The global error of the strategy GlobalAdaptive has \
+increased more than \[NoBreak]\\!\\(\\*RowBox[{\\\"2000\\\"}]\\)\[NoBreak] \
+times. The global error is expected to decrease monotonically after a number \
+of integrand evaluations. Suspect one of the following: the working precision \
+is insufficient for the specified precision goal; the integrand is highly \
+oscillatory or it is not a (piecewise) smooth function; or the true value of \
+the integral is 0. Increasing the value of the GlobalAdaptive option \
+MaxErrorIncreases might lead to a convergent numerical integration. \
+NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"4.149505218617503`\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.128682553683875`\\\"}]\\)\[NoBreak] for the \
+integral and error estimates. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/eincr\\\", ButtonNote -> \
+\\\"NIntegrate::eincr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.660929813871924*^9}],
+
+Cell[BoxData["4.149505218617503`"], "Output",
+ CellChangeTimes->{3.660929813898369*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"DensityPlot", "[", 
+    RowBox[{
+     RowBox[{"integrand2", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"px", ",", " ", "py"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"qx", ",", "qy"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"px", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"py", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<p_x\>\"", ",", " ", "\"\<p_y\>\""}], "}"}]}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qy", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6609277145755177`*^9, 3.6609277441944532`*^9}, {
+   3.660927774369233*^9, 3.660927910456524*^9}, {3.660927945229301*^9, 
+   3.6609279453199387`*^9}, {3.6609280329792747`*^9, 
+   3.6609280401134853`*^9}, {3.660928120851687*^9, 3.660928123491387*^9}, 
+   3.660928419917597*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`qx$$ = 
+    1.0100000000000002`, $CellContext`qy$$ = 1.21, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`qx$$], -2, 2}, {
+      Hold[$CellContext`qy$$], -2, 2}}, Typeset`size$$ = {360., {172., 176.}},
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`qx$6435$$ = 0, $CellContext`qy$6436$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`qx$$ = -2, $CellContext`qy$$ = -2}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`qx$$, $CellContext`qx$6435$$, 0], 
+        Hold[$CellContext`qy$$, $CellContext`qy$6436$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> DensityPlot[
+        $CellContext`integrand2[{$CellContext`px, $CellContext`py}, \
+{$CellContext`qx$$, $CellContext`qy$$}], {$CellContext`px, -1, 
+         1}, {$CellContext`py, -1, 1}, AxesLabel -> {"p_x", "p_y"}], 
+      "Specifications" :> {{$CellContext`qx$$, -2, 2}, {$CellContext`qy$$, -2,
+          2}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {228., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.6609284208940887`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"integrand2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qx", ",", " ", "qy", ",", " ", "qz"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"pz", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qy", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qz", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.6609284411539803`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.660928442593112*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "ncvb"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"NIntegrate failed to converge to prescribed accuracy after \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"54\\\"}]\\)\[NoBreak] recursive bisections in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"qx\\\"}]\\)\[NoBreak] near \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"px\\\", \\\",\\\", \\\"py\\\
+\", \\\",\\\", \\\"pz\\\", \\\",\\\", \\\"qx\\\", \\\",\\\", \\\"qy\\\", \
+\\\",\\\", \\\"qz\\\"}], \\\"}\\\"}]\\)\[NoBreak] = \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"0.6882472016116852`\\\", \\\
+\",\\\", \\\"0.6882472016116852`\\\", \\\",\\\", \\\"0.6882472016116852`\\\", \
+\\\",\\\", \\\"1.8743309144882816`*^-16\\\", \\\",\\\", \
+\\\"1.3764944032233704`\\\", \\\",\\\", \\\"1.3764944032233704`\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]. NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"2.6918172248134603`*^19\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"5.1611036014762566`*^19\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/ncvb\\\", \
+ButtonNote -> \\\"NIntegrate::ncvb\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.660928442883079*^9}],
+
+Cell[BoxData["2.6918172248134603`*^19"], "Output",
+ CellChangeTimes->{3.660928442885866*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot3D", "[", 
+    RowBox[{
+     RowBox[{"integrand2", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"px", ",", " ", "py"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"qx", ",", "qy"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qx", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qy", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<p_x\>\"", ",", " ", "\"\<p_y\>\""}], "}"}]}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6609277145755177`*^9, 3.6609277441944532`*^9}, {
+   3.660927774369233*^9, 3.660927910456524*^9}, {3.660927945229301*^9, 
+   3.6609279453199387`*^9}, {3.6609280329792747`*^9, 
+   3.6609280401134853`*^9}, {3.660928120851687*^9, 3.660928123491387*^9}, 
+   3.660928419917597*^9, {3.660928560907215*^9, 3.6609286103461237`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`px$$ = 
+    0.3900000000000001, $CellContext`py$$ = 0.26, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`px$$], -1, 1}, {
+      Hold[$CellContext`py$$], -1, 1}}, Typeset`size$$ = {360., {146., 150.}},
+     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`px$7579$$ = 0, $CellContext`py$7580$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`px$$ = -1, $CellContext`py$$ = -1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`px$$, $CellContext`px$7579$$, 0], 
+        Hold[$CellContext`py$$, $CellContext`py$7580$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot3D[
+        $CellContext`integrand2[{$CellContext`px$$, $CellContext`py$$}, \
+{$CellContext`qx, $CellContext`qy}], {$CellContext`qx, -2, 
+         2}, {$CellContext`qy, -2, 2}, AxesLabel -> {"p_x", "p_y"}], 
+      "Specifications" :> {{$CellContext`px$$, -1, 1}, {$CellContext`py$$, -1,
+          1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {224., 231.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6609285766610193`*^9, 3.660928611135221*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"integrand2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qx", ",", " ", "qy", ",", " ", "qz"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qy", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qz", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"pz", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.6609284411539803`*^9, {3.660928835255808*^9, 3.660928836337081*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.660928837928156*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "ncvb"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"NIntegrate failed to converge to prescribed accuracy after \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"54\\\"}]\\)\[NoBreak] recursive bisections in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"qx\\\"}]\\)\[NoBreak] near \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"qx\\\", \\\",\\\", \\\"qy\\\
+\", \\\",\\\", \\\"qz\\\", \\\",\\\", \\\"px\\\", \\\",\\\", \\\"py\\\", \
+\\\",\\\", \\\"pz\\\"}], \\\"}\\\"}]\\)\[NoBreak] = \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"1.8743309144882816`*^-16\\\", \\\",\\\", \
+\\\"1.3764944032233704`\\\", \\\",\\\", \\\"1.3764944032233704`\\\", \
+\\\",\\\", \\\"0.6882472016116852`\\\", \\\",\\\", \
+\\\"0.6882472016116852`\\\", \\\",\\\", \\\"0.6882472016116852`\\\"}], \
+\\\"}\\\"}]\\)\[NoBreak]. NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"2.6918172248134603`*^19\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"5.1611036014762566`*^19\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/ncvb\\\", \
+ButtonNote -> \\\"NIntegrate::ncvb\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.660928838217668*^9}],
+
+Cell[BoxData["2.6918172248134603`*^19"], "Output",
+ CellChangeTimes->{3.660928838219591*^9}]
+}, Open  ]]
+},
+WindowSize->{1918, 1059},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info-6b5900a2-93aa-4850-ab38-731495187263"->{
+  Cell[2038, 80, 685, 14, 63, "Print",
+   CellTags->"Info-6b5900a2-93aa-4850-ab38-731495187263"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info-6b5900a2-93aa-4850-ab38-731495187263", 25510, 663}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 293, 9, 32, "Input"],
+Cell[876, 33, 262, 8, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1175, 46, 122, 2, 32, "Input"],
+Cell[1300, 50, 90, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1427, 56, 119, 2, 32, "Input"],
+Cell[1549, 60, 91, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1677, 66, 135, 2, 32, "Input"],
+Cell[1815, 70, 70, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1922, 76, 113, 2, 32, "Input"],
+Cell[2038, 80, 685, 14, 63, "Print",
+ CellTags->"Info-6b5900a2-93aa-4850-ab38-731495187263"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2760, 99, 175, 4, 32, "Input"],
+Cell[2938, 105, 81, 2, 36, "Output"]
+}, Open  ]],
+Cell[3034, 110, 508, 15, 32, "Input"],
+Cell[3545, 127, 349, 10, 32, "Input"],
+Cell[CellGroupData[{
+Cell[3919, 141, 1098, 30, 32, "Input"],
+Cell[5020, 173, 2169, 41, 524, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7226, 219, 1006, 29, 32, "Input"],
+Cell[8235, 250, 674, 12, 23, "Message"],
+Cell[8912, 264, 1280, 21, 77, "Message"],
+Cell[10195, 287, 181, 2, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10413, 294, 621, 18, 32, "Input"],
+Cell[11037, 314, 580, 11, 23, "Message"],
+Cell[11620, 327, 1183, 20, 77, "Message"],
+Cell[12806, 349, 87, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12930, 355, 1128, 31, 32, "Input"],
+Cell[14061, 388, 1992, 39, 480, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16090, 432, 881, 27, 32, "Input"],
+Cell[16974, 461, 578, 11, 23, "Message"],
+Cell[17555, 474, 1328, 22, 51, "Message"],
+Cell[18886, 498, 92, 1, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19015, 504, 1171, 31, 32, "Input"],
+Cell[20189, 537, 2010, 39, 472, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22236, 581, 930, 28, 32, "Input"],
+Cell[23169, 611, 578, 11, 23, "Message"],
+Cell[23750, 624, 1330, 23, 51, "Message"],
+Cell[25083, 649, 92, 1, 34, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

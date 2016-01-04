@@ -1,0 +1,8 @@
+#!/bin/bash
+# Copyright © 2016 Martin Ueding <dev@martin-ueding.de>
+
+set -e
+set -u
+
+pdfunite 1.pdf 2-a.pdf 2-b.pdf 2-c.pdf 2-d.pdf 2-e.pdf 2-e-Programm.pdf \
+    2-f.pdf 2-g.pdf physics617-09-handed_in.pdf
