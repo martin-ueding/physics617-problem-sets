@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     27508,        734]
-NotebookOptionsPosition[     25191,        653]
-NotebookOutlinePosition[     25736,        674]
-CellTagsIndexPosition[     25632,        669]
+NotebookDataLength[     39409,       1017]
+NotebookOptionsPosition[     36007,        905]
+NotebookOutlinePosition[     36762,        930]
+CellTagsIndexPosition[     36598,        924]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -198,7 +198,7 @@ Cell[BoxData[
          1}, {$CellContext`py, -1, 1}, AxesLabel -> {"p_x", "p_y"}], 
       "Specifications" :> {{$CellContext`qx$$, -2, 2}, {$CellContext`qy$$, -2,
           2}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{407., {250., 257.}},
+     ImageSizeCache->{407., {228., 235.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -544,7 +544,7 @@ Cell[BoxData[
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`px$$], -1, 1}, {
-      Hold[$CellContext`py$$], -1, 1}}, Typeset`size$$ = {360., {146., 150.}},
+      Hold[$CellContext`py$$], -1, 1}}, Typeset`size$$ = {360., {144., 148.}},
      Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`px$7579$$ = 0, $CellContext`py$7580$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
@@ -563,7 +563,7 @@ Cell[BoxData[
          2}, {$CellContext`qy, -2, 2}, AxesLabel -> {"p_x", "p_y"}], 
       "Specifications" :> {{$CellContext`px$$, -1, 1}, {$CellContext`py$$, -1,
           1}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{407., {224., 231.}},
+     ImageSizeCache->{407., {200., 207.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -649,6 +649,258 @@ ButtonNote -> \\\"NIntegrate::ncvb\\\"]\\)\"\>"}]], "Message", "MSG",
 
 Cell[BoxData["2.6918172248134603`*^19"], "Output",
  CellChangeTimes->{3.660928838219591*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"4", "Pi", " ", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{"integrand", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"qx", ",", " ", "0", ",", " ", "0"}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"qx", ",", "0", ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"px", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"py", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"pz", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.661330747986919*^9, {3.66133081483051*^9, 3.661330829534154*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.661330830666444*^9, 3.661330844796526*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "eincr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The global error of the strategy GlobalAdaptive has \
+increased more than \[NoBreak]\\!\\(\\*RowBox[{\\\"2000\\\"}]\\)\[NoBreak] \
+times. The global error is expected to decrease monotonically after a number \
+of integrand evaluations. Suspect one of the following: the working precision \
+is insufficient for the specified precision goal; the integrand is highly \
+oscillatory or it is not a (piecewise) smooth function; or the true value of \
+the integral is 0. Increasing the value of the GlobalAdaptive option \
+MaxErrorIncreases might lead to a convergent numerical integration. \
+NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"3.1170403277056913`\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.15414583370858484`\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/eincr\\\", \
+ButtonNote -> \\\"NIntegrate::eincr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.661330830666444*^9, 3.6613308492399473`*^9}}],
+
+Cell[BoxData["39.16988397785328`"], "Output",
+ CellChangeTimes->{{3.661330830667317*^9, 3.6613308492517643`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"NIntegrate", "[", 
+    RowBox[{
+     RowBox[{"integrand", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"qx", ",", " ", "0", ",", " ", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"px", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"py", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"pz", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "5"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.661330960761347*^9, 3.661330992402027*^9}, {
+  3.661331054643776*^9, 3.661331056983623*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.661330995064412*^9, 3.661331059748417*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "eincr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The global error of the strategy GlobalAdaptive has \
+increased more than \[NoBreak]\\!\\(\\*RowBox[{\\\"2000\\\"}]\\)\[NoBreak] \
+times. The global error is expected to decrease monotonically after a number \
+of integrand evaluations. Suspect one of the following: the working precision \
+is insufficient for the specified precision goal; the integrand is highly \
+oscillatory or it is not a (piecewise) smooth function; or the true value of \
+the integral is 0. Increasing the value of the GlobalAdaptive option \
+MaxErrorIncreases might lead to a convergent numerical integration. \
+NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"4.147771940535264`\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.13389120436244095`\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/eincr\\\", \
+ButtonNote -> \\\"NIntegrate::eincr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.661330995064412*^9, 3.661331061799664*^9}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.6613311566105547`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Plot"}]], "Input",
+ CellChangeTimes->{{3.661331035026573*^9, 3.661331035678776*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["\<\"\!\(\*RowBox[{\\\"Plot\\\", \\\"[\\\", RowBox[{StyleBox[\\\"f\
+\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"x\\\", \
+\\\"TI\\\"], \\\",\\\", SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}]}], \\\"]\\\"}]\) generates a plot of \
+\!\(\*StyleBox[\\\"f\\\", \\\"TI\\\"]\) as a function of \!\(\*StyleBox[\\\"x\
+\\\", \\\"TI\\\"]\) from \!\(\*SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]]\) to \
+\!\(\*SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]]\). \\n\!\(\*RowBox[{\\\"Plot\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"f\\\", \
+\\\"TI\\\"], StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"f\\\", \\\"TI\\\"], StyleBox[\\\"2\\\", \
+\\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"x\\\", \\\"TI\\\"], \
+\\\",\\\", SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"x\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}]}], \\\"]\\\"}]\) plots several functions \
+\!\(\*SubscriptBox[StyleBox[\\\"f\\\", \\\"TI\\\"], StyleBox[\\\"i\\\", \
+\\\"TI\\\"]]\). \\n\!\(\*RowBox[{\\\"Plot\\\", \\\"[\\\", RowBox[{StyleBox[\\\
+\"\[Ellipsis]\\\", \\\"TR\\\"], \\\",\\\", RowBox[{RowBox[{\\\"{\\\", \
+StyleBox[\\\"x\\\", \\\"TI\\\"], \\\"}\\\"}], \\\"\[Element]\\\", StyleBox[\\\
+\"reg\\\", \\\"TI\\\"]}]}], \\\"]\\\"}]\) takes the variable \
+\!\(\*StyleBox[\\\"x\\\", \\\"TI\\\"]\) to be in the geometric region \
+\!\(\*StyleBox[\\\"reg\\\", \\\"TI\\\"]\).\"\>", "MSG"], 
+  "\[NonBreakingSpace]", 
+  ButtonBox[
+   StyleBox["\[RightSkeleton]", "SR"],
+   Active->True,
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Plot"]}]], "Print", "PrintUsage",
+ CellChangeTimes->{3.6613310369508753`*^9},
+ CellTags->"Info-af9ecc21-e4a3-4ee3-8bab-79cf9608ce34"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"4", 
+   RowBox[{"Pi", "^", "2"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.661331318067893*^9, 3.6613313198343983`*^9}}],
+
+Cell[BoxData["39.47841760435743`"], "Output",
+ CellChangeTimes->{3.661331320168312*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NIntegrate", "[", 
+  RowBox[{
+   RowBox[{"integrand", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"px", ",", " ", "py", ",", " ", "pz"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"qx", ",", " ", "0", ",", " ", "0"}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"qx", ",", "0", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"px", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"py", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"pz", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.661331783494307*^9, 3.661331794857935*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6613317871619177`*^9, 3.661331795649881*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "eincr"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The global error of the strategy GlobalAdaptive has \
+increased more than \[NoBreak]\\!\\(\\*RowBox[{\\\"2000\\\"}]\\)\[NoBreak] \
+times. The global error is expected to decrease monotonically after a number \
+of integrand evaluations. Suspect one of the following: the working precision \
+is insufficient for the specified precision goal; the integrand is highly \
+oscillatory or it is not a (piecewise) smooth function; or the true value of \
+the integral is 0. Increasing the value of the GlobalAdaptive option \
+MaxErrorIncreases might lead to a convergent numerical integration. \
+NIntegrate obtained \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"3.120245679616829`\\\"}]\\)\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.15089448846529882`\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/eincr\\\", \
+ButtonNote -> \\\"NIntegrate::eincr\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6613317871619177`*^9, 3.6613318001808367`*^9}}],
+
+Cell[BoxData["3.120245679616829`"], "Output",
+ CellChangeTimes->{{3.661331791763522*^9, 3.661331800193746*^9}}]
 }, Open  ]]
 },
 WindowSize->{1918, 1059},
@@ -663,12 +915,16 @@ StyleDefinitions->"Default.nb"
 CellTagsIndex->{
  "Info-6b5900a2-93aa-4850-ab38-731495187263"->{
   Cell[2038, 80, 685, 14, 63, "Print",
-   CellTags->"Info-6b5900a2-93aa-4850-ab38-731495187263"]}
+   CellTags->"Info-6b5900a2-93aa-4850-ab38-731495187263"]},
+ "Info-af9ecc21-e4a3-4ee3-8bab-79cf9608ce34"->{
+  Cell[30873, 791, 2155, 36, 82, "Print",
+   CellTags->"Info-af9ecc21-e4a3-4ee3-8bab-79cf9608ce34"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Info-6b5900a2-93aa-4850-ab38-731495187263", 25510, 663}
+ {"Info-6b5900a2-93aa-4850-ab38-731495187263", 36326, 915},
+ {"Info-af9ecc21-e4a3-4ee3-8bab-79cf9608ce34", 36473, 918}
  }
 *)
 (*NotebookFileOutline
@@ -701,40 +957,67 @@ Cell[2938, 105, 81, 2, 36, "Output"]
 Cell[3034, 110, 508, 15, 32, "Input"],
 Cell[3545, 127, 349, 10, 32, "Input"],
 Cell[CellGroupData[{
-Cell[3919, 141, 1098, 30, 32, "Input"],
-Cell[5020, 173, 2169, 41, 524, "Output"]
+Cell[3919, 141, 1098, 30, 55, "Input"],
+Cell[5020, 173, 2169, 41, 480, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7226, 219, 1006, 29, 32, "Input"],
-Cell[8235, 250, 674, 12, 23, "Message"],
-Cell[8912, 264, 1280, 21, 77, "Message"],
+Cell[7226, 219, 1006, 29, 55, "Input"],
+Cell[8235, 250, 674, 12, 59, "Message"],
+Cell[8912, 264, 1280, 21, 131, "Message"],
 Cell[10195, 287, 181, 2, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[10413, 294, 621, 18, 32, "Input"],
-Cell[11037, 314, 580, 11, 23, "Message"],
-Cell[11620, 327, 1183, 20, 77, "Message"],
+Cell[11037, 314, 580, 11, 59, "Message"],
+Cell[11620, 327, 1183, 20, 131, "Message"],
 Cell[12806, 349, 87, 1, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12930, 355, 1128, 31, 32, "Input"],
+Cell[12930, 355, 1128, 31, 55, "Input"],
 Cell[14061, 388, 1992, 39, 480, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16090, 432, 881, 27, 32, "Input"],
-Cell[16974, 461, 578, 11, 23, "Message"],
-Cell[17555, 474, 1328, 22, 51, "Message"],
+Cell[16090, 432, 881, 27, 55, "Input"],
+Cell[16974, 461, 578, 11, 59, "Message"],
+Cell[17555, 474, 1328, 22, 88, "Message"],
 Cell[18886, 498, 92, 1, 34, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19015, 504, 1171, 31, 32, "Input"],
-Cell[20189, 537, 2010, 39, 472, "Output"]
+Cell[19015, 504, 1171, 31, 55, "Input"],
+Cell[20189, 537, 2010, 39, 424, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[22236, 581, 930, 28, 32, "Input"],
-Cell[23169, 611, 578, 11, 23, "Message"],
-Cell[23750, 624, 1330, 23, 51, "Message"],
+Cell[22236, 581, 930, 28, 55, "Input"],
+Cell[23169, 611, 578, 11, 59, "Message"],
+Cell[23750, 624, 1330, 23, 88, "Message"],
 Cell[25083, 649, 92, 1, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25212, 655, 768, 22, 55, "Input"],
+Cell[25983, 679, 602, 11, 23, "Message"],
+Cell[26588, 692, 1212, 20, 77, "Message"],
+Cell[27803, 714, 113, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27953, 720, 872, 24, 32, "Input"],
+Cell[28828, 746, 600, 11, 23, "Message"],
+Cell[29431, 759, 1207, 20, 77, "Message"],
+Cell[30641, 781, 79, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30757, 787, 113, 2, 32, "Input"],
+Cell[30873, 791, 2155, 36, 82, "Print",
+ CellTags->"Info-af9ecc21-e4a3-4ee3-8bab-79cf9608ce34"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33065, 832, 165, 4, 32, "Input"],
+Cell[33233, 838, 87, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33357, 844, 697, 20, 32, "Input"],
+Cell[34057, 866, 604, 11, 23, "Message"],
+Cell[34664, 879, 1213, 20, 77, "Message"],
+Cell[35880, 901, 111, 1, 32, "Output"]
 }, Open  ]]
 }
 ]
